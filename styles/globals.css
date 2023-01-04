@@ -1,0 +1,65 @@
+html,
+body {
+  background-color: #F2F2F2;
+  -ms-overflow-style: none;
+  scrollbar-width: none;
+  height: 100%;
+  padding: 0;
+  margin: 0;
+  font-family: Montserrat, BlinkMacSystemFont, Segoe UI, Roboto, Oxygen,
+    Ubuntu, Cantarell, Fira Sans, Droid Sans, Helvetica Neue, sans-serif;
+}
+body::-webkit-scrollbar { 
+  display: none;
+}
+
+#__next {
+  height: 100%;
+}
+
+a {
+  color: inherit;
+  text-decoration: none;
+}
+
+* {
+  box-sizing: border-box;
+}
+
+/* -- NavBar -- */
+
+.onAccount {
+  border: 0.2em solid #E5BF00 !important;
+}
+.onPage {
+  color: #E5BF00;
+  transition: color 0.3s;
+}
+.pageIcon {
+  font-size: 2.2rem;
+  margin-bottom: 1rem;
+}
+.accountIcon {
+  font-size: 2.2rem;
+  color: #143642;
+}
+.disconnectIcon {
+  color: #C0392B;
+  font-size: 1.3rem;
+}
+.accountPageIcon {
+  display: none;
+}
+
+@media (max-width: 800px) {
+  .pageIcon {
+    margin: 0;
+    font-size: 1.4rem;
+  }
+  .referralPageIcon {
+    display: none;
+  }
+  .accountPageIcon {
+    display: inline-block;
+  }
+}
