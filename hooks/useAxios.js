@@ -1,14 +1,15 @@
-import { useState, useEffect } from 'react';
+import {useState, useEffect, useRef} from 'react';
 import axios from 'axios';
 
 export const useAxios = (url, method = 'GET', body = null, headers = {}, dependencies) => {
     const [data, setData] = useState(null);
-    const [error, setError] = useState(null);
-    const [loading, setLoading] = useState(true);
     const [status, setStatus] = useState('loading'); // Initialize the status to "loading"
 
-    useEffect(() => {
+        const isInitialMount = useRef(true);
         const fetchData = async () => {
+            if (isInitialMount.current) {
+                isInitialMount.current = false;
+            } else {
             try {
                 // Use the axios request method corresponding to the specified HTTP method
                 let response;
@@ -33,12 +34,9 @@ export const useAxios = (url, method = 'GET', body = null, headers = {}, depende
             } catch (err) {
                 setData(err);
                 setStatus('error'); // Update the status to "error"
-            } finally {
-                setLoading(false);
-            }
+            }}
         };
         fetchData();
-    }, [dependencies]); // The effect will be re-run if any of these values change
 
     return { data, status };
 }
