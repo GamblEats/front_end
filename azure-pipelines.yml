@@ -11,8 +11,8 @@ pool:
 
 variables:
   # Azure Resource Manager connection created during pipeline creation
-  azureSubscription: 'c78e83f2-1316-4da7-9320-4db2dc98cfb1'
-
+  azureSubscription: 'gambleatsrm'
+  
   # Web app name
   appName: 'gambleats'
 
