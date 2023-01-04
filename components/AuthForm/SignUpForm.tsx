@@ -49,6 +49,9 @@ const SignUpForm = () => {
                     })
                     .then(responce => {
                         toast.success(t('successAccount'));
+                        router.replace({
+                            query: { ...router.query, form: 'signIn' },
+                        });
                     });
                 throw new Error(`Invalid HTTP method POST`);
             } catch (error) {
