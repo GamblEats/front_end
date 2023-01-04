@@ -7,6 +7,7 @@ import { useFormik } from 'formik';
 import { useRouter } from 'next/router';
 import { useTranslation } from 'next-i18next';
 import axios from "axios";
+import { toast } from 'react-toastify';
 
 const SignUpForm = () => {
     const router = useRouter();
@@ -44,13 +45,11 @@ const SignUpForm = () => {
                     headers: {
                         'Content-Type': 'application/json',
                     }}).then( responce => {
-                        console.log(responce)
-                    }
-                ).then(response => {
-                    console.log(response);
-                })
+                        toast.success(t('successAccount'));
+                    })
+                throw new Error(`Invalid HTTP method POST`);
             }catch (error){
-                console.log(error);
+                toast.error(t('errorAccount'));
             }
         },
     });
