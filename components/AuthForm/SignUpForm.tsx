@@ -1,7 +1,7 @@
 import { Buttons, Form, FormTitle, SignInButton, SignUpButton } from './styles';
 import InputForm from './inputForm';
 import { faEnvelope, faLock, faPenNib, faPhone } from '@fortawesome/free-solid-svg-icons';
-import React, {useState} from 'react';
+import React, {useRef, useState} from 'react';
 import { interfaceDeclaration } from '@babel/types';
 import * as Yup from 'yup';
 import { useFormik } from 'formik';
