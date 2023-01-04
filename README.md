@@ -1,3 +1,2 @@
-## front_end
-
-React app for the GamblEats app
+# front_end app
+React web app for the GamblEats app
