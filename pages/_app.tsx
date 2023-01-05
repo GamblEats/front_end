@@ -5,6 +5,9 @@ import NavBar from '../components/NavBar/NavBar';
 import { appWithTranslation } from 'next-i18next';
 import Head from 'next/head';
 import { useRouter } from 'next/router';
+import { ToastContainer } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
+
 
 const Container = styled.div`
     display: flex;
@@ -27,6 +30,7 @@ function App({ Component, pageProps }: AppProps) {
     return (
         <>
             <Container>
+                <ToastContainer position={"top-center"}/>
                 {!router.asPath.includes('authentication') && <NavBar />}
                 <Pages>
                     <Component {...pageProps} />

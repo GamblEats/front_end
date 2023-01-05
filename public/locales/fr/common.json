@@ -5,7 +5,7 @@
   "offersNotifications": "Recevoir les offres",
   "newsNotifications": "Recevoir les nouveautés",
   "remove": "Supprimer",
-  "modify": "Modifier"
+  "modify": "Modifier",
   "home": "Accueil",
   "restaurants":  "Restaurants",
   "orders":  "Commandes",
@@ -25,5 +25,7 @@
   "passwordLength": "Le mot de passe doit faire au moins 8 caractères",
   "passwordMatch": "Le mot de passe doit correspondre",
   "signIn": "S'identifier",
-  "signUp": "S'inscrire"
+  "signUp": "S'inscrire",
+  "successAccount": "Votre compte à été crée avec succès",
+  "errorAccount": "Une erreur est survenue lors de la création de votre compte"
 }

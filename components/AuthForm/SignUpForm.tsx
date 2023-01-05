@@ -1,12 +1,13 @@
 import { Buttons, Form, FormTitle, SignInButton, SignUpButton } from './styles';
 import InputForm from './inputForm';
 import { faEnvelope, faLock, faPenNib, faPhone } from '@fortawesome/free-solid-svg-icons';
-import React, {useState} from 'react';
+import React, { useState } from 'react';
 import * as Yup from 'yup';
 import { useFormik } from 'formik';
 import { useRouter } from 'next/router';
 import { useTranslation } from 'next-i18next';
-import axios from "axios";
+import axios from 'axios';
+import { toast } from 'react-toastify';
 
 const SignUpForm = () => {
     const router = useRouter();
@@ -40,17 +41,22 @@ const SignUpForm = () => {
         onSubmit: (values: any) => {
             delete values.confirmPassword;
             try {
-                axios.post('http://127.0.0.1:8000/user/sign-up', values, {
-                    headers: {
-                        'Content-Type': 'application/json',
-                    }}).then( responce => {
-                        console.log(responce)
-                    }
-                ).then(response => {
-                    console.log(response);
-                })
-            }catch (error){
-                console.log(error);
+                axios
+                    .post('http://127.0.0.1:8000/user/sign-up', values, {
+                        headers: {
+                            'Content-Type': 'application/json',
+                        },
+                    })
+                    .then(responce => {
+                        toast.success(t('successAccount'));
+                        router.replace({
+                            query: { ...router.query, form: 'signIn' },
+                        });
+                    }).catch(error => {
+                        toast.error(t('errorAccount'));
+                    });
+            } catch (error) {
+                toast.error(t('errorAccount'));
             }
         },
     });

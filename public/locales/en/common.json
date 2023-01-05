@@ -5,7 +5,7 @@
   "offersNotifications": "Receive offers",
   "newsNotifications": "Receive news",
   "remove": "Remove",
-  "modify": "Edit"
+  "modify": "Edit",
   "home": "Home",
   "restaurants":  "Restaurants",
   "orders":  "Orders",
@@ -25,5 +25,7 @@
   "passwordLength": "Password must be at least 8 characters",
   "passwordMatch": "Passwords must match",
   "signIn": "Sign In",
-  "signUp": "Sign Up"
+  "signUp": "Sign Up",
+  "successAccount": "Your account has been successfully created",
+  "errorAccount": "An error occurred while creating your account"
 }
