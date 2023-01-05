@@ -5,12 +5,11 @@
   "offersNotifications": "Receive offers",
   "newsNotifications": "Receive news",
   "remove": "Remove",
-  "modify": "Edit"
+  "modify": "Edit",
   "home": "Home",
   "restaurants":  "Restaurants",
   "orders":  "Orders",
   "referral": "Referral",
-  "account":  "Account",
   "findRestaurant": "Find a restaurant",
   "slogan": "Stop Gambling, Keep eating.",
   "firstName": "First name",
@@ -25,5 +24,10 @@
   "passwordLength": "Password must be at least 8 characters",
   "passwordMatch": "Passwords must match",
   "signIn": "Sign In",
-  "signUp": "Sign Up"
+  "signUp": "Sign Up",
+  "startEating": "Start eating",
+  "contactUs": "Contact us",
+  "partners": "Partners",
+  "restorers": "Restorers",
+  "delivers": "Deliverers"
 }

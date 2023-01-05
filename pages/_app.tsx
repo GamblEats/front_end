@@ -3,7 +3,6 @@ import type { AppProps } from 'next/app';
 import styled from 'styled-components';
 import NavBar from '../components/NavBar/NavBar';
 import { appWithTranslation } from 'next-i18next';
-import Head from 'next/head';
 import { useRouter } from 'next/router';
 
 const Container = styled.div`
@@ -23,11 +22,11 @@ const Pages = styled.div`
 `;
 
 function App({ Component, pageProps }: AppProps) {
-    const router = useRouter();
+    const path = useRouter();
     return (
         <>
             <Container>
-                {!router.asPath.includes('authentication') && <NavBar />}
+                {!(path.query.form || path.asPath == '/') && <NavBar />}
                 <Pages>
                     <Component {...pageProps} />
                 </Pages>

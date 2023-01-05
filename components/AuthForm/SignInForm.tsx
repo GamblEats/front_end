@@ -1,11 +1,9 @@
 import { Buttons, Form, FormTitle, SignInButton, SignUpButton } from './styles';
 import InputForm from './inputForm';
-import { faEnvelope, faLock, faPenNib, faPhone } from '@fortawesome/free-solid-svg-icons';
+import { faEnvelope, faLock } from '@fortawesome/free-solid-svg-icons';
 import React from 'react';
-import { interfaceDeclaration } from '@babel/types';
 import * as Yup from 'yup';
 import { useFormik } from 'formik';
-import { router } from 'next/client';
 import { useRouter } from 'next/router';
 import { useTranslation } from 'next-i18next';
 

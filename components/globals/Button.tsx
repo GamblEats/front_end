@@ -3,19 +3,21 @@ import { ButtonContainer, ButtonIcon, ButtonLabel } from './styles';
 import { IconProp } from '@fortawesome/fontawesome-svg-core';
 
 interface Props {
-    color: string;
     text: string;
-    icon: IconProp;
+    backgroundColor?: string;
+    icon?: IconProp;
     onClick: () => void;
 }
 
-const AccountCard = ({ color, text, icon, onClick }: Props) => {
+const AccountCard = ({ backgroundColor, text, icon, onClick }: Props) => {
     return (
-        <ButtonContainer color={color} onClick={onClick}>
-            <ButtonLabel>{text}</ButtonLabel>
-            <ButtonIcon>
-                <FontAwesomeIcon icon={icon} />
-            </ButtonIcon>
+        <ButtonContainer color={backgroundColor} onClick={onClick}>
+            <ButtonLabel color={backgroundColor ? '#f2f2f2' : '#143642'}>{text}</ButtonLabel>
+            {icon && (
+                <ButtonIcon>
+                    <FontAwesomeIcon color={backgroundColor ? '#f2f2f2' : '#143642'} icon={icon} />
+                </ButtonIcon>
+            )}
         </ButtonContainer>
     );
 };

@@ -4,11 +4,10 @@ import styled from 'styled-components';
 
 export const ButtonContainer = styled.button`
     display: flex;
-    justify-content: space-between;
-    width: 100%;
-    background-color: ${props => props.color || 'palevioletred'};
-    border-radius: 1em;
-    padding: 1em;
+    gap: 1rem;
+    background-color: ${props => props.color || 'transparent'};
+    border-radius: 1rem;
+    padding: 0.8rem 1.8rem;
     border: none;
     cursor: pointer;
     transition: opacity 0.3s;
@@ -17,10 +16,11 @@ export const ButtonContainer = styled.button`
     }
 `;
 export const ButtonLabel = styled.div`
-    color: #f2f2f2;
+    font-size: 1.1rem;
+    color: ${props => props.color};
 `;
 export const ButtonIcon = styled.div`
-    color: #f2f2f2;
+    font-size: 1.1rem;
 `;
 
 // --- ImgUploader --- //

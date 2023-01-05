@@ -8,6 +8,7 @@ export const Container = styled.div`
     flex-direction: column;
     align-items: center;
     gap: 2rem;
+    width: 100%;
 `;
 
 export const Input = styled.input<inputProps>`
@@ -15,7 +16,7 @@ export const Input = styled.input<inputProps>`
     border: none;
     border-radius: 1em;
     background-color: white;
-    width: 29em;
+    width: 100%;
     height: 3em;
     padding: 2em;
 
@@ -70,7 +71,7 @@ export const FlexBox = styled.div`
     display: flex;
     flex-direction: row;
     align-items: center;
-    padding: 3rem;
+    padding: 3em;
     width: 100%;
     height: 100%;
     z-index: 1;
@@ -117,16 +118,5 @@ export const SignInButton = styled.button`
     transition: opacity 0.3s;
     &:hover {
         opacity: 0.8;
-    }
-`;
-
-export const MenuImg = styled.img`
-    position: fixed;
-    z-index: 0;
-    bottom: -23em;
-    right: -20em;
-    width: 50em;
-    @media (max-width: 500px) {
-        width: 42em;
     }
 `;
