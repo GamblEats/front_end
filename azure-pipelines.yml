@@ -9,7 +9,7 @@ trigger:
     - develop
 
 pool:
-  vmImage: 'ubuntu-latest'
+  vmImage: 'windows-latest'
 
 steps:
 - task: NodeTool@0
@@ -44,11 +44,9 @@ steps:
   inputs:
     ConnectionType: 'AzureRM'
     azureSubscription: 'gambleatsrm'
-    appType: 'webAppLinux'
+    appType: 'webApp'
     WebAppName: 'gambleats'
     deployToSlotOrASE: true
     ResourceGroupName: 'GamblEats'
     SlotName: 'production'
     packageForLinux: '$(System.DefaultWorkingDirectory)/**/*.zip'
-    RuntimeStack: 'NODE|18-lts'
-    StartupCommand: 'npm run start'
