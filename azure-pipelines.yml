@@ -27,8 +27,8 @@ steps:
 
 - task: ArchiveFiles@2
   inputs:
-    rootFolderOrFile: '$(System.DefaultWorkingDirectory)/.next'
-    includeRootFolder: false
+    rootFolderOrFile: '$(Build.BinariesDirectory)'
+    includeRootFolder: true
     archiveType: 'zip'
     archiveFile: '$(Build.ArtifactStagingDirectory)/$(Build.BuildId).zip'
     replaceExistingArchive: true
@@ -36,8 +36,9 @@ steps:
 
 - task: PublishBuildArtifacts@1
   inputs:
-    pathToPublish: '$(Build.ArtifactStagingDirectory)'
-    artifactName: 'drop'
+    PathtoPublish: '$(Build.ArtifactStagingDirectory)'
+    ArtifactName: 'drop'
+    publishLocation: 'Container'
   displayName: 'Publish build artifacts'
 
 - task: AzureRmWebAppDeployment@4
