@@ -9,7 +9,7 @@ interface Props {
 }
 
 const ImgUploader = (/*{color, text, icon, onClick }: Props*/) => {
-    const [selectedImage, setSelectedImage] = useState(null);
+    const [selectedImage, setSelectedImage] = useState<File | null>(null);
     return (
         <UploaderContainer>
             {selectedImage && (
@@ -23,7 +23,9 @@ const ImgUploader = (/*{color, text, icon, onClick }: Props*/) => {
                 type="file"
                 name="myImage"
                 onChange={event => {
-                    setSelectedImage(event.target.files[0]);
+                    if (event.target.files && event.target.files.length > 0) {
+                        setSelectedImage(event.target.files[0]);
+                    }
                 }}
             />
         </UploaderContainer>
