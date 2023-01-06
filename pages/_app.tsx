@@ -3,7 +3,6 @@ import type { AppProps } from 'next/app';
 import styled from 'styled-components';
 import NavBar from '../components/NavBar/NavBar';
 import { appWithTranslation } from 'next-i18next';
-import Head from 'next/head';
 import { useRouter } from 'next/router';
 import { ToastContainer } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
@@ -26,12 +25,12 @@ const Pages = styled.div`
 `;
 
 function App({ Component, pageProps }: AppProps) {
-    const router = useRouter();
+    const path = useRouter();
     return (
         <>
             <Container>
+                {!(path.query.form || path.asPath == '/') && <NavBar />}
                 <ToastContainer position={"top-center"}/>
-                {!router.asPath.includes('authentication') && <NavBar />}
                 <Pages>
                     <Component {...pageProps} />
                 </Pages>

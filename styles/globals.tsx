@@ -26,12 +26,13 @@ export const Slogan = styled.div`
     align-items: center;
     width: 10em;
     color: #143642;
-    @media (max-width: 1080px) {
+    @media (max-width: 900px) {
         font-size: 3em;
     }
-    @media (max-width: 500px) {
-        font-size: 2em;
-    }
+`;
+
+export const Logo = styled.img`
+    height: 100%;
 `;
 
 export const SectionContainer = styled.div`

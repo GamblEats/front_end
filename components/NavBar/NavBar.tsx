@@ -36,7 +36,7 @@ const NavBar = () => {
             <NavDisconnectItem>
                 <NavCircleItem
                     onClick={() => {
-                        router.push('/hello');
+                        router.push('/');
                     }}>
                     <NavDisconnectCircleButton>
                         <FontAwesomeIcon className="disconnectIcon" icon={faRightFromBracket} />
