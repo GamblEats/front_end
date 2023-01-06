@@ -43,6 +43,7 @@ steps:
 - task: AzureRmWebAppDeployment@4
   inputs:
     ConnectionType: 'AzureRM'
+    azureSubscription: 'gambleatsrm'
     appType: 'webApp'
     WebAppName: 'gambleats'
     Package: '$(Build.ArtifactStagingDirectory)/$(Build.BuildId).zip'
