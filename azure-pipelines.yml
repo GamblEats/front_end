@@ -14,8 +14,9 @@ pool:
 steps:
 - task: NodeTool@0
   inputs:
-    versionSpec: '12.x'
-  displayName: 'Install Node.js'
+    versionSource: 'spec'
+    versionSpec: '8.x'
+    checkLatest: true
 
 - script: |
     npm install
