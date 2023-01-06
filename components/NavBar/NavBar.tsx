@@ -11,7 +11,6 @@ import {
 } from './styles';
 import { useRouter } from 'next/router';
 import NavPageItem from './NavPageItem';
-import { useTranslation } from 'next-i18next';
 
 const NavBar = () => {
     const router = useRouter();

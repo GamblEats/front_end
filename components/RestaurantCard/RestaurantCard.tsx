@@ -17,13 +17,14 @@ interface Props {
     deliveryPrice: number;
     deliveryTime: string;
     rating: number;
+    minWidth?: string;
 }
 
-const RestaurantCard = ({ name, pic, description, deliveryPrice, deliveryTime, rating }: Props) => {
+const RestaurantCard = ({ name, pic, description, deliveryPrice, deliveryTime, rating, minWidth }: Props) => {
     const router = useRouter();
 
     return (
-        <Card>
+        <Card style={{ minWidth: minWidth }}>
             <CardPicture src={pic} alt="Restaurant Picture" />
             <CardContent>
                 <CardTitle>{name}</CardTitle>
