@@ -9,13 +9,13 @@ trigger:
     - develop
 
 pool:
-  vmImage: 'windows-latest'
+  vmImage: 'ubuntu-latest'
 
 steps:
 - task: NodeTool@0
   inputs:
     versionSource: 'spec'
-    versionSpec: '12.x'
+    versionSpec: '18.x'
     checkLatest: true
   displayName: 'Install Node'
 
