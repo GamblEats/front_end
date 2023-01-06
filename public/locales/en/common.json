@@ -27,5 +27,14 @@
   "signIn": "Sign In",
   "signUp": "Sign Up",
   "successAccount": "Your account has been successfully created",
-  "errorAccount": "An error occurred while creating your account"
+  "errorAccount": "An error occurred while creating your account",
+  "goodMorning": "Good morning, ",
+  "goodAfternoon": "Good afternoon, ",
+  "goodEvening": "Good evening, ",
+  "sponsorNews": "Sponsor your friends and increase your chances of finding a golden ticket !",
+  "offerNews": "1 bought = 1 offered",
+  "certainsMenu": "on certains menu",
+  "worldCupNews": "Try to win a golden ticket by ordering during the World Cup matches",
+  "favorites": "Your favorites",
+  "fasterDelivery": "Faster delivery"
 }
