@@ -15,13 +15,15 @@ steps:
 - task: NodeTool@0
   inputs:
     versionSource: 'spec'
-    versionSpec: '8.x'
+    versionSpec: '18.x'
     checkLatest: true
+  displayName: 'Install Node'
+
 
 - script: |
     npm install
     npm run build
-  displayName: 'npm install and npm run build'
+  displayName: 'npm install && npm run build'
 
 - task: ArchiveFiles@2
   inputs:
