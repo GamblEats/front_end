@@ -35,10 +35,6 @@ steps:
   displayName: 'Archive build artifacts'
 
 - task: PublishBuildArtifacts@1
-  inputs:
-    PathtoPublish: '$(Build.ArtifactStagingDirectory)'
-    ArtifactName: 'drop'
-    publishLocation: 'Container'
   displayName: 'Publish build artifacts'
 
 - task: AzureRmWebAppDeployment@4
