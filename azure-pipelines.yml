@@ -47,7 +47,4 @@ steps:
     azureSubscription: 'gambleatsrm'
     appType: 'webApp'
     WebAppName: 'gambleats'
-    deployToSlotOrASE: true
-    ResourceGroupName: 'GamblEats'
-    SlotName: 'production'
     packageForLinux: '$(System.DefaultWorkingDirectory)/**/*.zip'
