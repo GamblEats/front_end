@@ -44,8 +44,11 @@ steps:
   inputs:
     ConnectionType: 'AzureRM'
     azureSubscription: 'gambleatsrm'
-    appType: 'webApp'
+    appType: 'webAppLinux'
     WebAppName: 'gambleats'
-    Package: '$(Build.ArtifactStagingDirectory)/$(Build.BuildId).zip'
-    TakeAppOfflineFlag: true
-  displayName: 'Deploy to Azure App Service'
+    deployToSlotOrASE: true
+    ResourceGroupName: 'GamblEats'
+    SlotName: 'production'
+    packageForLinux: '$(System.DefaultWorkingDirectory)/**/*.zip'
+    RuntimeStack: 'NODE|18-lts'
+    StartupCommand: 'npm run start'
