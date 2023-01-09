@@ -3,6 +3,8 @@ import { serverSideTranslations } from 'next-i18next/serverSideTranslations';
 import DeliveryStepper from '../components/DeliveryStepper/DeliveryStepper';
 import PendingOrder from '../components/PendingOrder/PendingOrder';
 import { DeliveryStep } from '../public/enums';
+import Index from './index';
+import { Ref } from 'preact/compat';
 
 const Referral = () => {
     return (
@@ -27,3 +29,4 @@ export const getStaticProps: GetStaticProps = async ({ locale }) => {
     };
 };
 export default Referral;
+Referral.requireAuth = true;

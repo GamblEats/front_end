@@ -1,5 +1,6 @@
 import { GetStaticProps } from 'next';
 import { serverSideTranslations } from 'next-i18next/serverSideTranslations';
+import Index from './index';
 
 const Orders = () => {
     return (
@@ -16,3 +17,4 @@ export const getStaticProps: GetStaticProps = async ({ locale }) => {
     };
 };
 export default Orders;
+Orders.requireAuth = true;

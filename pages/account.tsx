@@ -5,6 +5,7 @@ import styled from 'styled-components';
 import AccountCard from '../components/AccountCard/AccountCard';
 import SettingsCard from '../components/AccountCard/SettingsCard';
 import { PageContainer, PageTitle } from '../styles/globals';
+import Index from './index';
 
 const Container = styled.div`
     display: flex;
@@ -32,3 +33,4 @@ export const getStaticProps: GetStaticProps = async ({ locale }) => {
     };
 };
 export default Account;
+Account.requireAuth = true;

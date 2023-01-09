@@ -11,9 +11,14 @@ import {
 } from './styles';
 import { useRouter } from 'next/router';
 import NavPageItem from './NavPageItem';
+import { useTranslation } from 'next-i18next';
+import { signOut } from 'next-auth/react';
 
 const NavBar = () => {
     const router = useRouter();
+    const handleSignOut = () => {
+        signOut();
+    };
     return (
         <NavContainer>
             <NavAccountItem>
@@ -34,10 +39,7 @@ const NavBar = () => {
                 <NavPageItem name={'account'} icon={faUser}></NavPageItem>
             </NavPageItems>
             <NavDisconnectItem>
-                <NavCircleItem
-                    onClick={() => {
-                        router.push('/');
-                    }}>
+                <NavCircleItem onClick={handleSignOut}>
                     <NavDisconnectCircleButton>
                         <FontAwesomeIcon className="disconnectIcon" icon={faRightFromBracket} />
                     </NavDisconnectCircleButton>
