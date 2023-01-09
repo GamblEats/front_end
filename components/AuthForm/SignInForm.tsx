@@ -39,6 +39,8 @@ const SignInForm = () => {
         });
         if (status.ok) {
             router.push(status.url);
+        } else {
+            toast.error(t('errorLog'));
         }
     }
 

@@ -40,5 +40,6 @@
   "certainsMenu": "on certains menu",
   "worldCupNews": "Try to win a golden ticket by ordering during the World Cup matches",
   "favorites": "Your favorites",
-  "fasterDelivery": "Faster delivery"
+  "fasterDelivery": "Faster delivery",
+  "errorLog": "Email or Password incorrect"
 }
