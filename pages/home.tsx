@@ -1,6 +1,8 @@
 import { useTranslation } from 'next-i18next';
 import { GetStaticProps } from 'next';
 import { serverSideTranslations } from 'next-i18next/serverSideTranslations';
+import { getSession, signOut, useSession } from 'next-auth/react';
+import Index from './index';
 import { PageContainer, PageTitle, SectionContainer, SectionLine, SectionTitle } from '../styles/globals';
 import styled from 'styled-components';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
@@ -59,6 +61,10 @@ interface NewsTextProps {
 }
 
 const Home = () => {
+    const handleSignOut = () => {
+        signOut();
+    };
+    const { data: session }: any = useSession();
     const { t } = useTranslation('common');
     const router = useRouter();
 
@@ -77,7 +83,7 @@ const Home = () => {
 
     return (
         <PageContainer>
-            <PageTitle>{getGreeting() + 'Nathan'}</PageTitle>
+            <PageTitle>{getGreeting() + session.user.firstName}</PageTitle>
             <ScrollContainer gap="2rem">
                 <News color="#E5BF00" onClick={() => router.push('/referral')}>
                     <FontAwesomeIcon
@@ -133,6 +139,7 @@ const Home = () => {
         </PageContainer>
     );
 };
+
 export const getStaticProps: GetStaticProps = async ({ locale }) => {
     return {
         props: {
@@ -141,3 +148,4 @@ export const getStaticProps: GetStaticProps = async ({ locale }) => {
     };
 };
 export default Home;
+Home.requireAuth = true;

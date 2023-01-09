@@ -6,6 +6,9 @@ import * as Yup from 'yup';
 import { useFormik } from 'formik';
 import { useRouter } from 'next/router';
 import { useTranslation } from 'next-i18next';
+import axios from 'axios';
+import { toast } from 'react-toastify';
+import { signIn } from 'next-auth/react';
 
 const SignInForm = () => {
     const router = useRouter();
@@ -24,10 +27,23 @@ const SignInForm = () => {
             password: '',
         },
         validationSchema,
-        onSubmit: (values: any) => {
-            console.log(values);
-        },
+        onSubmit,
     });
+
+    async function onSubmit(values: any) {
+        const status: any = await signIn('credentials', {
+            redirect: false,
+            email: values.email,
+            password: values.password,
+            callbackUrl: '/home',
+        });
+        if (status.ok) {
+            router.push(status.url);
+        } else {
+            toast.error(t('errorLog'));
+        }
+    }
+
     return (
         <>
             <Form onSubmit={formik.handleSubmit}>

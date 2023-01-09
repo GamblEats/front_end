@@ -62,3 +62,4 @@ export const getStaticProps: GetStaticProps = async ({ locale }) => {
 };
 
 export default Index;
+Index.requireAuth = false;
