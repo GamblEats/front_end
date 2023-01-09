@@ -31,28 +31,12 @@ const SignInForm = () => {
     });
 
     async function onSubmit(values: any) {
-        // axios
-        //     .post('http://127.0.0.1:8000/user/sign-in', values, {
-        //         headers: {
-        //             'Content-Type': 'application/json',
-        //         },
-        //     })
-        //     .then(response => {
-        //         console.log(response);
-        //         toast.success(response.data.message);
-        //     })
-        //     .catch(error => {
-        //         console.log(error);
-        //         toast.error(t('Email or password incorrect'));
-        //     });
-
         const status: any = await signIn('credentials', {
             redirect: false,
             email: values.email,
             password: values.password,
             callbackUrl: '/home',
         });
-        console.log(status);
         if (status.ok) {
             router.push(status.url);
         }

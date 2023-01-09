@@ -64,7 +64,7 @@ const Home = () => {
     const handleSignOut = () => {
         signOut();
     };
-    const { data: session } = useSession();
+    const { data: session }: any = useSession();
     const { t } = useTranslation('common');
     const router = useRouter();
 
@@ -83,7 +83,7 @@ const Home = () => {
 
     return (
         <PageContainer>
-            <PageTitle>{getGreeting() + 'Nathan'}</PageTitle>
+            <PageTitle>{getGreeting() + session.user.firstName}</PageTitle>
             <ScrollContainer gap="2rem">
                 <News color="#E5BF00" onClick={() => router.push('/referral')}>
                     <FontAwesomeIcon
@@ -140,21 +140,12 @@ const Home = () => {
     );
 };
 
-export async function getServerSideProps({ req }: any) {
-    const session = await getSession({ req });
-
-    if (!session) {
-        return {
-            redirect: {
-                destination: '/',
-                permanent: false,
-            },
-        };
-    }
-
+export const getStaticProps: GetStaticProps = async ({ locale }) => {
     return {
-        props: { session },
+        props: {
+            ...(await serverSideTranslations(locale as string, ['common'])),
+        },
     };
-}
+};
 export default Home;
 Home.requireAuth = true;
