@@ -43,5 +43,11 @@
   "worldCupNews": "Try to win a golden ticket by ordering during the World Cup matches",
   "favorites": "Your favorites",
   "fasterDelivery": "Faster delivery",
-  "errorLog": "Email or Password incorrect"
+  "errorLog": "Email or Password incorrect",
+  "multiplierText": "chance to find a golden ticket",
+  "codeTitle": "Increase your chance !",
+  "codeText": "Refer a friend and increase your chances of finding a golden ticket",
+  "codeInfo": "Your multiplier is valid until you get a golden ticket, after that it will be reset",
+  "copie": "copie",
+  "copied": "copied !"
 }

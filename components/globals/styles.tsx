@@ -10,7 +10,7 @@ export const ButtonContainer = styled.button`
     padding: 0.8rem 1.8rem;
     border: none;
     cursor: pointer;
-    transition: opacity 0.3s;
+    transition: opacity 0.3s, background-color 0.2s ease-in-out;
     &:hover {
         opacity: 0.8;
     }
