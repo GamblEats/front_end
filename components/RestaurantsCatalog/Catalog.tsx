@@ -2,14 +2,10 @@ import { useState } from 'react';
 import { useRouter } from 'next/router';
 import { RestaurantsContainer, FiltersContainer, SearchBar } from './styles';
 import RestaurantCard from '../RestaurantCard/RestaurantCard';
-
-//! TO DELETE
-import { fakeRestaurants } from './fakeRestos';
 import { useTranslation } from 'next-i18next';
 import useStore from '../../store/useStore';
 
 const Catalog = () => {
-    const router = useRouter();
     const { t } = useTranslation('common');
     const placeHolder = t('findRestaurant');
     const [research, setResearch] = useState('');
@@ -17,7 +13,6 @@ const Catalog = () => {
     if (restaurants.length === 0) {
         getRestaurants();
     }
-    console.log(restaurants);
 
     return (
         <>

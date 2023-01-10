@@ -2,13 +2,11 @@ import { useTranslation } from 'next-i18next';
 import { GetStaticProps } from 'next';
 import { serverSideTranslations } from 'next-i18next/serverSideTranslations';
 import { PageContainer, SectionContainer, SectionLine, SectionTitle } from '../styles/globals';
-import { getSession, signOut, useSession } from 'next-auth/react';
-import Index from './index';
+import { signOut, useSession } from 'next-auth/react';
 import styled from 'styled-components';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faFutbol, faTicketSimple } from '@fortawesome/free-solid-svg-icons';
 import { useRouter } from 'next/router';
-import { fakeRestaurants } from '../components/RestaurantsCatalog/fakeRestos';
 import RestaurantCard from '../components/RestaurantCard/RestaurantCard';
 import PageHeader from '../components/globals/PageHeader';
 import useStore from '../store/useStore';
@@ -85,7 +83,6 @@ const Home = () => {
     if (restaurants.length === 0) {
         getRestaurants();
     }
-    console.log(restaurants);
 
     return (
         <PageContainer>

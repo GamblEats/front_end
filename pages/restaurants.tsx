@@ -4,7 +4,6 @@ import { GetStaticProps } from 'next';
 import { serverSideTranslations } from 'next-i18next/serverSideTranslations';
 import { useTranslation } from 'next-i18next';
 import PageHeader from '../components/globals/PageHeader';
-import useStore from '../store/useStore';
 
 const Restaurants = () => {
     const { t } = useTranslation('common');
