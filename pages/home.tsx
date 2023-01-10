@@ -2,15 +2,14 @@ import { useTranslation } from 'next-i18next';
 import { GetStaticProps } from 'next';
 import { serverSideTranslations } from 'next-i18next/serverSideTranslations';
 import { PageContainer, SectionContainer, SectionLine, SectionTitle } from '../styles/globals';
-import { getSession, signOut, useSession } from 'next-auth/react';
-import Index from './index';
+import { signOut, useSession } from 'next-auth/react';
 import styled from 'styled-components';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faFutbol, faTicketSimple } from '@fortawesome/free-solid-svg-icons';
 import { useRouter } from 'next/router';
-import { fakeRestaurants } from '../components/RestaurantsCatalog/fakeRestos';
 import RestaurantCard from '../components/RestaurantCard/RestaurantCard';
 import PageHeader from '../components/globals/PageHeader';
+import useStore from '../store/useStore';
 
 const ScrollContainer = styled.div<ScrollContainerProps>`
     display: flex;
@@ -68,7 +67,6 @@ const Home = () => {
     const { data: session }: any = useSession();
     const { t } = useTranslation('common');
     const router = useRouter();
-
     function getGreeting() {
         const date = new Date();
         const hours = date.getHours();
@@ -80,6 +78,10 @@ const Home = () => {
         } else {
             return t('goodEvening');
         }
+    }
+    const { restaurants, getRestaurants } = useStore();
+    if (restaurants.length === 0) {
+        getRestaurants();
     }
 
     return (
@@ -108,7 +110,7 @@ const Home = () => {
                 <SectionLine></SectionLine>
             </SectionContainer>
             <ScrollContainer>
-                {fakeRestaurants.map((r, i) => (
+                {restaurants.map((r, i) => (
                     <RestaurantCard
                         key={i}
                         name={r.name}
@@ -125,7 +127,7 @@ const Home = () => {
                 <SectionLine></SectionLine>
             </SectionContainer>
             <ScrollContainer>
-                {fakeRestaurants.map((r, i) => (
+                {restaurants.map((r, i) => (
                     <RestaurantCard
                         key={i}
                         name={r.name}

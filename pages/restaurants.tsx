@@ -7,6 +7,7 @@ import PageHeader from '../components/globals/PageHeader';
 
 const Restaurants = () => {
     const { t } = useTranslation('common');
+
     return (
         <PageContainer>
             <PageHeader title={t('restaurants')}></PageHeader>

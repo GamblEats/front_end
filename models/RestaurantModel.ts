@@ -5,4 +5,7 @@ export interface RestaurantModel {
     name: string;
     description: string;
     categories?: any;
+    rating: number;
+    deliveryPrice: number;
+    deliveryTime: string;
 }
