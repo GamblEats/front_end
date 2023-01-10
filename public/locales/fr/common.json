@@ -29,7 +29,7 @@
   "contactUs": "Contactez nous",
   "partners": "Partenaires",
   "restorers": "Restaurateurs",
-  "delivers": "Livreurs"
+  "delivers": "Livreurs",
   "successAccount": "Votre compte à été crée avec succès",
   "errorAccount": "Une erreur est survenue lors de la création de votre compte",
   "goodMorning": "Bonne matinée, ",
@@ -41,5 +41,11 @@
   "worldCupNews": "Tentez de gagner un ticket en or en commandant pendant les matchs de la coupe du monde",
   "favorites": "Vos favoris",
   "fasterDelivery": "Livraison rapide",
-  "errorLog": "Email ou Mot de passe incorrect"
+  "errorLog": "Email ou Mot de passe incorrect",
+  "multiplierText": "chance de trouver un ticket d'or",
+  "codeTitle": "Augmente tes chances !",
+  "codeText": "Parrainnez un amis et augmentez vos chances de trouver un ticket d'or",
+  "codeInfo": "Ton multiplicateur est valable jusqu'a l'obtention d'un ticket d'or, après cela il sera réinitialisé",
+  "copie": "copier",
+  "copied": "copied !"
 }

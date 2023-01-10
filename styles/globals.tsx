@@ -1,4 +1,5 @@
 import styled from 'styled-components';
+import { TextProps } from '../pages/referral';
 
 export const PageContainer = styled.div`
     width: 100%;
@@ -40,4 +41,87 @@ export const SectionLine = styled.div`
     background-color: #d9d9d9;
     width: 100%;
     height: 0.12rem;
+`;
+
+// --- Referral Page --- //
+
+export const ReferralContainer = styled.div`
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 3rem;
+    @media (max-width: 1200px) {
+        grid-template-columns: repeat(2, 1fr);
+    }
+    @media (max-width: 800px) {
+        grid-template-columns: repeat(1, 1fr);
+        gap: 2rem;
+    }
+`;
+
+export const MultiplierContainer = styled.div`
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+    flex-direction: column;
+    gap: 1rem;
+    padding: 1rem 1rem 2rem 1rem;
+    background-color: white;
+    border-radius: 1.2rem;
+`;
+
+export const Multiplier = styled.div`
+    font-size: 6rem;
+    font-weight: 600;
+    color: #e5bf00;
+`;
+
+export const MultiplierText = styled.div`
+    font-size: 1rem;
+    color: #143642;
+    max-width: 8rem;
+`;
+
+export const CodeContainer = styled.div`
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    text-align: center;
+    background-color: white;
+    border-radius: 1.2rem;
+    padding: 2rem;
+    gap: 2rem;
+    @media (min-width: 800px) {
+        grid-column: span 2;
+    }
+    @media (max-width: 1200px) {
+        order: 3;
+    }
+`;
+
+export const CodeInputContainer = styled.div`
+    display: flex;
+    flex-direction: column;
+    gap: 0.8rem;
+`;
+
+export const CodeInput = styled.div`
+    display: flex;
+    justify-content: space-between;
+    background-color: #f2f2f2;
+    align-items: center;
+    padding: 0.5rem 0.5rem 0.5rem 1rem;
+    border-radius: 1rem;
+`;
+
+export const Text = styled.div<TextProps>`
+    font-size: ${props => props.size};
+    font-weight: ${props => props.weight || '500'};
+    font-style: ${props => (props.italic ? 'italic' : 'normal')};
+    color: #143642;
+`;
+
+export const ListContainer = styled.div`
+    background-color: white;
+    border-radius: 1.2rem;
 `;
