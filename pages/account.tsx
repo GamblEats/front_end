@@ -4,8 +4,8 @@ import { serverSideTranslations } from 'next-i18next/serverSideTranslations';
 import styled from 'styled-components';
 import AccountCard from '../components/AccountCard/AccountCard';
 import SettingsCard from '../components/AccountCard/SettingsCard';
-import { PageContainer, PageTitle } from '../styles/globals';
-import Index from './index';
+import PageHeader from '../components/globals/PageHeader';
+import { PageContainer } from '../styles/globals';
 
 const Container = styled.div`
     display: flex;
@@ -17,7 +17,7 @@ const Account = () => {
     const { t } = useTranslation('common');
     return (
         <PageContainer>
-            <PageTitle>{t('account')}</PageTitle>
+            <PageHeader title={t('account')}></PageHeader>
             <Container>
                 <AccountCard></AccountCard>
                 <SettingsCard></SettingsCard>
