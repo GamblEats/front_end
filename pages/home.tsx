@@ -11,6 +11,7 @@ import { useRouter } from 'next/router';
 import { fakeRestaurants } from '../components/RestaurantsCatalog/fakeRestos';
 import RestaurantCard from '../components/RestaurantCard/RestaurantCard';
 import PageHeader from '../components/globals/PageHeader';
+import useStore from '../store/useStore';
 
 const ScrollContainer = styled.div<ScrollContainerProps>`
     display: flex;
@@ -80,6 +81,11 @@ const Home = () => {
             return t('goodEvening');
         }
     }
+    const { restaurants, getRestaurants } = useStore();
+    if (restaurants.length === 0) {
+        getRestaurants();
+    }
+    console.log(restaurants);
 
     return (
         <PageContainer>
@@ -107,7 +113,7 @@ const Home = () => {
                 <SectionLine></SectionLine>
             </SectionContainer>
             <ScrollContainer>
-                {fakeRestaurants.map((r, i) => (
+                {restaurants.map((r, i) => (
                     <RestaurantCard
                         key={i}
                         name={r.name}
@@ -124,7 +130,7 @@ const Home = () => {
                 <SectionLine></SectionLine>
             </SectionContainer>
             <ScrollContainer>
-                {fakeRestaurants.map((r, i) => (
+                {restaurants.map((r, i) => (
                     <RestaurantCard
                         key={i}
                         name={r.name}
