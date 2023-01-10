@@ -23,6 +23,27 @@ export const ButtonIcon = styled.div`
     font-size: 1.1rem;
 `;
 
+// --- PageHeader --- //
+
+export const HeaderContainer = styled.div`
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    width: 100%;
+    margin: 1rem 0 3rem 0;
+`;
+
+export const HeaderTitle = styled.div`
+    font-weight: 700;
+    font-size: 3.5rem;
+    color: #143642;
+`;
+
+export const HeaderWidgets = styled.div`
+    display: flex;
+    gap: 1rem;
+`;
+
 // --- ImgUploader --- //
 
 export const UploaderContainer = styled.div`

@@ -1,9 +1,10 @@
 import styled from 'styled-components';
 import { LineStep } from '../../public/enums';
-import { StepLineProps } from './DeliveryStepper';
+import { StepLineProps, StepperContainerProps } from './DeliveryStepper';
 
-export const StepperContainer = styled.div`
+export const StepperContainer = styled.div<StepperContainerProps>`
     display: flex;
+    flex-direction: ${props => (props.isInColumn ? 'column' : 'row')};
     align-items: center;
     gap: 1em;
     width: 100%;
@@ -31,4 +32,5 @@ export const StepLine = styled.div<StepLineProps>`
     height: 0.2em;
     border-radius: 0.2em;
     width: 100%;
+    /* transform: rotate(${props => (props.isInColumn ? '90deg' : '0deg')}); */
 `;

@@ -1,15 +1,16 @@
 import { useTranslation } from 'next-i18next';
 import { GetStaticProps } from 'next';
 import { serverSideTranslations } from 'next-i18next/serverSideTranslations';
+import { PageContainer, SectionContainer, SectionLine, SectionTitle } from '../styles/globals';
 import { getSession, signOut, useSession } from 'next-auth/react';
 import Index from './index';
-import { PageContainer, PageTitle, SectionContainer, SectionLine, SectionTitle } from '../styles/globals';
 import styled from 'styled-components';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faFutbol, faTicketSimple } from '@fortawesome/free-solid-svg-icons';
 import { useRouter } from 'next/router';
 import { fakeRestaurants } from '../components/RestaurantsCatalog/fakeRestos';
 import RestaurantCard from '../components/RestaurantCard/RestaurantCard';
+import PageHeader from '../components/globals/PageHeader';
 
 const ScrollContainer = styled.div<ScrollContainerProps>`
     display: flex;
@@ -83,7 +84,7 @@ const Home = () => {
 
     return (
         <PageContainer>
-            <PageTitle>{getGreeting() + session.user.firstName}</PageTitle>
+            <PageHeader title={getGreeting() + session.user.firstName}></PageHeader>
             <ScrollContainer gap="2rem">
                 <News color="#E5BF00" onClick={() => router.push('/referral')}>
                     <FontAwesomeIcon

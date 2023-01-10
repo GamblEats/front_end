@@ -1,14 +1,15 @@
 import Catalog from '../components/RestaurantsCatalog/Catalog';
-import { PageContainer, PageTitle } from '../styles/globals';
+import { PageContainer } from '../styles/globals';
 import { GetStaticProps } from 'next';
 import { serverSideTranslations } from 'next-i18next/serverSideTranslations';
 import { useTranslation } from 'next-i18next';
-import Index from './index';
+import PageHeader from '../components/globals/PageHeader';
+
 const Restaurants = () => {
     const { t } = useTranslation('common');
     return (
         <PageContainer>
-            <PageTitle>{t('restaurants')}</PageTitle>
+            <PageHeader title={t('restaurants')}></PageHeader>
             <Catalog />
         </PageContainer>
     );
