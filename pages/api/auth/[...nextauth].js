@@ -2,13 +2,15 @@ import NextAuth from 'next-auth';
 import CredentialsProvider from 'next-auth/providers/credentials';
 import axios from 'axios';
 import { toast } from 'react-toastify';
+import { userApi } from '../../../public/const';
+import { error } from 'next/dist/build/output/log';
 
 export default NextAuth({
     providers: [
         CredentialsProvider({
             name: 'Credentials',
             async authorize(credentials) {
-                const result = await axios.post('http://127.0.0.1:8001/user/sign-in', credentials, {
+                const result = await axios.post(userApi + '/user/sign-in', credentials, {
                     headers: {
                         'Content-Type': 'application/json',
                     },
@@ -17,7 +19,7 @@ export default NextAuth({
                 if (!result) {
                     throw new Error('No user Found with Email Please Sign Up...!');
                 }
-                return result.data.userArray;
+                return result.data.user;
             },
         }),
     ],

@@ -67,6 +67,7 @@ const Home = () => {
     const { data: session }: any = useSession();
     const { t } = useTranslation('common');
     const router = useRouter();
+    console.log(session);
     function getGreeting() {
         const date = new Date();
         const hours = date.getHours();

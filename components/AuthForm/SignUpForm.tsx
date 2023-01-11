@@ -8,6 +8,7 @@ import { useRouter } from 'next/router';
 import { useTranslation } from 'next-i18next';
 import axios from 'axios';
 import { toast } from 'react-toastify';
+import { userApi } from '../../public/const';
 
 const SignUpForm = () => {
     const router = useRouter();
@@ -42,17 +43,18 @@ const SignUpForm = () => {
             delete values.confirmPassword;
             try {
                 axios
-                    .post('http://127.0.0.1:8000/user/sign-up', values, {
+                    .post(userApi + '/user/sign-up', values, {
                         headers: {
                             'Content-Type': 'application/json',
                         },
                     })
-                    .then(responce => {
+                    .then(() => {
                         toast.success(t('successAccount'));
                         router.replace({
                             query: { ...router.query, form: 'signIn' },
                         });
-                    }).catch(error => {
+                    })
+                    .catch(error => {
                         toast.error(t('errorAccount'));
                     });
             } catch (error) {
