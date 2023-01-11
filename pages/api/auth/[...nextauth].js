@@ -1,9 +1,7 @@
 import NextAuth from 'next-auth';
 import CredentialsProvider from 'next-auth/providers/credentials';
 import axios from 'axios';
-import { toast } from 'react-toastify';
 import { userApi } from '../../../public/const';
-import { error } from 'next/dist/build/output/log';
 
 export default NextAuth({
     providers: [
