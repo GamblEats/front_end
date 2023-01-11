@@ -1,5 +1,5 @@
 import styled from 'styled-components';
-import { LineStep } from '../../public/enums';
+import { LineStep } from '../../public/const';
 import { StepLineProps, StepperContainerProps } from './DeliveryStepper';
 
 export const StepperContainer = styled.div<StepperContainerProps>`

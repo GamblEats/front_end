@@ -1,6 +1,6 @@
 import { faCircleCheck, faHouse, faKitchenSet, faRoad } from '@fortawesome/free-solid-svg-icons';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import { DeliveryStep, LineStep } from '../../public/enums';
+import { DeliveryStep, LineStep } from '../../public/const';
 import { StepCircle, StepLine, StepperContainer } from './styles';
 
 interface Props {

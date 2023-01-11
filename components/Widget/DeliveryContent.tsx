@@ -1,5 +1,5 @@
 import { useTranslation } from 'next-i18next';
-import { DeliveryStep } from '../../public/enums';
+import { DeliveryStep } from '../../public/const';
 import DeliveryStepper from '../DeliveryStepper/DeliveryStepper';
 import { DeliveryContainer } from './styles';
 
