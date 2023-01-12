@@ -20,7 +20,11 @@ const NavPageItems = ({ name, icon }: Props) => {
             }}>
             <div className={router.asPath === '/' + name ? 'onPage' : ''}>
                 <FontAwesomeIcon className="pageIcon" icon={icon} />
-                <NavPageText>{t(name)}</NavPageText>
+                {name !== 'myRestaurant' ? (
+                    <NavPageText>{t(name)}</NavPageText>
+                ) : (
+                    <NavPageText>{t('myRestau')}</NavPageText>
+                )}
             </div>
         </NavPageIcon>
     );

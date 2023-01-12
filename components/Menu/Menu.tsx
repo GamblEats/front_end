@@ -36,14 +36,14 @@ const Menu = () => {
                             text={t('restorers')}
                             onClick={() => {
                                 router.replace({
-                                    query: { ...router.query, form: 'signIn' },
+                                    query: { ...router.query, form: 'signIn', as: 'restaurant' },
                                 });
                             }}></Button>
                         <Button
                             text={t('delivers')}
                             onClick={() => {
                                 router.replace({
-                                    query: { ...router.query, form: 'signIn' },
+                                    query: { ...router.query, form: 'signIn', as: 'deliverer' },
                                 });
                             }}></Button>
                     </PartnersList>
@@ -52,7 +52,7 @@ const Menu = () => {
                     text={t('signIn')}
                     onClick={() => {
                         router.replace({
-                            query: { ...router.query, form: 'signIn' },
+                            query: { ...router.query, form: 'signIn', as: 'client' },
                         });
                     }}></Button>
                 <Button

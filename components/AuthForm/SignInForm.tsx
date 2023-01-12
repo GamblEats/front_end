@@ -9,8 +9,12 @@ import { useTranslation } from 'next-i18next';
 import axios from 'axios';
 import { toast } from 'react-toastify';
 import { signIn } from 'next-auth/react';
+import { IconProp } from '@fortawesome/fontawesome-svg-core';
 
-const SignInForm = () => {
+interface Props {
+    role: string;
+}
+const SignInForm = ({ role }: Props) => {
     const router = useRouter();
     const { t } = useTranslation('common');
     const validationSchema = Yup.object({
@@ -35,6 +39,7 @@ const SignInForm = () => {
             redirect: false,
             email: values.email,
             password: values.password,
+            role: role,
             callbackUrl: '/home',
         });
         if (status.ok) {
@@ -47,7 +52,17 @@ const SignInForm = () => {
     return (
         <>
             <Form onSubmit={formik.handleSubmit}>
-                <FormTitle> {t('signIn')}</FormTitle>
+                <FormTitle>
+                    <div>
+                        <p>{t('signIn')}</p>
+                        {role !== 'client' && (
+                            <p>
+                                {t('as')}
+                                {t(role)}
+                            </p>
+                        )}
+                    </div>
+                </FormTitle>
                 <InputForm name="email" formik={formik} placeholder={t('email')} icon={faEnvelope} />
                 <InputForm
                     type={'password'}
