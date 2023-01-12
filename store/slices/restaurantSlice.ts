@@ -1,5 +1,6 @@
 import axios from 'axios';
 import { StateCreator } from 'zustand';
+import { restaurantApi } from '../../public/const';
 import IRestaurant from '../types/IRestaurant';
 import { restaurantApi } from '../../public/const';
 import Router from 'next/router';

@@ -1,6 +1,6 @@
 import styled from 'styled-components';
 
-// --- Button ---
+// --- Button --- //
 
 export const ButtonContainer = styled.button`
     display: flex;
@@ -42,6 +42,26 @@ export const HeaderTitle = styled.div`
 export const HeaderWidgets = styled.div`
     display: flex;
     gap: 1rem;
+`;
+
+// --- SearchInput --- //
+
+export const InputContainer = styled.div`
+    position: relative;
+    width: 100%;
+`;
+
+export const Input = styled.input`
+    border-radius: 10rem;
+    font-size: 1rem;
+    border: none;
+    padding: 1rem 1.5rem;
+    width: 100%;
+    &::placeholder {
+        /* Chrome, Firefox, Opera, Safari 10.1+ */
+        color: #d9d9d9;
+        opacity: 1; /* Firefox */
+    }
 `;
 
 // --- ImgUploader --- //
