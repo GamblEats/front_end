@@ -2,7 +2,6 @@ import axios from 'axios';
 import { StateCreator } from 'zustand';
 import { restaurantApi } from '../../public/const';
 import IRestaurant from '../types/IRestaurant';
-import { restaurantApi } from '../../public/const';
 import Router from 'next/router';
 
 const restaurantSlice: StateCreator<IRestaurant> = (set, get) => ({
@@ -25,14 +24,12 @@ const restaurantSlice: StateCreator<IRestaurant> = (set, get) => ({
     },
     setOpenedRestaurant: async (id: string) => {
         if (id) {
-            console.log(id);
             try {
                 const { data } = await axios.get(`${restaurantApi}/restaurant/${id}`, {
                     headers: {
                         'Content-Type': 'application/json',
                     },
                 });
-                console.log(data);
                 set(state => ({ ...state, loading: false, openedRestaurant: data }));
             } catch (error) {
                 set(state => ({ ...state, loading: false, error: true }));

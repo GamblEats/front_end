@@ -22,7 +22,6 @@ const IndexContent = styled.div`
 
 const BackgroundImg = styled.img`
     position: fixed;
-    z-index: 0;
     bottom: -23em;
     right: -20em;
     width: 50em;

@@ -16,7 +16,6 @@ const orderSlice: StateCreator<IOrder> = (set, get) => ({
             });
 
             set(state => ({ ...state, orders: data }));
-            console.log(data);
         } catch (error) {
             throw error;
         }

@@ -1,9 +1,9 @@
-import { useEffect, useState } from 'react';
-import { useRouter } from 'next/router';
-import { RestaurantsContainer, FiltersContainer, SearchBar } from './styles';
+import { useState } from 'react';
+import { RestaurantsContainer, FiltersContainer } from './styles';
 import RestaurantCard from '../RestaurantCard/RestaurantCard';
 import { useTranslation } from 'next-i18next';
 import useStore from '../../store/useStore';
+import SearchInput from '../globals/SearchInput';
 
 const Catalog = () => {
     const { t } = useTranslation('common');
@@ -17,10 +17,9 @@ const Catalog = () => {
     return (
         <>
             <FiltersContainer>
-                <SearchBar
+                <SearchInput
                     onChange={ev => setResearch(ev.target.value)}
-                    type="search"
-                    placeholder={placeHolder}></SearchBar>
+                    placeHolder={t('findRestaurant')}></SearchInput>
             </FiltersContainer>
             <RestaurantsContainer>
                 {restaurants
