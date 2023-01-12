@@ -83,7 +83,6 @@ const Home = () => {
     if (restaurants.length === 0) {
         getRestaurants();
     }
-
     return (
         <PageContainer>
             <PageHeader title={getGreeting() + session.user.firstName}></PageHeader>

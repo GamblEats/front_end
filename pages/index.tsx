@@ -103,7 +103,11 @@ const Index = () => {
                             }}></Button>
                     </ButtonContainer>
                 </SloganContainer>
-                {router.query.form === 'signIn' && <SignInForm />}
+                {router.query.form === 'signIn' && router.query.as === 'client' && <SignInForm role={'client'} />}
+                {router.query.form === 'signIn' && router.query.as === 'deliverer' && <SignInForm role={'deliverer'} />}
+                {router.query.form === 'signIn' && router.query.as === 'restaurant' && (
+                    <SignInForm role={'restaurant'} />
+                )}
                 {router.query.form === 'signUp' && <SignUpForm />}
             </IndexContent>
             <BackgroundImg

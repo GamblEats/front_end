@@ -58,6 +58,8 @@ export const Form = styled.form`
 `;
 
 export const FormTitle = styled.h1`
+    display: flex;
+    flex-direction: row;
     color: #143642;
     font-weight: 600;
     @media (max-width: 1080px) {
