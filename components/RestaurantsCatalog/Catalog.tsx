@@ -1,4 +1,4 @@
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
 import { useRouter } from 'next/router';
 import { RestaurantsContainer, FiltersContainer, SearchBar } from './styles';
 import RestaurantCard from '../RestaurantCard/RestaurantCard';
@@ -28,10 +28,11 @@ const Catalog = () => {
                     .map((r, i) => (
                         <RestaurantCard
                             key={i}
+                            id={r.id}
                             name={r.name}
                             pic={r.pic}
                             deliveryPrice={r.deliveryPrice}
-                            description={/*r.desc*/ ''}
+                            description={r.description}
                             deliveryTime={r.deliveryTime}
                             rating={r.rating}></RestaurantCard>
                     ))}

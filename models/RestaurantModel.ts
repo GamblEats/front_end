@@ -1,5 +1,5 @@
 export interface RestaurantModel {
-    _id?: string;
+    id: string;
     owner?: string;
     pic: string;
     name: string;

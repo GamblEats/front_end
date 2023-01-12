@@ -114,10 +114,11 @@ const Home = () => {
                 {restaurants.map((r, i) => (
                     <RestaurantCard
                         key={i}
+                        id={r.id}
                         name={r.name}
                         pic={r.pic}
                         deliveryPrice={r.deliveryPrice}
-                        description={/*r.desc*/ ''}
+                        description={r.description}
                         deliveryTime={r.deliveryTime}
                         rating={r.rating}
                         minWidth="25rem"></RestaurantCard>
@@ -131,10 +132,11 @@ const Home = () => {
                 {restaurants.map((r, i) => (
                     <RestaurantCard
                         key={i}
+                        id={r.id}
                         name={r.name}
                         pic={r.pic}
                         deliveryPrice={r.deliveryPrice}
-                        description={/*r.desc*/ ''}
+                        description={r.description}
                         deliveryTime={r.deliveryTime}
                         rating={r.rating}
                         minWidth="25rem"></RestaurantCard>
