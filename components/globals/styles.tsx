@@ -57,10 +57,15 @@ export const Input = styled.input`
     border: none;
     padding: 1rem 1.5rem;
     width: 100%;
+
     &::placeholder {
         /* Chrome, Firefox, Opera, Safari 10.1+ */
         color: #d9d9d9;
         opacity: 1; /* Firefox */
+    }
+
+    &:focus {
+        outline: 1px solid #e5bf00;
     }
 `;
 

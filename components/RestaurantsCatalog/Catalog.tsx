@@ -1,13 +1,14 @@
 import { useState } from 'react';
-import { RestaurantsContainer, FiltersContainer } from './styles';
+import { RestaurantsContainer, FiltersContainer, CategoriesContainer } from './styles';
 import RestaurantCard from '../RestaurantCard/RestaurantCard';
 import { useTranslation } from 'next-i18next';
 import useStore from '../../store/useStore';
 import SearchInput from '../globals/SearchInput';
+import CategoryFilter from './CategoryFilter';
+import { categories } from '../../config/categories';
 
 const Catalog = () => {
     const { t } = useTranslation('common');
-    const placeHolder = t('findRestaurant');
     const [research, setResearch] = useState('');
     const { restaurants, getRestaurants } = useStore();
     if (restaurants.length === 0) {
@@ -20,6 +21,11 @@ const Catalog = () => {
                 <SearchInput
                     onChange={ev => setResearch(ev.target.value)}
                     placeHolder={t('findRestaurant')}></SearchInput>
+                <CategoriesContainer>
+                    {categories.map((c, i) => (
+                        <CategoryFilter pic={c.pic} name={c.name}></CategoryFilter>
+                    ))}
+                </CategoriesContainer>
             </FiltersContainer>
             <RestaurantsContainer>
                 {restaurants

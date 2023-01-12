@@ -34,3 +34,9 @@ export const SearchBar = styled.input`
 `;
 
 export const SearchIcon = styled.img``;
+
+export const CategoriesContainer = styled.div``;
+
+export const CategoryButton = styled.button``;
+
+export const CategoryImg = styled.img``;
