@@ -26,7 +26,7 @@ const IndexContent = styled.div`
 `;
 
 const BackgroundImg = styled.img`
-    animation: spin 80s linear infinite;
+    animation: spin 120s linear infinite;
     position: fixed;
     bottom: -30em;
     right: -30em;
