@@ -1,6 +1,10 @@
 import { GetStaticProps } from 'next';
 import { useTranslation } from 'next-i18next';
 import { serverSideTranslations } from 'next-i18next/serverSideTranslations';
+import Index from './index';
+import { useSession } from 'next-auth/react';
+import { useRouter } from 'next/router';
+import { useEffect } from 'react';
 import styled from 'styled-components';
 import useStore from '../store/useStore';
 import PageHeader from '../components/globals/PageHeader';
@@ -73,6 +77,14 @@ const OrderContainer = styled.div`
 `;
 
 const Orders = () => {
+    const { data: session }: any = useSession();
+    const router = useRouter();
+
+    useEffect(() => {
+        if (session.user.role !== 'restaurant' && session.user.role !== 'client') {
+            router.push('/home');
+        }
+    }, []);
     const { t } = useTranslation('common');
     const { orders, getOrders } = useStore();
     if (orders.length === 0) {
@@ -84,7 +96,7 @@ const Orders = () => {
             <OrdersContainers>
                 <PastOrdersContainer>
                     <FilterContainer>
-                        <SearchInput placeHolder={t('searchByRestaurant')}></SearchInput>
+                        <SearchInput placeHolder={t('searchByRestaurant')} onChange={() => {}}></SearchInput>
                         <MonthSelector required defaultValue="" name="orders">
                             <option value="" disabled hidden>
                                 {t('searchByMonth')}

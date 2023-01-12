@@ -1,29 +1,22 @@
-import Catalog from '../components/RestaurantsCatalog/Catalog';
-import { PageContainer } from '../styles/globals';
 import { GetStaticProps } from 'next';
 import { serverSideTranslations } from 'next-i18next/serverSideTranslations';
-import { useTranslation } from 'next-i18next';
-import PageHeader from '../components/globals/PageHeader';
 import { useSession } from 'next-auth/react';
 import { useRouter } from 'next/router';
 import { useEffect } from 'react';
 
-const Restaurants = () => {
-    const { t } = useTranslation('common');
+const Statistics = () => {
     const { data: session }: any = useSession();
     const router = useRouter();
 
     useEffect(() => {
-        if (session.user.role !== 'client') {
+        if (session.user.role !== 'restaurant') {
             router.push('/home');
         }
     }, []);
-
     return (
-        <PageContainer>
-            <PageHeader title={t('restaurants')}></PageHeader>
-            <Catalog />
-        </PageContainer>
+        <>
+            <div>Statistics</div>
+        </>
     );
 };
 export const getStaticProps: GetStaticProps = async ({ locale }) => {
@@ -33,6 +26,5 @@ export const getStaticProps: GetStaticProps = async ({ locale }) => {
         },
     };
 };
-
-export default Restaurants;
-Restaurants.requireAuth = true;
+export default Statistics;
+Statistics.requireAuth = true;
