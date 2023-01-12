@@ -1,10 +1,19 @@
 import { useRouter } from 'next/router';
-import { RestaurantsContainer, FiltersContainer, SearchBar } from './styles';
+import { CategoryButton, CategoryImg } from './styles';
 
-const Catalog = () => {
+interface Props {
+    name: string;
+    pic: any;
+}
+
+const CategoryFilter = ({ name, pic }: Props) => {
     const router = useRouter();
 
-    return <></>;
+    return (
+        <CategoryButton>
+            <CategoryImg src={pic} alt={name} />
+        </CategoryButton>
+    );
 };
 
-export default Catalog;
+export default CategoryFilter;
