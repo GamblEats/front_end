@@ -8,13 +8,11 @@ export default NextAuth({
         CredentialsProvider({
             name: 'Credentials',
             async authorize(credentials) {
-                console.log('gogo');
                 const result = await axios.post(userApi + '/user/sign-in', credentials, {
                     headers: {
                         'Content-Type': 'application/json',
                     },
                 });
-                console.log(result);
 
                 if (!result) {
                     throw new Error('No user Found with Email Please Sign Up...!');
