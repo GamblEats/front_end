@@ -47,7 +47,6 @@ const RestInfo = styled.div`
 
 const RestaurantDetails = () => {
     const { openedRestaurant, setOpenedRestaurant, loading, error }: any = useStore(state => state);
-    console.log(openedRestaurant);
     return (
         <BlurBg
             onClick={e => {

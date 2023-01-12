@@ -26,7 +26,7 @@ const restaurantSlice: StateCreator<IRestaurant> = (set, get) => ({
         if (id) {
             console.log(id);
             try {
-                const { data } = await axios.get(`http://127.0.0.1:8000/restaurant/${id}`, {
+                const { data } = await axios.get(`${restaurantApi}/restaurant/${id}`, {
                     headers: {
                         'Content-Type': 'application/json',
                     },
