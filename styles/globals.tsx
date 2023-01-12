@@ -16,8 +16,11 @@ export const Slogan = styled.div`
     align-items: center;
     width: 10em;
     color: #143642;
-    @media (max-width: 900px) {
-        font-size: 3em;
+    @media (max-width: 1000px) {
+        font-size: 4em !important;
+    }
+    @media (max-width: 600px) {
+        font-size: 2.5em !important;
     }
 `;
 

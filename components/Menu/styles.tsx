@@ -40,13 +40,15 @@ export const MobileMenuIcon = styled.div`
 `;
 
 export const PartnersList = styled.div`
-    position: absolute;
-    background-color: white;
-    border-radius: 1rem;
-    z-index: 1;
     flex-direction: column;
-    gap: 0.5rem;
-    padding: 1rem 0.5rem;
+    @media (min-width: 1000px) {
+        position: absolute;
+        background-color: white;
+        border-radius: 1rem;
+        z-index: 1;
+        gap: 0.5rem;
+        padding: 1rem 0.5rem;
+    }
     @media (max-width: 1000px) {
         position: static;
     }
