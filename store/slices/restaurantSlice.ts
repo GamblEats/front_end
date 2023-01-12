@@ -1,5 +1,6 @@
 import axios from 'axios';
 import { StateCreator } from 'zustand';
+import { restaurantApi } from '../../public/const';
 import IRestaurant from '../types/IRestaurant';
 
 const restaurantSlice: StateCreator<IRestaurant> = (set, get) => ({
@@ -8,7 +9,7 @@ const restaurantSlice: StateCreator<IRestaurant> = (set, get) => ({
     restaurants: [],
     getRestaurants: async () => {
         try {
-            const { data } = await axios.get('http://127.0.0.1:8000/restaurant-all', {
+            const { data } = await axios.get(restaurantApi + '/restaurant-all', {
                 headers: {
                     'Content-Type': 'application/json',
                 },

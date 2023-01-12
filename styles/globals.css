@@ -70,3 +70,22 @@ a {
     display: inline-block;
   }
 }
+
+/* -- SearchInput -- */
+
+.searchIcon {
+  position: absolute;
+  right: 1.5rem;
+  top: 50%;
+  transform: translate(0, -50%);
+}
+
+select:required:invalid {
+  color: #D9D9D9;
+}
+
+.styled-select select {
+  -moz-appearance:none !important; /* Firefox */
+  -webkit-appearance:none !important; /* Safari and Chrome */
+  appearance:none !important;
+}
