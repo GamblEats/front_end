@@ -45,6 +45,7 @@ export const StyledIcon = styled(FontAwesomeIcon)`
 
 export const Form = styled.form`
     width: 25em;
+    min-width: 20rem;
     display: flex;
     flex-direction: column;
     align-items: center;

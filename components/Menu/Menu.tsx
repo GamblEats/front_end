@@ -1,7 +1,7 @@
 import { faBars, faCaretDown, faCaretUp } from '@fortawesome/free-solid-svg-icons';
 import { useTranslation } from 'next-i18next';
 import { useRouter } from 'next/router';
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
 import { Logo } from '../../styles/globals';
 import { MenuContainer, MenuItem, MobileMenuIcon, PartnersList } from './styles';
 import Button from '../globals/Button';
@@ -16,22 +16,36 @@ const Menu = () => {
     const [dropdownIsOpen, setDropdownIsOpen] = useState(false);
     const [mobileMenuIsOpen, setMobileMenuIsOpen] = useState(false);
     const router = useRouter();
+    const [isMobileMenu, setIsMobileMenu] = useState(false);
+    const handleResize = () => {
+        if (window.innerWidth < 1000) {
+            setIsMobileMenu(true);
+        } else {
+            setIsMobileMenu(false);
+        }
+    };
+    useEffect(() => {
+        handleResize();
+        window.addEventListener('resize', handleResize);
+    }, []);
     return (
         <MenuContainer>
             <Logo src="/pictures/logo-text.png"></Logo>
             <MenuItem isOpen={mobileMenuIsOpen}>
                 <Button text={t('contactUs')} onClick={() => {}}></Button>
                 <div>
-                    <div onMouseOver={() => setDropdownIsOpen(true)} onMouseLeave={() => setDropdownIsOpen(false)}>
-                        <Button
-                            text={t('partners')}
-                            icon={dropdownIsOpen ? faCaretUp : faCaretDown}
-                            onClick={() => {}}></Button>
-                    </div>
+                    {!isMobileMenu && (
+                        <div onMouseOver={() => setDropdownIsOpen(true)} onMouseLeave={() => setDropdownIsOpen(false)}>
+                            <Button
+                                text={t('partners')}
+                                icon={dropdownIsOpen ? faCaretUp : faCaretDown}
+                                onClick={() => {}}></Button>
+                        </div>
+                    )}
                     <PartnersList
                         onMouseOver={() => setDropdownIsOpen(true)}
                         onMouseLeave={() => setDropdownIsOpen(false)}
-                        style={{ display: dropdownIsOpen ? 'flex' : 'none' }}>
+                        style={{ display: dropdownIsOpen || isMobileMenu ? 'flex' : 'none' }}>
                         <Button
                             text={t('restorers')}
                             onClick={() => {
@@ -48,21 +62,25 @@ const Menu = () => {
                             }}></Button>
                     </PartnersList>
                 </div>
-                <Button
-                    text={t('signIn')}
-                    onClick={() => {
-                        router.replace({
-                            query: { ...router.query, form: 'signIn' },
-                        });
-                    }}></Button>
-                <Button
-                    backgroundColor="#e5bf00"
-                    text={t('startEating')}
-                    onClick={() => {
-                        router.replace({
-                            query: { ...router.query, form: 'signUp' },
-                        });
-                    }}></Button>
+                {!isMobileMenu && (
+                    <>
+                        <Button
+                            text={t('signIn')}
+                            onClick={() => {
+                                router.replace({
+                                    query: { ...router.query, form: 'signIn' },
+                                });
+                            }}></Button>
+                        <Button
+                            backgroundColor="#e5bf00"
+                            text={t('startEating')}
+                            onClick={() => {
+                                router.replace({
+                                    query: { ...router.query, form: 'signUp' },
+                                });
+                            }}></Button>
+                    </>
+                )}
             </MenuItem>
             <MobileMenuIcon
                 onClick={() => {
