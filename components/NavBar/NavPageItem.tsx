@@ -23,7 +23,7 @@ const NavPageItems = ({ name, icon }: Props) => {
                 {name !== 'myRestaurant' ? (
                     <NavPageText>{t(name)}</NavPageText>
                 ) : (
-                    <NavPageText>{t('myRestau')}</NavPageText>
+                    <NavPageText>{t('myRestaurant')}</NavPageText>
                 )}
             </div>
         </NavPageIcon>
