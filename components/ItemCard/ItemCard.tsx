@@ -7,6 +7,7 @@ import { ItemCardContainer, ItemImg, ItemCardContent, ItemText, ItemCardHeader, 
 interface Props {
     item?: ItemModel;
     menu?: MenuModel;
+    onClick: () => void;
 }
 
 export interface ItemTextProps {
@@ -14,7 +15,7 @@ export interface ItemTextProps {
     weight?: string;
 }
 
-const DeliveryStepper = ({ item, menu }: Props) => {
+const DeliveryStepper = ({ item, menu, onClick }: Props) => {
     return (
         <ItemCardContainer>
             <ItemImg src={item ? item.pic : menu ? menu.pic : ''}></ItemImg>
@@ -35,7 +36,7 @@ const DeliveryStepper = ({ item, menu }: Props) => {
                         small={true}
                         backgroundColor="#E5BF00"
                         icon={faCartShopping}
-                        onClick={() => {}}></Button>
+                        onClick={onClick}></Button>
                 </ItemCardButton>
             </ItemCardContent>
         </ItemCardContainer>

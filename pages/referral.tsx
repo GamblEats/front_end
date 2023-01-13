@@ -42,29 +42,10 @@ const Referral = () => {
             setButtonText('copie');
         }, 1000);
     }
-
-    const item: ItemModel = {
-        restaurant: 'NigBurger',
-        name: 'NigBurger',
-        description: "Sandwich au pain noir, c'est bio, c'est bon, régale toi bien chackal.",
-        price: 3.5,
-        pic: 'https://gambleatsstorage.blob.core.windows.net/items/hamburger.jpeg',
-    };
-
-    const menu: MenuModel = {
-        name: 'Taco Trio',
-        pic: 'https://gambleatsstorage.blob.core.windows.net/menus/a-taco-trio.jpg',
-        description: 'Sliced tomato, fresh mozzarella, basil, and balsamic glaze on a bed of mixed greens.',
-        price: 8.99,
-        restaurant: '63b69cdf39f6b932d44f31c5',
-    };
-
     return (
         <PageContainer>
             <PageHeader title={t('referral')}></PageHeader>
             <ReferralContainer>
-                <ItemCard item={item}></ItemCard>
-                <ItemCard menu={menu}></ItemCard>
                 <MultiplierContainer>
                     <Multiplier>x1.3</Multiplier>
                     <MultiplierText>{t('multiplierText')}</MultiplierText>
