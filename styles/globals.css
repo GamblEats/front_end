@@ -89,3 +89,9 @@ select:required:invalid {
   -webkit-appearance:none !important; /* Safari and Chrome */
   appearance:none !important;
 }
+
+/* -- Order -- */
+
+.deleteOrderButton {
+  cursor: pointer;
+}

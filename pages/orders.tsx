@@ -1,10 +1,9 @@
 import { GetStaticProps } from 'next';
 import { useTranslation } from 'next-i18next';
 import { serverSideTranslations } from 'next-i18next/serverSideTranslations';
-import Index from './index';
 import { useSession } from 'next-auth/react';
 import { useRouter } from 'next/router';
-import { useEffect } from 'react';
+import { useEffect, useState } from 'react';
 import styled from 'styled-components';
 import useStore from '../store/useStore';
 import PageHeader from '../components/globals/PageHeader';
@@ -13,6 +12,7 @@ import CurrentOrder from '../components/Orders/CurrentOrder';
 import Order from '../components/Orders/Order';
 import { months } from '../public/const';
 import { PageContainer } from '../styles/globals';
+import moment from 'moment';
 
 const OrdersContainers = styled.div`
     display: flex;
@@ -79,6 +79,8 @@ const OrderContainer = styled.div`
 const Orders = () => {
     const { data: session }: any = useSession();
     const router = useRouter();
+    const [searchByRestaurant, setSearchByRestaurant] = useState('');
+    const [searchByMonth, setSearchByMonth] = useState('');
 
     useEffect(() => {
         if (session.user.role !== 'restaurant' && session.user.role !== 'client') {
@@ -99,8 +101,14 @@ const Orders = () => {
             <OrdersContainers>
                 <PastOrdersContainer>
                     <FilterContainer>
-                        <SearchInput placeHolder={t('searchByRestaurant')} onChange={() => {}}></SearchInput>
-                        <MonthSelector required defaultValue="" name="orders">
+                        <SearchInput
+                            placeHolder={t('searchByRestaurant')}
+                            onChange={ev => setSearchByRestaurant(ev.target.value)}></SearchInput>
+                        <MonthSelector
+                            required
+                            defaultValue=""
+                            name="orders"
+                            onChange={ev => setSearchByMonth(ev.target.value)}>
                             <option value="" disabled hidden>
                                 {t('searchByMonth')}
                             </option>
@@ -113,7 +121,16 @@ const Orders = () => {
                     </FilterContainer>
                     <OrderContainer>
                         {orders
-                            .filter(order => order.status == ('DELIVRED' || 'CANCELED'))
+                            .filter(
+                                order =>
+                                    (order.status === 'DELIVRED' || order.status === 'CANCELED') &&
+                                    order.restaurant.name.toLowerCase().indexOf(searchByRestaurant.toLowerCase()) >
+                                        -1 &&
+                                    moment(order.startTime)
+                                        .format('MMMM')
+                                        .toLowerCase()
+                                        .indexOf(searchByMonth.toLowerCase()) > -1
+                            )
                             .map((order, i) => (
                                 <Order key={i} order={order}></Order>
                             ))}

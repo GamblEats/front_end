@@ -1,20 +1,19 @@
 import { faBox } from '@fortawesome/free-solid-svg-icons';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { useTranslation } from 'next-i18next';
-import { DeliveryStep } from '../../public/const';
 import { OrderStatusContainer, Status } from './styles';
 
 interface Props {
-    status: DeliveryStep;
+    status: string;
 }
 
 const OrderStatus = ({ status }: Props) => {
     const { t } = useTranslation('common');
     function getStatusInfo(color: boolean) {
         switch (status) {
-            case DeliveryStep.DELIVRED:
+            case 'DELIVRED':
                 return color ? '#27AE60' : t('orderDelivred');
-            case DeliveryStep.CANCELED:
+            case 'CANCELED':
                 return color ? '#C0392B' : t('orderCanceled');
             default:
                 return color ? '#E67E22' : t('orderInProgress');
