@@ -14,7 +14,7 @@ const OrderStatus = ({ status }: Props) => {
         switch (status) {
             case DeliveryStep.DELIVRED:
                 return color ? '#27AE60' : t('orderDelivred');
-            case DeliveryStep.DELIVRED:
+            case DeliveryStep.CANCELED:
                 return color ? '#C0392B' : t('orderCanceled');
             default:
                 return color ? '#E67E22' : t('orderInProgress');

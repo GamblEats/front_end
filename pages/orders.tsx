@@ -87,9 +87,12 @@ const Orders = () => {
     }, []);
     const { t } = useTranslation('common');
     const { orders, getOrders } = useStore();
-    if (orders.length === 0) {
-        getOrders();
-    }
+    useEffect(() => {
+        if (orders.length === 0) {
+            getOrders(session.user);
+        }
+    }, []);
+
     return (
         <PageContainer>
             <PageHeader title={t('orders')}></PageHeader>

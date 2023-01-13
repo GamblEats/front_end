@@ -8,7 +8,7 @@ export default NextAuth({
         CredentialsProvider({
             name: 'Credentials',
             async authorize(credentials) {
-                const result = await axios.post(userApi + '/user/sign-in', credentials, {
+                const result = await axios.post(userApi + '/users/authenticate', credentials, {
                     headers: {
                         'Content-Type': 'application/json',
                     },
@@ -17,6 +17,7 @@ export default NextAuth({
                 if (!result) {
                     throw new Error('No user Found with Email Please Sign Up...!');
                 }
+                result.data.user.token = result.data.token;
                 return result.data.user;
             },
         }),

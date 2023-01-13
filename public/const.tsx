@@ -13,6 +13,7 @@ export enum DeliveryStep {
     ON_THE_WAY,
     AT_YOUR_DOOR,
     DELIVRED,
+    CANCELED,
 }
 
 export enum LineStep {

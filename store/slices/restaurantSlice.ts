@@ -11,7 +11,7 @@ const restaurantSlice: StateCreator<IRestaurant> = (set, get) => ({
     openedRestaurant: null,
     getRestaurants: async () => {
         try {
-            const { data } = await axios.get(restaurantApi + '/restaurant-all', {
+            const { data } = await axios.get(restaurantApi + '/restaurants', {
                 headers: {
                     'Content-Type': 'application/json',
                 },
@@ -25,7 +25,7 @@ const restaurantSlice: StateCreator<IRestaurant> = (set, get) => ({
     setOpenedRestaurant: async (id: string) => {
         if (id) {
             try {
-                const { data } = await axios.get(`${restaurantApi}/restaurant/${id}`, {
+                const { data } = await axios.get(`${restaurantApi}/restaurants/${id}`, {
                     headers: {
                         'Content-Type': 'application/json',
                     },
