@@ -1,13 +1,14 @@
 import styled from 'styled-components';
+import { SmallProps } from './Button';
 
 // --- Button --- //
 
-export const ButtonContainer = styled.button`
+export const ButtonContainer = styled.button<SmallProps>`
     display: flex;
-    gap: 1rem;
+    gap: ${props => (props.small ? '0.5rem' : '1rem')};
     background-color: ${props => props.color || 'transparent'};
     border-radius: 1rem;
-    padding: 0.8rem 1.8rem;
+    padding: ${props => (props.small ? '0.5rem 1rem' : '0.8rem 1.8rem')};
     border: none;
     cursor: pointer;
     transition: opacity 0.3s, background-color 0.2s ease-in-out;
@@ -15,12 +16,12 @@ export const ButtonContainer = styled.button`
         opacity: 0.8;
     }
 `;
-export const ButtonLabel = styled.div`
-    font-size: 1.1rem;
+export const ButtonLabel = styled.div<SmallProps>`
+    font-size: ${props => (props.small ? '0.8rem' : '1.1rem')};
     color: ${props => props.color};
 `;
-export const ButtonIcon = styled.div`
-    font-size: 1.1rem;
+export const ButtonIcon = styled.div<SmallProps>`
+    font-size: ${props => (props.small ? '0.8rem' : '1.1rem')};
 `;
 
 // --- PageHeader --- //
