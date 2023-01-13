@@ -1,4 +1,52 @@
 import styled from 'styled-components';
+import { DeleteButtonProps } from './Order';
+
+// --- ItemList --- //
+
+export const ItemListContainer = styled.div`
+    display: grid;
+    grid-auto-flow: column;
+    grid-template-rows: repeat(2, auto);
+    max-height: 4rem;
+`;
+
+export const ItemContainer = styled.div`
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+    margin: 0.3rem 0.9rem;
+`;
+
+export const ItemCount = styled.div`
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 1.3rem;
+    width: 1.3rem;
+    border-radius: 50%;
+    background-color: #143642;
+`;
+
+export const Counter = styled.div`
+    display: flex;
+    align-items: baseline;
+`;
+
+export const CountX = styled.div`
+    content: 'x';
+    color: white;
+    font-size: 0.5rem;
+`;
+
+export const CountValue = styled.div`
+    color: white;
+    font-size: 0.7rem;
+`;
+
+export const ItemName = styled.div`
+    font-size: 0.8rem;
+    color: #143642;
+`;
 
 // --- Order --- //
 
@@ -11,9 +59,14 @@ export const OrderContainer = styled.div`
     align-items: center;
 `;
 
-export const OrderDate = styled.div`
-    font-size: 1.3rem;
-    color: #143642;
+export const OrderContent = styled.div`
+    display: flex;
+    gap: 1rem;
+`;
+
+export const OrderPrice = styled.div`
+    display: flex;
+    flex-direction: column;
 `;
 
 export const OrderStatusContainer = styled.div`
@@ -28,6 +81,14 @@ export const Status = styled.div`
     font-weight: 5000;
     max-width: 6rem;
     text-align: right;
+`;
+
+export const DeleteOrderButton = styled.div<DeleteButtonProps>`
+    display: flex;
+    align-items: center;
+    gap: 2rem;
+    margin-right: ${props => (props.isShow ? '0' : '-3.5rem')};
+    transition: margin-right 0.3s ease-in-out;
 `;
 
 // --- CurrentOrder --- //
