@@ -16,7 +16,6 @@ export interface CategoryNameProps {
 
 const Catalog = () => {
     const { t } = useTranslation('common');
-    const placeHolder = t('findRestaurant');
     const [research, setResearch] = useState('');
     const { restaurants, getRestaurants } = useStore();
     const [selectedCategories, setSelectedCategories] = useState<Array<string>>([]);
@@ -24,7 +23,6 @@ const Catalog = () => {
     if (restaurants.length === 0) {
         getRestaurants();
     }
-
     const handleCategoryClick = (category: any) => {
         if (selectedCategories.includes(category.name.toLowerCase())) {
             setSelectedCategories(selectedCategories.filter(c => c !== category.name.toLowerCase()));
@@ -32,7 +30,6 @@ const Catalog = () => {
             setSelectedCategories([...selectedCategories, category.name.toLowerCase()]);
         }
     };
-
     return (
         <>
             <FiltersContainer>
@@ -57,7 +54,8 @@ const Catalog = () => {
                     .filter(
                         r =>
                             r.name.toLowerCase().indexOf(research.toLowerCase()) > -1 &&
-                            (selectedCategories.length === 0 || r.categories.some(c => selectedCategories.includes(c)))
+                            (selectedCategories.length === 0 ||
+                                r.categories.some((c: string) => selectedCategories.includes(c)))
                     )
                     .map((r, i) => (
                         <RestaurantCard

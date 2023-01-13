@@ -26,6 +26,10 @@ a {
   box-sizing: border-box;
 }
 
+:focus {
+  outline: 1px solid #e6bf00;
+}
+
 /* -- Menu -- */
 
 .hideMenu {

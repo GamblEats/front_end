@@ -23,9 +23,6 @@ export const Input = styled.input<inputProps>`
     ::placeholder {
         color: ${props => props.color};
     }
-    :focus-visible {
-        outline: 2px solid #e5bf00;
-    }
     @media (max-width: 500px) {
         width: 23em;
     }

@@ -15,11 +15,12 @@ export const FiltersContainer = styled.div`
     flex-direction: row;
     align-items: flex-start;
     padding: 0px;
-    gap: 10px;
-    margin-bottom: 1.5rem;
+    gap: 0.5rem;
+    margin-bottom: 2rem;
 
     @media screen and (max-width: 800px) {
         flex-direction: column;
+        gap: 1.5rem;
     }
 `;
 
@@ -38,6 +39,7 @@ export const FilterWrapper = styled.div`
 
 export const Category = styled.div<CategoryProps>`
     display: flex;
+    gap: 0.7rem;
     align-items: center;
     height: 50px;
     padding: 8px;
