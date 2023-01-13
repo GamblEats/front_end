@@ -4,7 +4,10 @@ import { serverSideTranslations } from 'next-i18next/serverSideTranslations';
 import { useState } from 'react';
 import Button from '../components/globals/Button';
 import PageHeader from '../components/globals/PageHeader';
+import ItemCard from '../components/ItemCard/ItemCard';
 import ReferralChips from '../components/ReferralChips/ReferralChips';
+import { ItemModel } from '../models/ItemModel';
+import { MenuModel } from '../models/MenuModel';
 import {
     CodeContainer,
     CodeInput,
@@ -39,7 +42,6 @@ const Referral = () => {
             setButtonText('copie');
         }, 1000);
     }
-
     return (
         <PageContainer>
             <PageHeader title={t('referral')}></PageHeader>
