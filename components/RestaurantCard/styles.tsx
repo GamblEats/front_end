@@ -64,6 +64,7 @@ export const CardDeliveryDetails = styled.div`
     flex-direction: column;
     justify-content: flex-end;
     align-items: flex-end;
+    white-space: nowrap;
 `;
 
 export const CardDeliveryDetail = styled.span`

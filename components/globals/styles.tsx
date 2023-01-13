@@ -63,6 +63,9 @@ export const Input = styled.input`
         color: #d9d9d9;
         opacity: 1; /* Firefox */
     }
+    &:focus {
+        outline: 1px solid #e6bf00;
+    }
 `;
 
 // --- ImgUploader --- //
