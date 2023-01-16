@@ -29,14 +29,6 @@ import {
 import ItemCard from '../ItemCard/ItemCard';
 import { MenuModel } from '../../models/MenuModel';
 
-const RestInfo = styled.div`
-    background-color: white;
-    width: 20%;
-    height: 100%;
-    border-top-left-radius: 1em;
-    border-bottom-left-radius: 1em;
-`;
-
 const BasketModal = styled.div`
     color: white;
     display: flex;
@@ -52,8 +44,9 @@ const BasketModal = styled.div`
     z-index: 50;
     padding-right: 1rem;
     padding-left: 0.5rem;
-    top: 50%;
+    top: 95%;
     left: 50%;
+    transform: translate(-50%, -50%);
 `;
 
 const NumberOfItems = styled.div`
@@ -159,13 +152,23 @@ const RestaurantDetails = () => {
                                 <Items>
                                     {category === 'menus' &&
                                         openedRestaurant.menus.map((menu: MenuModel) => (
-                                            <ItemCard key={i} menu={menu} onClick={() => {}}></ItemCard>
+                                            <ItemCard
+                                                key={i}
+                                                menu={menu}
+                                                onClick={() => {
+                                                    addMenu(menu);
+                                                }}></ItemCard>
                                         ))}
                                     {category !== 'menus' &&
                                         openedRestaurant.items
                                             .filter((item: ItemModel) => item.category == category)
                                             .map((item: ItemModel) => (
-                                                <ItemCard key={i + 50} item={item} onClick={() => {}}></ItemCard>
+                                                <ItemCard
+                                                    key={i + 50}
+                                                    item={item}
+                                                    onClick={() => {
+                                                        addItem(item);
+                                                    }}></ItemCard>
                                             ))}
                                 </Items>
                             </ItemSection>
