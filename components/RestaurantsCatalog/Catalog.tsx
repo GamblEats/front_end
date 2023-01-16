@@ -1,4 +1,4 @@
-import { useState } from 'react';
+import { Key, useEffect, useState } from 'react';
 import { RestaurantsContainer, FiltersContainer, Category, FilterWrapper, CategoryImg, CategoryName } from './styles';
 import RestaurantCard from '../RestaurantCard/RestaurantCard';
 import { useTranslation } from 'next-i18next';
@@ -13,16 +13,17 @@ export interface CategoryProps {
 export interface CategoryNameProps {
     selected: boolean;
 }
+import { OrderModel } from '../../models/OrderModel';
 
-const Catalog = () => {
+interface Props {
+    restaurants: any;
+}
+
+const Catalog = ({ restaurants }: Props) => {
     const { t } = useTranslation('common');
     const [research, setResearch] = useState('');
-    const { restaurants, getRestaurants } = useStore();
     const [selectedCategories, setSelectedCategories] = useState<Array<string>>([]);
 
-    if (restaurants.length === 0) {
-        getRestaurants();
-    }
     const handleCategoryClick = (category: any) => {
         if (selectedCategories.includes(category.name.toLowerCase())) {
             setSelectedCategories(selectedCategories.filter(c => c !== category.name.toLowerCase()));
@@ -30,6 +31,7 @@ const Catalog = () => {
             setSelectedCategories([...selectedCategories, category.name.toLowerCase()]);
         }
     };
+
     return (
         <>
             <FiltersContainer>
@@ -52,22 +54,35 @@ const Catalog = () => {
             <RestaurantsContainer>
                 {restaurants
                     .filter(
-                        r =>
+                        (r: { name: string; categories: string[] }) =>
                             r.name.toLowerCase().indexOf(research.toLowerCase()) > -1 &&
                             (selectedCategories.length === 0 ||
                                 r.categories.some((c: string) => selectedCategories.includes(c)))
                     )
-                    .map((r, i) => (
-                        <RestaurantCard
-                            key={i}
-                            id={r.id}
-                            name={r.name}
-                            pic={r.pic}
-                            deliveryPrice={r.deliveryPrice}
-                            description={r.description}
-                            deliveryTime={r.deliveryTime}
-                            rating={r.rating}></RestaurantCard>
-                    ))}
+                    .map(
+                        (
+                            r: {
+                                id: string;
+                                name: string;
+                                pic: string;
+                                deliveryPrice: number;
+                                description: string;
+                                deliveryTime: string;
+                                rating: number;
+                            },
+                            i: Key | null | undefined
+                        ) => (
+                            <RestaurantCard
+                                key={i}
+                                id={r.id}
+                                name={r.name}
+                                pic={r.pic}
+                                deliveryPrice={r.deliveryPrice}
+                                description={r.description}
+                                deliveryTime={r.deliveryTime}
+                                rating={r.rating}></RestaurantCard>
+                        )
+                    )}
             </RestaurantsContainer>
         </>
     );
