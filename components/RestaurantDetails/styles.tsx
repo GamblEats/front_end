@@ -149,3 +149,34 @@ export const Items = styled.div`
     gap: 2rem;
     grid-template-columns: repeat(auto-fill, minmax(400px, 1fr));
 `;
+
+export const BasketModal = styled.div`
+    color: white;
+    display: flex;
+    flex-direction: row;
+    position: fixed;
+    justify-content: space-between;
+    align-items: center;
+    background: rgba(20, 54, 66, 0.69);
+    backdrop-filter: blur(2px);
+    width: 20rem;
+    height: 3rem;
+    border-radius: 3rem;
+    z-index: 50;
+    padding-right: 1rem;
+    padding-left: 0.5rem;
+    top: 95%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+`;
+
+export const NumberOfItems = styled.div`
+    display: flex;
+    background: rgba(20, 54, 66, 0.69);
+    backdrop-filter: blur(2px);
+    border-radius: 50%;
+    align-items: center;
+    justify-content: center;
+    height: 2rem;
+    width: 2rem;
+`;
