@@ -71,5 +71,9 @@
   "september": "Septembre",
   "october": "Octobre",
   "november": "Novembre",
-  "december": "Decembre"
+  "december": "Decembre",
+  "yes": "Oui",
+  "no": "Non",
+  "cancelOrder": "Vous avez deja une commande en cours, voulez vous la supprimé ?",
+  "yourCommand": "Votre commande"
 }

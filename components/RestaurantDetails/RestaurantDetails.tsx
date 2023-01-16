@@ -30,6 +30,7 @@ import {
 } from './styles';
 import ItemCard from '../ItemCard/ItemCard';
 import { MenuModel } from '../../models/MenuModel';
+import { useTranslation } from 'next-i18next';
 
 const RestaurantDetails = () => {
     const {
@@ -54,6 +55,7 @@ const RestaurantDetails = () => {
         }),
         shallow
     );
+    const { t } = useTranslation('common');
 
     const [categories, setCategories] = useState<Array<string>>([]);
     function setRestaurantCategories() {
@@ -147,19 +149,13 @@ const RestaurantDetails = () => {
                     {(menus.length !== 0 || items.length !== 0) && (
                         <BasketModal>
                             <NumberOfItems>{menus.length + items.length}</NumberOfItems>
-                            <p>Your command</p>
+                            <p>{t('yourCommand')}</p>
                             <p>{price} €</p>
                         </BasketModal>
                     )}
                 </Details>
             )}
-            {deleteAsk && (
-                <ConfirmModal
-                    confirmLabel={'Oui'}
-                    cancelLabel={'Non'}
-                    label={'Vous avez deja une commande en cours, voulez vous la supprimé ?'}
-                />
-            )}
+            {deleteAsk && <ConfirmModal confirmLabel={t('yes')} cancelLabel={t('no')} label={t('cancelOrder')} />}
         </BlurBg>
     );
 };
