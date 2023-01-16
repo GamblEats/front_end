@@ -29,20 +29,6 @@ import {
 import ItemCard from '../ItemCard/ItemCard';
 import { MenuModel } from '../../models/MenuModel';
 
-// const Details = styled.div`
-//     position: inherit;
-//     top: 50%;
-//     left: 50%;
-//     transform: translate(-50%, -50%);
-//     background-color: #f2f2f2;
-//     width: 85%;
-//     height: 85%;
-//     z-index: 21;
-//     border-radius: 1em;
-//     display: flex;
-//     flex-direction: row;
-// `;
-
 const RestInfo = styled.div`
     background-color: white;
     width: 20%;
