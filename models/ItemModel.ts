@@ -5,4 +5,5 @@ export interface ItemModel {
     description?: string;
     price: number;
     pic: string;
+    category?: string;
 }

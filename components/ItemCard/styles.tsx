@@ -6,6 +6,9 @@ export const ItemCardContainer = styled.div`
     background-color: white;
     border-radius: 1.2rem;
     height: 9rem;
+    @media (max-width: 600px) {
+        height: 11rem;
+    }
 `;
 
 export const ItemImg = styled.img`
@@ -36,6 +39,9 @@ export const ItemText = styled.div<ItemTextProps>`
     display: -webkit-box;
     -webkit-box-orient: vertical;
     -webkit-line-clamp: 2;
+    @media (max-width: 600px) {
+        transform: scale(0.9);
+    }
 `;
 
 export const ItemCardButton = styled.div`

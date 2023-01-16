@@ -35,6 +35,7 @@ const News = styled.div<NewsProps>`
     border-radius: 1.4rem;
     display: flex;
     align-items: center;
+    justify-content: center;
     flex-direction: ${props => props.flexDirection || 'row'};
     gap: ${props => (props.flexDirection ? '0.3rem' : '2rem')};
     padding: 1.7rem 2rem;
