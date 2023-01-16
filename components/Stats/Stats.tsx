@@ -1,6 +1,8 @@
 import { useTranslation } from 'next-i18next';
 import React, { useEffect } from 'react';
 import useStore from '../../store/useStore';
+import OrdersCount from './OrdersCount';
+import { StatsContainer } from './styles';
 
 const Stats = () => {
     const { t } = useTranslation('common');
@@ -12,7 +14,7 @@ const Stats = () => {
         }
     }, []);
 
-    return <p>{!loading && !error && <p>{stats.average}</p>} </p>;
+    return <StatsContainer>{!loading && !error && <OrdersCount ordersCount={stats.ordersCount} />}</StatsContainer>;
 };
 
 export default Stats;

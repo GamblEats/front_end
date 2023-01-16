@@ -14,7 +14,7 @@ const statsSlice: StateCreator<IStats> = (set, get) => ({
                     'Content-Type': 'application/json',
                 },
             });
-            set(state => ({ ...state, stats: data }));
+            set(state => ({ ...state, stats: data, loading: false }));
         } catch (error) {
             throw error;
         }
