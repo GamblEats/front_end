@@ -3,26 +3,17 @@ import { useSession } from 'next-auth/react';
 import { useEffect, useRef, useState } from 'react';
 import axios from 'axios';
 import { userApi } from '../../public/const';
-import EditAccount from './EditAccount';
 import styled from 'styled-components';
 import { useFormik } from 'formik';
 import * as Yup from 'yup';
-import { toast } from 'react-toastify';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faCheck, faPen, faTimes } from '@fortawesome/free-solid-svg-icons';
-
-interface InputProps {
+import { toast } from 'react-toastify';
+export interface inputProps {
     edit: boolean;
 }
 
-const Accountainer = styled.div`
-    width: 100%;
-    display: flex;
-    flex-direction: row;
-    gap: 1.2rem;
-`;
-
-const Input = styled.input<InputProps>`
+const Input = styled.input<inputProps>`
     height: 3rem;
     border: none;
     border-radius: 1em;
@@ -30,8 +21,14 @@ const Input = styled.input<InputProps>`
     width: 100%;
     padding: 2em;
 `;
+const Form = styled.form`
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    gap: 1.2rem;
+`;
 
-const Name = styled.div`
+const InputList = styled.div`
     width: 100%;
     display: flex;
     flex-direction: row;
@@ -98,7 +95,16 @@ const EditButton = styled.button`
 const AccountForm = () => {
     const { t } = useTranslation('common');
     const { data: session }: any = useSession();
-    const [userInfo, setUserInfo] = useState<any>(null);
+    const [userInfo, setUserInfo] = useState<any>({
+        firstName: '',
+        lastName: '',
+        phone: '',
+        mail: '',
+        address: '',
+        additional: '',
+        city: '',
+        postalCode: '',
+    });
     const [load, setLoad] = useState<boolean>(true);
     const [edit, setEdit] = useState<boolean>(false);
 
@@ -119,43 +125,138 @@ const AccountForm = () => {
     }, []);
 
     const validationSchema = Yup.object({
-        firstName: Yup.string().required(`${t('required')}`),
-        phone: Yup.string().matches(/^0\d{9}$/, `${t('phoneMatch')}`),
-        email: Yup.string().email(`${t('invalidEmail')}`),
-        password: Yup.string().min(8, `${t('passwordLength')}`),
+        firstName: Yup.string(),
+        lastName: Yup.string(),
+        phone: Yup.string(),
+        mail: Yup.string(),
         address: Yup.string(),
         additional: Yup.string(),
         city: Yup.string(),
         postalCode: Yup.string(),
     });
 
-    const formik = useFormik({
+    const myFormik = useFormik({
         initialValues: {
-            firstName: userInfo && userInfo.firstName,
-            lastName: userInfo && userInfo.lastName,
-            // phone: userInfo && userInfo.lastName,
-            email: userInfo && userInfo.mail,
-            password: '',
-            address: userInfo && userInfo.address,
-            additional: userInfo && userInfo.additional,
-            city: userInfo && userInfo.city,
-            postalCode: userInfo && userInfo.postalCode,
+            firstName: '',
+            lastName: '',
+            phone: '',
+            mail: '',
+            address: '',
+            additional: '',
+            city: '',
+            postalCode: '',
         },
         validationSchema,
         onSubmit: (values: any) => {
-            console.log(values);
+            setEdit(false);
+            const cleanedValues = Object.entries(values)
+                .filter(([key, value]) => value !== '')
+                .reduce((obj, [key, value]) => {
+                    // @ts-ignore
+                    obj[key] = value;
+                    return obj;
+                }, {});
+            axios
+                .patch(`${userApi}/users/${session.user.id}`, cleanedValues, {
+                    headers: {
+                        'Content-Type': 'application/json',
+                    },
+                })
+                .then(resp => {
+                    toast.success('Compte modifié');
+                });
         },
     });
-
-    console.log(session);
 
     return (
         <>
             {!load && (
-                <Accountainer>
+                <Form onSubmit={myFormik.handleSubmit}>
+                    <InputRow>
+                        <Title>Name</Title>
+                        <InputList>
+                            <Input
+                                name={'firstName'}
+                                edit={edit}
+                                disabled={!edit}
+                                placeholder={userInfo.firstName}
+                                value={myFormik.values.firstName}
+                                onChange={myFormik.handleChange}
+                            />
+                            <Input
+                                name={'lastName'}
+                                edit={edit}
+                                disabled={!edit}
+                                placeholder={userInfo.lastName}
+                                value={myFormik.values.lastName}
+                                onChange={myFormik.handleChange}
+                            />
+                        </InputList>
+                    </InputRow>
+                    <InputRow>
+                        <Title>Contact</Title>
+                        <InputList>
+                            <Input
+                                name={'mail'}
+                                edit={edit}
+                                disabled={!edit}
+                                placeholder={userInfo.mail}
+                                value={myFormik.values.mail}
+                                onChange={myFormik.handleChange}
+                            />
+                            <Input
+                                name={'phone'}
+                                edit={edit}
+                                disabled={!edit}
+                                placeholder={'phone'}
+                                value={myFormik.values.phone}
+                                onChange={myFormik.handleChange}
+                            />
+                        </InputList>
+                    </InputRow>
+                    <InputRow>
+                        <Title>Address</Title>
+                        <InputList>
+                            <Input
+                                name={'address'}
+                                edit={edit}
+                                disabled={!edit}
+                                placeholder={userInfo.address}
+                                value={myFormik.values.address}
+                                onChange={myFormik.handleChange}
+                            />
+                            <Input
+                                name={'additional'}
+                                edit={edit}
+                                disabled={!edit}
+                                placeholder={userInfo.additional}
+                                value={myFormik.values.additional}
+                                onChange={myFormik.handleChange}
+                            />
+                        </InputList>
+                        <InputList>
+                            <Input
+                                name={'city'}
+                                edit={edit}
+                                disabled={!edit}
+                                placeholder={userInfo.city}
+                                value={myFormik.values.city}
+                                onChange={myFormik.handleChange}
+                            />
+                            <Input
+                                name={'postalCode'}
+                                edit={edit}
+                                disabled={!edit}
+                                placeholder={userInfo.postalCode}
+                                value={myFormik.values.postalCode}
+                                onChange={myFormik.handleChange}
+                            />
+                        </InputList>
+                    </InputRow>
                     {!edit && (
                         <>
                             <EditButton
+                                type={'button'}
                                 style={{ backgroundColor: '#e5bf00' }}
                                 onClick={() => {
                                     setEdit(true);
@@ -168,15 +269,13 @@ const AccountForm = () => {
                         <Buttons>
                             <Button
                                 type={'submit'}
-                                style={{ backgroundColor: '#27AE60' }}
-                                onClick={() => {
-                                    setEdit(false);
-                                }}>
+                                disabled={!(myFormik.isValid && myFormik.dirty)}
+                                style={{ backgroundColor: '#27AE60' }}>
                                 <FontAwesomeIcon icon={faCheck} />
                             </Button>
                             <Button
                                 type={'button'}
-                                style={{ backgroundColor: '#C0392B ' }}
+                                style={{ backgroundColor: '#C0392B' }}
                                 onClick={() => {
                                     setEdit(false);
                                 }}>
@@ -184,14 +283,7 @@ const AccountForm = () => {
                             </Button>
                         </Buttons>
                     )}
-                    <InputRow>
-                        <Title>Name</Title>
-                        <Name>
-                            <Input edit={edit} disabled={!edit} placeholder={userInfo.firstName} />
-                            <Input edit={edit} disabled={!edit} placeholder={userInfo.lastName} />
-                        </Name>
-                    </InputRow>
-                </Accountainer>
+                </Form>
             )}
         </>
     );
