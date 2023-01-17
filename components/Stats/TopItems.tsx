@@ -1,6 +1,6 @@
 import React from 'react';
 import { DataGrid, GridColDef, GridValueGetterParams } from '@mui/x-data-grid';
-import { ContainerTitle, ItemsContainer } from './styles';
+import { ContainerTitle, ItemsContainer, TableWrapper } from './styles';
 
 const columns: GridColDef[] = [
     { field: 'item', headerName: 'Item', flex: 1.5 },
@@ -13,7 +13,7 @@ interface Props {
 
 const TopItems = ({ itemCount }: Props) => {
     return (
-        <React.Fragment>
+        <TableWrapper>
             <ContainerTitle>Top items sold</ContainerTitle>
             <ItemsContainer>
                 <DataGrid
@@ -25,7 +25,7 @@ const TopItems = ({ itemCount }: Props) => {
                     sx={{ border: 0 }}
                 />
             </ItemsContainer>
-        </React.Fragment>
+        </TableWrapper>
     );
 };
 

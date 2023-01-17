@@ -1,16 +1,5 @@
 import React from 'react';
-import {
-    ResponsiveContainer,
-    BarChart,
-    CartesianGrid,
-    Tooltip,
-    Legend,
-    XAxis,
-    YAxis,
-    Bar,
-    Line,
-    ComposedChart,
-} from 'recharts';
+import { ResponsiveContainer, CartesianGrid, Tooltip, Legend, XAxis, YAxis, Bar, Line, ComposedChart } from 'recharts';
 import { OrdersCountContainer } from './styles';
 
 interface Props {
@@ -20,8 +9,6 @@ interface Props {
 export const CustomizedAxisTick = (props: any) => {
     return (
         <g transform={`translate(${props.x},${props.y})`}>
-            {console.log(props)}
-
             <text x={0} y={0} dy={16} textAnchor="end" fill="#666" transform="rotate(-45)">
                 {props.payload.value.slice(5)}
             </text>
@@ -39,12 +26,12 @@ const OrdersCount = ({ ordersCount }: Props) => {
                     data={ordersCount}
                     margin={{
                         top: 20,
-                        right: 30,
-                        left: 20,
+                        right: window.innerWidth < 800 ? 0 : 30,
+                        left: window.innerWidth < 800 ? -10 : 20,
                         bottom: 40,
                     }}>
                     <CartesianGrid strokeDasharray="3 3" />
-                    <XAxis dataKey="date" interval={0} tick={<CustomizedAxisTick />} />
+                    <XAxis dataKey="date" interval={window.innerWidth < 1000 ? 2 : 0} tick={<CustomizedAxisTick />} />
                     <YAxis yAxisId="left" orientation="left" stroke="#E5BF00" interval={0} allowDecimals={false} />
                     <YAxis yAxisId="right" orientation="right" stroke="#143642" />
                     <Tooltip />

@@ -1,8 +1,9 @@
 import { useTranslation } from 'next-i18next';
 import React, { useEffect } from 'react';
 import useStore from '../../store/useStore';
+import Average from './Average';
 import OrdersCount from './OrdersCount';
-import { StatsContainer } from './styles';
+import { StatsContainer, StatsWrapper } from './styles';
 import TopItems from './TopItems';
 
 const Stats = () => {
@@ -20,7 +21,10 @@ const Stats = () => {
             {!loading && !error && (
                 <React.Fragment>
                     <OrdersCount ordersCount={stats.ordersCount} />
-                    <TopItems itemCount={stats.itemCount} />
+                    <StatsWrapper>
+                        <TopItems itemCount={stats.itemCount} />
+                        <Average average={stats.average} averageTime={stats.averageTime} />
+                    </StatsWrapper>
                 </React.Fragment>
             )}
         </StatsContainer>
