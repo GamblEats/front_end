@@ -25,7 +25,8 @@ const DeliveryStepper = ({ item, menu, onClick }: Props) => {
                         {item ? item.name : menu ? menu.name : ''}
                     </ItemText>
                     <ItemText size="1.1rem" weight="600">
-                        11.80€
+                        {item && item?.price}
+                        {menu && menu?.price}€
                     </ItemText>
                 </ItemCardHeader>
                 {item?.description && <ItemText size="0.9rem">{item.description}</ItemText>}
