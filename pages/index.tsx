@@ -71,7 +71,7 @@ const Index = () => {
     return (
         <IndexContainer>
             <div className={router.query.form ? 'hideMenu' : ''}>
-                <Menu></Menu>
+                <Menu isOnFormPage={router.query.form ? true : false}></Menu>
             </div>
             <IndexContent
                 style={{
@@ -91,14 +91,14 @@ const Index = () => {
                             text={t('startEating')}
                             onClick={() => {
                                 router.replace({
-                                    query: { ...router.query, form: 'signUp' },
+                                    query: { ...router.query, form: 'signUp', as: 'client' },
                                 });
                             }}></Button>
                         <Button
                             text={t('signIn')}
                             onClick={() => {
                                 router.replace({
-                                    query: { ...router.query, form: 'signIn' },
+                                    query: { ...router.query, form: 'signIn', as: 'client' },
                                 });
                             }}></Button>
                     </ButtonContainer>

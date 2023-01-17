@@ -7,11 +7,14 @@ import { MenuContainer, MenuItem, MobileMenuIcon, PartnersList } from './styles'
 import Button from '../globals/Button';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 
+interface Props {
+    isOnFormPage: boolean;
+}
 export interface MenuItemProps {
     isOpen: boolean;
 }
 
-const Menu = () => {
+const Menu = ({ isOnFormPage }: Props) => {
     const { t } = useTranslation('common');
     const [dropdownIsOpen, setDropdownIsOpen] = useState(false);
     const [mobileMenuIsOpen, setMobileMenuIsOpen] = useState(false);
@@ -31,7 +34,7 @@ const Menu = () => {
     return (
         <MenuContainer>
             <Logo src="/pictures/logo-text.png"></Logo>
-            <MenuItem isOpen={mobileMenuIsOpen}>
+            <MenuItem isOpen={mobileMenuIsOpen && !isOnFormPage}>
                 <Button text={t('contactUs')} onClick={() => {}}></Button>
                 <div>
                     {!isMobileMenu && (
@@ -76,7 +79,7 @@ const Menu = () => {
                             text={t('startEating')}
                             onClick={() => {
                                 router.replace({
-                                    query: { ...router.query, form: 'signUp' },
+                                    query: { ...router.query, form: 'signUp', as: 'client' },
                                 });
                             }}></Button>
                     </>
