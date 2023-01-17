@@ -10,7 +10,6 @@ import axios from 'axios';
 import { toast } from 'react-toastify';
 import { signIn } from 'next-auth/react';
 import { IconProp } from '@fortawesome/fontawesome-svg-core';
-import { mockProviders } from 'next-auth/client/__tests__/helpers/mocks';
 
 interface Props {
     role: string;

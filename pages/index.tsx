@@ -108,7 +108,11 @@ const Index = () => {
                 {router.query.form === 'signIn' && router.query.as === 'restaurant' && (
                     <SignInForm role={'restaurant'} />
                 )}
-                {router.query.form === 'signUp' && <SignUpForm />}
+                {router.query.form === 'signUp' && router.query.as === 'client' && <SignUpForm role={'client'} />}
+                {router.query.form === 'signUp' && router.query.as === 'deliverer' && <SignUpForm role={'deliverer'} />}
+                {router.query.form === 'signUp' && router.query.as === 'restaurant' && (
+                    <SignUpForm role={'restaurant'} />
+                )}
             </IndexContent>
             <BackgroundImg
                 style={{
