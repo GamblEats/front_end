@@ -40,10 +40,19 @@ const SignInForm = ({ role }: Props) => {
             email: values.email,
             password: values.password,
             role: role,
-            callbackUrl: '/home',
         });
         if (status.ok) {
-            router.push(status.url);
+            switch (role) {
+                case 'deliverer':
+                    await router.push('/deliveries');
+                    break;
+                case 'restaurant':
+                    await router.push('/orders');
+                    break;
+                default:
+                    await router.push('/home');
+                    break;
+            }
         } else {
             toast.error(t('errorLog'));
         }
