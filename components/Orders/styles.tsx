@@ -1,10 +1,12 @@
 import styled from 'styled-components';
 import { DeleteButtonProps } from './Order';
+import { ItemContainerProps } from './ItemList';
 
 // --- ItemList --- //
 
-export const ItemListContainer = styled.div`
-    display: grid;
+export const ItemListContainer = styled.div<ItemContainerProps>`
+    display: ${props => (props.isBasket ? 'flex' : 'grid')};
+    flex-direction: ${props => (props.isBasket ? 'column' : '')};
     grid-auto-flow: column;
     grid-template-rows: repeat(2, auto);
     max-height: 4rem;

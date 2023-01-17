@@ -72,5 +72,9 @@
   "september": "September",
   "october": "October",
   "november": "November",
-  "december": "December"
+  "december": "December",
+  "yes": "Yes",
+  "no": "No",
+  "cancelOrder": "You already have an order in progress, do you want to delete it ?",
+  "yourCommand": "Your command"
 }

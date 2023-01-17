@@ -10,6 +10,7 @@ import { useRouter } from 'next/router';
 import RestaurantCard from '../components/RestaurantCard/RestaurantCard';
 import PageHeader from '../components/globals/PageHeader';
 import useStore from '../store/useStore';
+import { useEffect } from 'react';
 
 const ScrollContainer = styled.div<ScrollContainerProps>`
     display: flex;
@@ -81,9 +82,12 @@ const Home = () => {
         }
     }
     const { restaurants, getRestaurants } = useStore();
-    if (restaurants.length === 0) {
-        getRestaurants();
-    }
+    useEffect(() => {
+        if (restaurants.length === 0) {
+            getRestaurants();
+        }
+    }, []);
+
     return (
         <PageContainer>
             <PageHeader title={getGreeting() + session.user.firstName}></PageHeader>
