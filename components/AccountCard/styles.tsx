@@ -1,4 +1,5 @@
 import styled from 'styled-components';
+import { LangProps } from './SettingsCard';
 
 export const Card = styled.div`
     background-color: white;
@@ -7,6 +8,7 @@ export const Card = styled.div`
     display: flex;
 `;
 export const CardAccount = styled(Card)`
+    position: relative;
     width: 70%;
 `;
 export const CardSettings = styled(Card)`
@@ -55,12 +57,18 @@ export const SwitchLangContainer = styled.div`
     justify-content: space-evenly;
     text-align: center;
     cursor: pointer;
+    @media (max-width: 1200px) {
+        flex-direction: column;
+    }
 `;
-export const LangContainer = styled.div`
+export const LangContainer = styled.div<LangProps>`
     display: flex;
     align-items: center;
     gap: 0.8em;
     padding: 1em;
+    border-radius: 1rem;
+    margin: 0.5rem;
+    background-color: ${props => (props.backGround ? 'white' : 'none')};
 `;
 export const LangImg = styled.img`
     width: 1.8em;
