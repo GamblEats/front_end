@@ -137,6 +137,11 @@ export const DetailsContent = styled.div`
 
 export const ItemSection = styled.div``;
 
+export const Section = styled.div`
+    overflow: auto;
+    position: relative;
+`;
+
 export const SectionTitle = styled.div`
     color: #143642;
     font-weight: 700;
@@ -151,6 +156,7 @@ export const Items = styled.div`
 `;
 
 export const BasketModal = styled.div`
+    cursor: pointer;
     color: white;
     display: flex;
     flex-direction: row;
@@ -179,4 +185,62 @@ export const NumberOfItems = styled.div`
     justify-content: center;
     height: 2rem;
     width: 2rem;
+`;
+
+export const Order = styled.div`
+    padding: 1rem;
+    padding-block: 3rem;
+    right: 0;
+    overflow: hidden;
+    transition: width 0.3s ease-in-out;
+    position: absolute;
+    justify-content: space-between;
+    display: flex;
+    flex-direction: column;
+    background-color: white;
+    //width: 25%;
+    width: 5rem;
+    height: 100%;
+    border-radius: 0 1.5em 1.5em 0;
+    align-items: center;
+`;
+
+export const OrderTitle = styled.div`
+    font-weight: 800;
+    font-size: x-large;
+`;
+
+export const Buttons = styled.div`
+    display: flex;
+    flex-direction: row;
+    gap: 0.5rem;
+`;
+
+export const Button = styled.button`
+    align-items: center;
+    justify-content: center;
+    width: 3rem;
+    height: 3rem;
+    display: flex;
+    border-radius: 1rem;
+    border: none;
+    cursor: pointer;
+    transition: opacity 0.3s, background-color 0.2s ease-in-out;
+    &:hover {
+        opacity: 0.8;
+    }
+`;
+
+export const Total = styled.div`
+    display: flex;
+    font-weight: 600;
+    font-size: large;
+`;
+
+export const Bottom = styled.div`
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: center;
+    gap: 2rem;
 `;

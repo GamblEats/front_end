@@ -10,7 +10,6 @@ import { useRouter } from 'next/router';
 import RestaurantCard from '../components/RestaurantCard/RestaurantCard';
 import PageHeader from '../components/globals/PageHeader';
 import useStore from '../store/useStore';
-import { use } from 'i18next';
 import { useEffect } from 'react';
 
 const ScrollContainer = styled.div<ScrollContainerProps>`

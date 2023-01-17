@@ -8,16 +8,16 @@ const basketSlice: StateCreator<IBasket> = (set, get) => ({
     price: 0,
     items: [],
     menus: [],
-    addItem: item => {
+    addItem: (item, restID) => {
         set((state: IBasket) => {
             const newState = { ...state };
             if (!newState.restaurantId) {
-                newState.restaurantId = item.restaurant;
-                newState.items = [item.id, ...newState.items];
-                newState.price = newState.price + item.price;
-            } else if (newState.restaurantId === item.restaurant) {
-                newState.items = [item.id, ...newState.items];
-                newState.price = newState.price + item.price;
+                newState.restaurantId = restID;
+                newState.items = [item, ...newState.items];
+                newState.price = Number((newState.price + item.price).toFixed(2));
+            } else if (newState.restaurantId === restID) {
+                newState.items = [item, ...newState.items];
+                newState.price = Number((newState.price + item.price).toFixed(2));
             } else {
                 newState.deleteAsk = true;
             }
@@ -28,12 +28,12 @@ const basketSlice: StateCreator<IBasket> = (set, get) => ({
         set((state: IBasket) => {
             const newState = { ...state };
             if (newState.items.length === 1 && newState.menus.length === 0) {
-                newState.items.splice(newState.items.indexOf(item.id), 1);
-                newState.price = newState.price - item.price;
+                newState.items.splice(newState.items.indexOf(item), 1);
+                newState.price = Number((newState.price - item.price).toFixed(2));
                 newState.restaurantId = '';
             } else if (newState.items.length > 0) {
-                newState.items.splice(newState.items.indexOf(item.id), 1);
-                newState.price = newState.price - item.price;
+                newState.items.splice(newState.items.indexOf(item), 1);
+                newState.price = Number((newState.price - item.price).toFixed(2));
             }
 
             return newState;
@@ -44,11 +44,11 @@ const basketSlice: StateCreator<IBasket> = (set, get) => ({
             const newState = { ...state };
             if (!newState.restaurantId) {
                 newState.restaurantId = menu.restaurant;
-                newState.menus = [menu.id, ...newState.menus];
-                newState.price = newState.price + menu.price;
+                newState.menus = [menu, ...newState.menus];
+                newState.price = Number((newState.price + menu.price).toFixed(2));
             } else if (newState.restaurantId === menu.restaurant) {
-                newState.menus = [menu.id, ...newState.menus];
-                newState.price = newState.price + menu.price;
+                newState.menus = [menu, ...newState.menus];
+                newState.price = Number((newState.price + menu.price).toFixed(2));
             } else {
                 newState.deleteAsk = true;
             }
@@ -59,12 +59,12 @@ const basketSlice: StateCreator<IBasket> = (set, get) => ({
         set((state: IBasket) => {
             const newState = { ...state };
             if (newState.menus.length === 1 && newState.items.length === 0) {
-                newState.menus.splice(newState.menus.indexOf(menu.id), 1);
-                newState.price = newState.price - menu.price;
+                newState.menus.splice(newState.menus.indexOf(menu), 1);
+                newState.price = Number((newState.price - menu.price).toFixed(2));
                 newState.restaurantId = '';
             } else if (newState.menus.length > 0) {
-                newState.menus.splice(newState.menus.indexOf(menu.id), 1);
-                newState.price = newState.price - menu.price;
+                newState.menus.splice(newState.menus.indexOf(menu), 1);
+                newState.price = Number((newState.price - menu.price).toFixed(2));
             }
 
             return newState;

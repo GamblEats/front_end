@@ -1,4 +1,4 @@
-import { Key, useEffect, useState } from 'react';
+import { useEffect, useState } from 'react';
 import { RestaurantsContainer, FiltersContainer, Category, FilterWrapper, CategoryImg, CategoryName } from './styles';
 import RestaurantCard from '../RestaurantCard/RestaurantCard';
 import { useTranslation } from 'next-i18next';
@@ -70,7 +70,7 @@ const Catalog = ({ restaurants }: Props) => {
                                 deliveryTime: string;
                                 rating: number;
                             },
-                            i: Key | null | undefined
+                            i: null | undefined
                         ) => (
                             <RestaurantCard
                                 key={i}

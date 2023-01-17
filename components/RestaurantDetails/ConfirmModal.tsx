@@ -22,7 +22,7 @@ const BlurBg2 = styled.div`
     align-items: center;
     justify-content: center;
     background: rgba(0, 0, 0, 0.24);
-    backdrop-filter: blur(80px);
+    backdrop-filter: blur(400px);
     -webkit-font-smoothing: antialiased;
     -moz-osx-font-smoothing: grayscale;
     transition: opacity 0.15s ease-in-out;
