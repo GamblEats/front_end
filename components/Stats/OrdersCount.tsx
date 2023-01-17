@@ -45,7 +45,7 @@ const OrdersCount = ({ ordersCount }: Props) => {
                     }}>
                     <CartesianGrid strokeDasharray="3 3" />
                     <XAxis dataKey="date" interval={0} tick={<CustomizedAxisTick />} />
-                    <YAxis yAxisId="left" orientation="left" stroke="#E5BF00" />
+                    <YAxis yAxisId="left" orientation="left" stroke="#E5BF00" interval={0} allowDecimals={false} />
                     <YAxis yAxisId="right" orientation="right" stroke="#143642" />
                     <Tooltip />
                     <Legend wrapperStyle={{ position: 'relative' }} />
