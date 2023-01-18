@@ -9,7 +9,7 @@ const orderSlice: StateCreator<IOrder> = (set, get) => ({
     orders: [],
     getOrders: async user => {
         try {
-            const { data } = await axios.get(userApi + `/users/${user.id}/orders`, {
+            const { data } = await axios.get(userApi + (user.role == 'client' ? `/users/${user.id}/orders` : `/admins/restaurants/${user.restaurantId}`), {
                 headers: {
                     'Content-Type': 'application/json',
                 },

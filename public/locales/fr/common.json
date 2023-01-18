@@ -7,8 +7,8 @@
   "remove": "Supprimer",
   "modify": "Modifier",
   "home": "Accueil",
-  "restaurants":  "Restaurants",
-  "orders":  "Commandes",
+  "restaurants": "Restaurants",
+  "orders": "Commandes",
   "referral": "Parrainage",
   "findRestaurant": "Rechercher un restaurant",
   "slogan": "Arrêtez de parier, venez manger.",
@@ -72,6 +72,10 @@
   "october": "Octobre",
   "november": "Novembre",
   "december": "Decembre",
+  "pastOrders": "Commande passées",
+  "readyToPickup": "Prêt à collecter",
+  "orderAccepted": "Commande accepté !",
+  "orderDeleted": "Commande supprimé",
   "yes": "Oui",
   "no": "Non",
   "cancelOrder": "Vous avez deja une commande en cours, voulez-vous la supprimer ?",
@@ -81,5 +85,4 @@
   "address": "Adresse",
   "deleteConfirm": "Êtes-vous sûr de vouloir supprimer votre compte ?",
   "modified": "Compte modifié avec succès"
-
 }

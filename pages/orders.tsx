@@ -10,17 +10,23 @@ import PageHeader from '../components/globals/PageHeader';
 import SearchInput from '../components/globals/SearchInput';
 import CurrentOrder from '../components/Orders/CurrentOrder';
 import Order from '../components/Orders/Order';
-import { months } from '../public/const';
+import { months, userApi } from '../public/const';
 import { PageContainer } from '../styles/globals';
 import moment from 'moment';
+import { OrderModel } from '../models/OrderModel';
+import PendingOrder from '../components/PendingOrder/PendingOrder';
+import { Text } from '../styles/globals';
+import axios from 'axios';
+import { toast } from 'react-toastify';
 
 const OrdersContainers = styled.div`
     display: flex;
     gap: 3rem;
-    height: 35rem;
+    height: 70%;
     @media (max-width: 1200px) {
-        flex-direction: column;
+        flex-direction: column-reverse;
         gap: 1.5rem;
+        height: auto;
     }
 `;
 
@@ -31,7 +37,6 @@ const PastOrdersContainer = styled.div`
     gap: 1.5rem;
     @media (max-width: 1200px) {
         width: 100%;
-        order: 2;
     }
 `;
 
@@ -43,7 +48,6 @@ const CurrentOrderContainer = styled.div`
     width: 30%;
     @media (max-width: 1200px) {
         width: 100%;
-        order: 1;
     }
 `;
 
@@ -76,73 +80,169 @@ const OrderContainer = styled.div`
     overflow-y: auto;
 `;
 
+const RestaurantOrdersContainer = styled.div`
+    display: flex;
+    flex-direction: column;
+    height: 100%;
+    width: 60%;
+    gap: 2rem;
+    overflow-y: auto;
+    @media (max-width: 1200px) {
+        width: 100%;
+        /* height: 100rem; */
+        /* overflow-y: visible; */
+    }
+`;
+
+const PendingOrdersContainer = styled.div`
+    display: flex;
+    flex-direction: column;
+    width: 40%;
+    gap: 2rem;
+    overflow-y: auto;
+    @media (max-width: 1200px) {
+        flex-direction: row;
+        overflow: hidden;
+        overflow-x: auto;
+        width: 100%;
+    }
+`;
+
+const MobileText = styled.div`
+    display: none;
+    @media (max-width: 1200px) {
+        display: block;
+    }
+`;
+
 const Orders = () => {
     const { data: session }: any = useSession();
     const router = useRouter();
     const [searchByRestaurant, setSearchByRestaurant] = useState('');
     const [searchByMonth, setSearchByMonth] = useState('');
-
+    const { t } = useTranslation('common');
+    const { orders, getOrders } = useStore();
+    async function validOrder(orderId: string) {
+        try {
+            const res = await axios
+                .patch(
+                    userApi + '/orders/' + orderId,
+                    { status: 'IN_PREPARATION' },
+                    {
+                        headers: {
+                            'Content-Type': 'application/json',
+                        },
+                    }
+                )
+                .then(() => {
+                    toast.success(t('orderAccepted'));
+                })
+                .catch(error => {
+                    toast.error(t('errorAccount'));
+                });
+        } catch (error) {
+            throw error;
+        }
+    }
     useEffect(() => {
         if (session.user.role !== 'restaurant' && session.user.role !== 'client') {
             router.push('/home');
         }
     }, []);
-    const { t } = useTranslation('common');
-    const { orders, getOrders } = useStore();
     useEffect(() => {
         if (orders.length === 0) {
             getOrders(session.user);
         }
     }, []);
-
     return (
         <PageContainer>
             <PageHeader title={t('orders')}></PageHeader>
-            <OrdersContainers>
-                <PastOrdersContainer>
-                    <FilterContainer>
-                        <SearchInput
-                            placeHolder={t('searchByRestaurant')}
-                            onChange={ev => setSearchByRestaurant(ev.target.value)}></SearchInput>
-                        <MonthSelector
-                            required
-                            defaultValue=""
-                            name="orders"
-                            onChange={ev => setSearchByMonth(ev.target.value)}>
-                            <option value="" disabled hidden>
-                                {t('searchByMonth')}
-                            </option>
-                            {months.map((month, i) => (
-                                <option key={i} value={month}>
-                                    {t(month)}
+            {session.user.role == 'client' ? (
+                <OrdersContainers>
+                    <PastOrdersContainer>
+                        <FilterContainer>
+                            <SearchInput
+                                placeHolder={t('searchByRestaurant')}
+                                onChange={ev => setSearchByRestaurant(ev.target.value)}></SearchInput>
+                            <MonthSelector
+                                required
+                                defaultValue=""
+                                name="orders"
+                                onChange={ev => setSearchByMonth(ev.target.value)}>
+                                <option value="" disabled hidden>
+                                    {t('searchByMonth')}
                                 </option>
-                            ))}
-                        </MonthSelector>
-                    </FilterContainer>
-                    <OrderContainer>
+                                {months.map((month, i) => (
+                                    <option key={i} value={month}>
+                                        {t(month)}
+                                    </option>
+                                ))}
+                            </MonthSelector>
+                        </FilterContainer>
+                        <OrderContainer>
+                            {orders
+                                .filter(
+                                    order =>
+                                        (order.status === 'DELIVERED' || order.status === 'CANCELED') &&
+                                        order.restaurant.name.toLowerCase().indexOf(searchByRestaurant.toLowerCase()) >
+                                            -1 &&
+                                        moment(order.startTime)
+                                            .format('MMMM')
+                                            .toLowerCase()
+                                            .indexOf(searchByMonth.toLowerCase()) > -1
+                                )
+                                .map((order, i) => (
+                                    <Order key={i} order={order}></Order>
+                                ))}
+                        </OrderContainer>
+                    </PastOrdersContainer>
+                    <CurrentOrderContainer>
+                        <CurrentOrder
+                            currentOrder={
+                                orders.filter(order => order.status != ('DELIVERED' || 'CANCELED'))[0]
+                            }></CurrentOrder>
+                    </CurrentOrderContainer>
+                </OrdersContainers>
+            ) : (
+                <OrdersContainers>
+                    <RestaurantOrdersContainer>
                         {orders
                             .filter(
                                 order =>
-                                    (order.status === 'DELIVRED' || order.status === 'CANCELED') &&
-                                    order.restaurant.name.toLowerCase().indexOf(searchByRestaurant.toLowerCase()) >
-                                        -1 &&
-                                    moment(order.startTime)
-                                        .format('MMMM')
-                                        .toLowerCase()
-                                        .indexOf(searchByMonth.toLowerCase()) > -1
+                                    order.status !== 'DELIVERED' &&
+                                    order.status !== 'CANCELED' &&
+                                    order.status !== 'VALIDATION_PENDING'
                             )
-                            .map((order, i) => (
-                                <Order key={i} order={order}></Order>
+                            .map((order: OrderModel) => (
+                                <Order key={order.id} order={order} isPendingForRestaurant={true}></Order>
                             ))}
-                    </OrderContainer>
-                </PastOrdersContainer>
-                <CurrentOrderContainer>
-                    <CurrentOrder
-                        currentOrder={
-                            orders.filter(order => order.status != ('DELIVRED' || 'CANCELED'))[0]
-                        }></CurrentOrder>
-                </CurrentOrderContainer>
-            </OrdersContainers>
+                        <Text size="1.8rem" weight="600">
+                            {t('pastOrders')}
+                        </Text>
+                        {orders
+                            .filter(order => order.status === 'DELIVERED' || order.status === 'CANCELED')
+                            .map((order: OrderModel) => (
+                                <Order key={order.id} order={order}></Order>
+                            ))}
+                    </RestaurantOrdersContainer>
+                    <MobileText>
+                        <Text size="1.8rem" weight="600">
+                            {t('orderInProgress')}
+                        </Text>
+                    </MobileText>
+                    <PendingOrdersContainer>
+                        {orders
+                            .filter(order => order.status === 'VALIDATION_PENDING')
+                            .map((order: OrderModel, i: number) => (
+                                <PendingOrder
+                                    isRestaurant={true}
+                                    order={order}
+                                    onValidation={() => validOrder(order.id!)}
+                                    onReject={() => {}}></PendingOrder>
+                            ))}
+                    </PendingOrdersContainer>
+                </OrdersContainers>
+            )}
         </PageContainer>
     );
 };

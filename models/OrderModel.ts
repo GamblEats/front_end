@@ -13,4 +13,5 @@ export interface OrderModel {
     deliveryTime: any;
     startTime: any;
     endTime?: any;
+    address: string;
 }

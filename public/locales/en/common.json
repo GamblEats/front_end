@@ -7,8 +7,8 @@
   "remove": "Remove",
   "modify": "Edit",
   "home": "Home",
-  "restaurants":  "Restaurants",
-  "orders":  "Orders",
+  "restaurants": "Restaurants",
+  "orders": "Orders",
   "referral": "Referral",
   "findRestaurant": "Find a restaurant",
   "slogan": "Stop gambling, keep eating.",
@@ -73,6 +73,10 @@
   "october": "October",
   "november": "November",
   "december": "December",
+  "pastOrders": "Past orders",
+  "readyToPickup": "Ready to pickup",
+  "orderAccepted": "Order accepted !",
+  "orderDeleted": "Order deleted",
   "yes": "Yes",
   "no": "No",
   "cancelOrder": "You already have an order in progress, do you want to delete it ?",
@@ -82,5 +86,4 @@
   "address": "Address",
   "deleteConfirm": "Are you sure you want to delete your account ?",
   "modified": "Account successfully modified"
-
 }
