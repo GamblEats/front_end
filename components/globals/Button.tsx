@@ -14,7 +14,7 @@ export interface SmallProps {
     small?: boolean;
 }
 
-const AccountCard = ({ backgroundColor, text, small, icon, onClick }: Props) => {
+const Button = ({ backgroundColor, text, small, icon, onClick }: Props) => {
     return (
         <ButtonContainer color={backgroundColor} small={small} onClick={onClick}>
             <ButtonLabel color={backgroundColor ? '#f2f2f2' : '#143642'} small={small}>
@@ -29,4 +29,4 @@ const AccountCard = ({ backgroundColor, text, small, icon, onClick }: Props) => 
     );
 };
 
-export default AccountCard;
+export default Button;

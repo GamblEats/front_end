@@ -51,3 +51,12 @@ export const InfoDetails = styled.p`
     text-overflow: ellipsis;
     overflow: hidden;
 `;
+
+export const SpaceBetween = styled.div`
+    justify-content: space-between;
+`;
+
+export const ButtonsWrapper = styled.div`
+    width: 100%;
+    display: flex;
+`;
