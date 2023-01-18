@@ -6,7 +6,6 @@ import AccountCard from '../components/AccountCard/AccountCard';
 import SettingsCard from '../components/AccountCard/SettingsCard';
 import PageHeader from '../components/globals/PageHeader';
 import { PageContainer } from '../styles/globals';
-
 const Container = styled.div`
     display: flex;
     gap: 3em;

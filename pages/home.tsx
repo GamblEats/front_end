@@ -67,6 +67,7 @@ const Home = () => {
         signOut();
     };
     const { data: session }: any = useSession();
+
     const { t } = useTranslation('common');
     const router = useRouter();
     function getGreeting() {
