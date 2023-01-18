@@ -148,7 +148,6 @@ const AccountForm = () => {
         },
         validationSchema,
         onSubmit: (values: any) => {
-            setEdit(false);
             const cleanedValues = Object.entries(values)
                 .filter(([key, value]) => value !== '')
                 .reduce((obj, [key, value]) => {
@@ -162,7 +161,8 @@ const AccountForm = () => {
                         'Content-Type': 'application/json',
                     },
                 })
-                .then(resp => {
+                .then(() => {
+                    setEdit(false);
                     toast.success('Compte modifié');
                 });
         },
@@ -208,7 +208,7 @@ const AccountForm = () => {
                                 name={'phone'}
                                 edit={edit}
                                 disabled={!edit}
-                                placeholder={'phone'}
+                                placeholder={userInfo.phone}
                                 value={myFormik.values.phone}
                                 onChange={myFormik.handleChange}
                             />
