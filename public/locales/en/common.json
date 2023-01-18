@@ -56,7 +56,7 @@
   "statistics": "Statistics",
   "noCurrent": "You have no current order, try your luck here!",
   "order": "Order",
-  "orderDelivred": "Order delivered",
+  "orderDelivered": "Order delivered",
   "orderInProgress": "Order in progress",
   "orderCanceled": "Order canceled",
   "searchByRestaurant": "Search by restaurant",
@@ -76,5 +76,11 @@
   "yes": "Yes",
   "no": "No",
   "cancelOrder": "You already have an order in progress, do you want to delete it ?",
-  "yourCommand": "Your command"
+  "yourCommand": "Your command",
+  "name": "Name",
+  "contact": "Contact",
+  "address": "Address",
+  "deleteConfirm": "Are you sure you want to delete your account ?",
+  "modified": "Account successfully modified"
+
 }

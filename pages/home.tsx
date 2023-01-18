@@ -11,6 +11,7 @@ import RestaurantCard from '../components/RestaurantCard/RestaurantCard';
 import PageHeader from '../components/globals/PageHeader';
 import useStore from '../store/useStore';
 import { useEffect } from 'react';
+import axios from 'axios';
 
 const ScrollContainer = styled.div<ScrollContainerProps>`
     display: flex;

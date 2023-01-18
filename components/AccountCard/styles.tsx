@@ -185,3 +185,70 @@ export const EditButton = styled.button`
         opacity: 0.8;
     }
 `;
+
+export const DeleteButton = styled.button`
+    bottom: 0;
+    right: 0;
+    position: absolute;
+    color: white;
+    align-items: center;
+    justify-content: center;
+    width: 3rem;
+    height: 3rem;
+    display: flex;
+    border-radius: 1rem 0 1rem 0;
+    border: none;
+    cursor: pointer;
+    transition: opacity 0.3s, background-color 0.2s ease-in-out;
+    &:hover {
+        opacity: 0.8;
+    }
+`;
+
+export const BlurBg = styled.div`
+    position: fixed;
+    top: 0;
+    right: 0;
+    bottom: 0;
+    left: 0;
+    z-index: 60;
+    display: flex;
+    height: 100%;
+    cursor: default;
+    align-items: center;
+    justify-content: center;
+    background: rgba(0, 0, 0, 0.24);
+    backdrop-filter: blur(10px);
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+    transition: opacity 0.15s ease-in-out;
+`;
+
+export const Modal = styled.div`
+    position: inherit;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    background-color: #f2f2f2;
+    width: 40%;
+    z-index: 61;
+    border-radius: 1em;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    gap: 2rem;
+    padding: 2rem;
+`;
+
+export const Label = styled.div`
+    display: flex;
+    justify-content: center;
+    align-items: center;
+`;
+
+export const ButtonsModal = styled.div`
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    width: 100%;
+`;
