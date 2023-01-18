@@ -8,4 +8,5 @@ export interface RestaurantModel {
     rating: number;
     deliveryPrice: number;
     deliveryTime: string;
+    address: string;
 }

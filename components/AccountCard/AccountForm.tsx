@@ -1,21 +1,38 @@
 import { useTranslation } from 'next-i18next';
-import { useSession } from 'next-auth/react';
-import { useEffect, useRef, useState } from 'react';
+import { signOut, useSession } from 'next-auth/react';
+import React, { useEffect, useRef, useState } from 'react';
 import axios from 'axios';
 import { userApi } from '../../public/const';
 import styled from 'styled-components';
 import { useFormik } from 'formik';
 import * as Yup from 'yup';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import { faCheck, faPen, faTimes } from '@fortawesome/free-solid-svg-icons';
+import { faCheck, faPen, faTimes, faTrash } from '@fortawesome/free-solid-svg-icons';
 import { toast } from 'react-toastify';
-import { Button, Buttons, EditButton, Form, Input, InputList, InputRow, Title } from './styles';
+import {
+    BlurBg,
+    ButtonForm,
+    Buttons,
+    ButtonsModal,
+    DeleteButton,
+    EditButton,
+    Form,
+    Input,
+    InputList,
+    InputRow,
+    Label,
+    Modal,
+    Title,
+} from './styles';
+import ConfirmModal from '../RestaurantDetails/ConfirmModal';
+import { SignInButton, SignUpButton } from '../AuthForm/styles';
 export interface inputProps {
     edit: boolean;
 }
 
 const AccountForm = () => {
     const { t } = useTranslation('common');
+    const [deleteAccount, setDeleteAccount] = useState<boolean>(false);
     const { data: session }: any = useSession();
     const [userInfo, setUserInfo] = useState<any>({
         firstName: '',
@@ -85,7 +102,7 @@ const AccountForm = () => {
                 })
                 .then(() => {
                     setEdit(false);
-                    toast.success('Compte modifié');
+                    toast.success(t('accountModified'));
                 });
         },
     });
@@ -95,7 +112,7 @@ const AccountForm = () => {
             {!load && (
                 <Form onSubmit={myFormik.handleSubmit}>
                     <InputRow>
-                        <Title>Name</Title>
+                        <Title>{t('name')}</Title>
                         <InputList>
                             <Input
                                 name={'firstName'}
@@ -116,7 +133,7 @@ const AccountForm = () => {
                         </InputList>
                     </InputRow>
                     <InputRow>
-                        <Title>Contact</Title>
+                        <Title>{t('contact')}</Title>
                         <InputList>
                             <Input
                                 name={'mail'}
@@ -137,7 +154,7 @@ const AccountForm = () => {
                         </InputList>
                     </InputRow>
                     <InputRow>
-                        <Title>Address</Title>
+                        <Title>{t('address')}</Title>
                         <InputList>
                             <Input
                                 name={'address'}
@@ -185,25 +202,68 @@ const AccountForm = () => {
                                 }}>
                                 <FontAwesomeIcon icon={faPen} />
                             </EditButton>
+                            <DeleteButton
+                                type={'button'}
+                                style={{ backgroundColor: '#C0392B' }}
+                                onClick={() => {
+                                    setDeleteAccount(true);
+                                }}>
+                                <FontAwesomeIcon icon={faTrash} />
+                            </DeleteButton>
                         </>
                     )}
                     {edit && (
                         <Buttons>
-                            <Button
+                            <ButtonForm
                                 type={'submit'}
                                 disabled={!(myFormik.isValid && myFormik.dirty)}
                                 style={{ backgroundColor: '#27AE60' }}>
                                 <FontAwesomeIcon icon={faCheck} />
-                            </Button>
-                            <Button
+                            </ButtonForm>
+                            <ButtonForm
                                 type={'button'}
                                 style={{ backgroundColor: '#C0392B' }}
                                 onClick={() => {
                                     setEdit(false);
                                 }}>
                                 <FontAwesomeIcon icon={faTimes} />
-                            </Button>
+                            </ButtonForm>
                         </Buttons>
+                    )}
+                    {deleteAccount && (
+                        <BlurBg
+                            onClick={e => {
+                                e.stopPropagation();
+                            }}>
+                            <Modal onClick={e => e.stopPropagation()}>
+                                <Label> {t('deleteConfirm')}</Label>
+                                <ButtonsModal>
+                                    <SignInButton
+                                        type="button"
+                                        onClick={() => {
+                                            setDeleteAccount(false);
+                                        }}>
+                                        {t('no')}
+                                    </SignInButton>
+                                    <SignUpButton
+                                        type="button"
+                                        color={'#e5bf00'}
+                                        onClick={() => {
+                                            axios
+                                                .delete(`${userApi}/users/${session.user.id}`, {
+                                                    headers: {
+                                                        'Content-Type': 'application/json',
+                                                    },
+                                                })
+                                                .then(() => {
+                                                    signOut();
+                                                });
+                                        }}>
+                                        {t('yes')}
+                                    </SignUpButton>
+                                </ButtonsModal>
+                            </Modal>
+                        </BlurBg>
                     )}
                 </Form>
             )}

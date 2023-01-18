@@ -7,7 +7,6 @@ export const Container = styled.div`
     display: flex;
     flex-direction: column;
     align-items: center;
-    gap: 2rem;
     width: 100%;
 `;
 
@@ -28,6 +27,16 @@ export const Input = styled.input<inputProps>`
     }
 `;
 
+export const InputWraper = styled.div`
+    display: flex;
+    gap: 1rem;
+    width: 100%;
+
+    @media (max-width: 500px) {
+        flex-direction: column;
+    }
+`;
+
 export const StyledIcon = styled(FontAwesomeIcon)`
     /* Add some styles for the icon */
     color: #143642;
@@ -41,12 +50,12 @@ export const StyledIcon = styled(FontAwesomeIcon)`
 `;
 
 export const Form = styled.form`
-    width: 25em;
+    width: 30rem;
     min-width: 20rem;
     display: flex;
     flex-direction: column;
     align-items: center;
-    gap: 2rem;
+    gap: 1.5rem;
     z-index: 2;
     @media (max-width: 500px) {
         width: 19.5em;
@@ -59,6 +68,8 @@ export const FormTitle = styled.h1`
     flex-direction: row;
     color: #143642;
     font-weight: 600;
+    margin-bottom: 0;
+    margin-top: 3rem;
     @media (max-width: 1080px) {
         font-size: 2em;
     }
