@@ -9,88 +9,10 @@ import * as Yup from 'yup';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faCheck, faPen, faTimes } from '@fortawesome/free-solid-svg-icons';
 import { toast } from 'react-toastify';
+import { Button, Buttons, EditButton, Form, Input, InputList, InputRow, Title } from './styles';
 export interface inputProps {
     edit: boolean;
 }
-
-const Input = styled.input<inputProps>`
-    height: 3rem;
-    border: none;
-    border-radius: 1em;
-    background-color: ${props => (props.edit ? '#F2F2F2' : '#FFFFFF')};
-    width: 100%;
-    padding: 2em;
-`;
-const Form = styled.form`
-    width: 100%;
-    display: flex;
-    flex-direction: column;
-    gap: 1.2rem;
-`;
-
-const InputList = styled.div`
-    width: 100%;
-    display: flex;
-    flex-direction: row;
-    gap: 1.2rem;
-`;
-
-const Title = styled.div`
-    font-size: x-large;
-    width: 100%;
-    display: flex;
-    flex-direction: row;
-    gap: 1.2rem;
-`;
-
-const InputRow = styled.div`
-    width: 100%;
-    display: flex;
-    flex-direction: column;
-    gap: 1rem;
-`;
-const Button = styled.button`
-    color: white;
-    align-items: center;
-    justify-content: center;
-    width: 3rem;
-    height: 3rem;
-    display: flex;
-    border-radius: 1rem;
-    border: none;
-    cursor: pointer;
-    transition: opacity 0.3s, background-color 0.2s ease-in-out;
-    &:hover {
-        opacity: 0.8;
-    }
-`;
-const Buttons = styled.div`
-    bottom: 2rem;
-    right: 2rem;
-    position: absolute;
-    display: flex;
-    flex-direction: row;
-    gap: 0.5rem;
-`;
-
-const EditButton = styled.button`
-    top: 0;
-    right: 0;
-    position: absolute;
-    color: white;
-    align-items: center;
-    justify-content: center;
-    width: 3rem;
-    height: 3rem;
-    display: flex;
-    border-radius: 0 1rem 0 1rem;
-    border: none;
-    cursor: pointer;
-    transition: opacity 0.3s, background-color 0.2s ease-in-out;
-    &:hover {
-        opacity: 0.8;
-    }
-`;
 
 const AccountForm = () => {
     const { t } = useTranslation('common');
