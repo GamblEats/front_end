@@ -4,17 +4,24 @@ import { IconProp } from '@fortawesome/fontawesome-svg-core';
 
 interface Props {
     text: string;
+    small?: boolean;
     backgroundColor?: string;
     icon?: IconProp;
     onClick: () => void;
 }
 
-const AccountCard = ({ backgroundColor, text, icon, onClick }: Props) => {
+export interface SmallProps {
+    small?: boolean;
+}
+
+const Button = ({ backgroundColor, text, small, icon, onClick }: Props) => {
     return (
-        <ButtonContainer color={backgroundColor} onClick={onClick}>
-            <ButtonLabel color={backgroundColor ? '#f2f2f2' : '#143642'}>{text}</ButtonLabel>
+        <ButtonContainer color={backgroundColor} small={small} onClick={onClick}>
+            <ButtonLabel color={backgroundColor ? '#f2f2f2' : '#143642'} small={small}>
+                {text}
+            </ButtonLabel>
             {icon && (
-                <ButtonIcon>
+                <ButtonIcon small={small}>
                     <FontAwesomeIcon color={backgroundColor ? '#f2f2f2' : '#143642'} icon={icon} />
                 </ButtonIcon>
             )}
@@ -22,4 +29,4 @@ const AccountCard = ({ backgroundColor, text, icon, onClick }: Props) => {
     );
 };
 
-export default AccountCard;
+export default Button;

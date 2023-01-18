@@ -26,6 +26,10 @@ a {
   box-sizing: border-box;
 }
 
+:focus {
+  outline: 1px solid #e6bf00;
+}
+
 /* -- Menu -- */
 
 .hideMenu {
@@ -69,4 +73,29 @@ a {
   .accountPageIcon {
     display: inline-block;
   }
+}
+
+/* -- SearchInput -- */
+
+.searchIcon {
+  position: absolute;
+  right: 1.5rem;
+  top: 50%;
+  transform: translate(0, -50%);
+}
+
+select:required:invalid {
+  color: #D9D9D9;
+}
+
+.styled-select select {
+  -moz-appearance:none !important; /* Firefox */
+  -webkit-appearance:none !important; /* Safari and Chrome */
+  appearance:none !important;
+}
+
+/* -- Order -- */
+
+.deleteOrderButton {
+  cursor: pointer;
 }

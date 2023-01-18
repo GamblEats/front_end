@@ -1,8 +1,10 @@
+import { RestaurantModel } from "./RestaurantModel";
+
 export interface OrderModel {
-    _id?: string;
+    id?: string;
     menus?: any;
     items?: any;
-    restaurant: string;
+    restaurant: RestaurantModel;
     deliverer?: string;
     client: string;
     status: string;

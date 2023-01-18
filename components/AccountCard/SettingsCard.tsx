@@ -12,6 +12,9 @@ import {
     SwitchLangContainer,
 } from './styles';
 
+export interface LangProps {
+    backGround: boolean;
+}
 const SettingsCard = () => {
     const { t } = useTranslation('common');
     const router = useRouter();
@@ -22,6 +25,7 @@ const SettingsCard = () => {
                 <SectionTitle>{t('language')}</SectionTitle>
                 <SwitchLangContainer>
                     <LangContainer
+                        backGround={router.locale === 'fr'}
                         onClick={() => {
                             router.push({ pathname, query }, asPath, { locale: 'fr' });
                         }}>
@@ -29,6 +33,7 @@ const SettingsCard = () => {
                         <SectionText>Français</SectionText>
                     </LangContainer>
                     <LangContainer
+                        backGround={router.locale === 'en'}
                         onClick={() => {
                             router.push({ pathname, query }, asPath, { locale: 'en' });
                         }}>

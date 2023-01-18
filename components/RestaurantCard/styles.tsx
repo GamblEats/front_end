@@ -3,7 +3,6 @@ import styled from 'styled-components';
 export const Card = styled.div`
     background-color: #fafafa;
     color: #143642;
-    height: 15.625rem;
     border-radius: 20px;
     display: flex;
     flex-direction: column;
@@ -21,8 +20,8 @@ export const Card = styled.div`
 export const CardPicture = styled.img`
     object-fit: cover;
     width: 100%;
-    max-height: 11.5625rem;
-    height: 11.5625rem;
+    max-height: 10rem;
+    height: 10rem;
     border-radius: 15px;
     margin: 0;
 `;
@@ -32,10 +31,9 @@ export const CardContent = styled.div`
     flex-direction: row;
     justify-content: space-between;
     align-items: center;
-    padding: 15px;
-
+    height: 3.5rem;
+    padding: 0 1rem;
     width: 100%;
-    height: 65px;
 `;
 
 export const CardTitle = styled.h3`
@@ -45,6 +43,11 @@ export const CardTitle = styled.h3`
     font-size: 1.3rem;
     line-height: 29px;
     margin-right: 0.8rem;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    display: -webkit-box;
+    -webkit-box-orient: vertical;
+    -webkit-line-clamp: 1;
 `;
 
 export const CardDetailsContainer = styled.div`
@@ -64,6 +67,7 @@ export const CardDeliveryDetails = styled.div`
     flex-direction: column;
     justify-content: flex-end;
     align-items: flex-end;
+    white-space: nowrap;
 `;
 
 export const CardDeliveryDetail = styled.span`

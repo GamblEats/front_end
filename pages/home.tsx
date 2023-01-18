@@ -10,6 +10,7 @@ import { useRouter } from 'next/router';
 import RestaurantCard from '../components/RestaurantCard/RestaurantCard';
 import PageHeader from '../components/globals/PageHeader';
 import useStore from '../store/useStore';
+import { useEffect } from 'react';
 
 const ScrollContainer = styled.div<ScrollContainerProps>`
     display: flex;
@@ -35,6 +36,7 @@ const News = styled.div<NewsProps>`
     border-radius: 1.4rem;
     display: flex;
     align-items: center;
+    justify-content: center;
     flex-direction: ${props => props.flexDirection || 'row'};
     gap: ${props => (props.flexDirection ? '0.3rem' : '2rem')};
     padding: 1.7rem 2rem;
@@ -65,6 +67,7 @@ const Home = () => {
         signOut();
     };
     const { data: session }: any = useSession();
+
     const { t } = useTranslation('common');
     const router = useRouter();
     function getGreeting() {
@@ -80,9 +83,11 @@ const Home = () => {
         }
     }
     const { restaurants, getRestaurants } = useStore();
-    if (restaurants.length === 0) {
-        getRestaurants();
-    }
+    useEffect(() => {
+        if (restaurants.length === 0) {
+            getRestaurants();
+        }
+    }, []);
 
     return (
         <PageContainer>
@@ -113,10 +118,11 @@ const Home = () => {
                 {restaurants.map((r, i) => (
                     <RestaurantCard
                         key={i}
+                        id={r.id}
                         name={r.name}
                         pic={r.pic}
                         deliveryPrice={r.deliveryPrice}
-                        description={/*r.desc*/ ''}
+                        description={r.description}
                         deliveryTime={r.deliveryTime}
                         rating={r.rating}
                         minWidth="25rem"></RestaurantCard>
@@ -130,10 +136,11 @@ const Home = () => {
                 {restaurants.map((r, i) => (
                     <RestaurantCard
                         key={i}
+                        id={r.id}
                         name={r.name}
                         pic={r.pic}
                         deliveryPrice={r.deliveryPrice}
-                        description={/*r.desc*/ ''}
+                        description={r.description}
                         deliveryTime={r.deliveryTime}
                         rating={r.rating}
                         minWidth="25rem"></RestaurantCard>

@@ -1,9 +1,6 @@
 import React from 'react';
-import styled from 'styled-components';
 import { IconProp } from '@fortawesome/fontawesome-svg-core';
 import { Container, StyledIcon, Input } from './styles';
-import exp from 'constants';
-import { i18n } from 'i18next';
 
 interface Props {
     name: string;

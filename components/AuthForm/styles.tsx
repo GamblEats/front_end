@@ -23,9 +23,6 @@ export const Input = styled.input<inputProps>`
     ::placeholder {
         color: ${props => props.color};
     }
-    :focus-visible {
-        outline: 2px solid #e5bf00;
-    }
     @media (max-width: 500px) {
         width: 23em;
     }
@@ -45,6 +42,7 @@ export const StyledIcon = styled(FontAwesomeIcon)`
 
 export const Form = styled.form`
     width: 25em;
+    min-width: 20rem;
     display: flex;
     flex-direction: column;
     align-items: center;
@@ -57,6 +55,8 @@ export const Form = styled.form`
 `;
 
 export const FormTitle = styled.h1`
+    display: flex;
+    flex-direction: row;
     color: #143642;
     font-weight: 600;
     @media (max-width: 1080px) {

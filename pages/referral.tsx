@@ -39,7 +39,6 @@ const Referral = () => {
             setButtonText('copie');
         }, 1000);
     }
-
     return (
         <PageContainer>
             <PageHeader title={t('referral')}></PageHeader>
