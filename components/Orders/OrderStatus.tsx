@@ -12,7 +12,7 @@ const OrderStatus = ({ status }: Props) => {
     function getStatusInfo(color: boolean) {
         switch (status) {
             case 'DELIVRED':
-                return color ? '#27AE60' : t('orderDelivred');
+                return color ? '#27AE60' : t('orderDelivered');
             case 'CANCELED':
                 return color ? '#C0392B' : t('orderCanceled');
             default:
