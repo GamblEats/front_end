@@ -76,5 +76,11 @@
   "yes": "Yes",
   "no": "No",
   "cancelOrder": "You already have an order in progress, do you want to delete it ?",
-  "yourCommand": "Your command"
+  "yourCommand": "Your command",
+  "name": "Name",
+  "contact": "Contact",
+  "address": "Address",
+  "deleteConfirm": "Are you sure you want to delete your account ?",
+  "modified": "Account successfully modified"
+
 }
