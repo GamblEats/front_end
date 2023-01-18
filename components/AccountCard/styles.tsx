@@ -143,7 +143,7 @@ export const InputRow = styled.div`
     flex-direction: column;
     gap: 1rem;
 `;
-export const Button = styled.button`
+export const ButtonForm = styled.button`
     color: white;
     align-items: center;
     justify-content: center;

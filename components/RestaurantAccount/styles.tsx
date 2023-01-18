@@ -1,4 +1,5 @@
 import styled from 'styled-components';
+import { inputProps } from '../AccountCard/AccountForm';
 
 export const AccountWrapper = styled.div`
     display: flex;
@@ -10,10 +11,11 @@ export const AccountWrapper = styled.div`
 `;
 
 export const InfoContainer = styled.div`
+    position: relative;
     width: 40%;
     background: white;
     height: 100%;
-    border-radius: 20px;
+    border-radius: 1em;
 
     @media screen and (max-width: 1000px) {
         width: 100%;
@@ -22,13 +24,12 @@ export const InfoContainer = styled.div`
 
 export const RestaurantImg = styled.img`
     object-fit: cover;
-    border-radius: 20px;
-
+    border-radius: 1em;
     height: 14rem;
     width: 100%;
 `;
 
-export const InfoWrapper = styled.div`
+export const InfoWrapper = styled.form`
     padding: 1rem;
     height: 100%;
     width: 100%;
@@ -40,6 +41,7 @@ export const InfoTitle = styled.h2`
 `;
 
 export const InfoDetails = styled.p`
+    position: relative;
     font-weight: 600;
     font-size: 1rem;
     margin: 1rem 0.8rem;
@@ -59,4 +61,48 @@ export const SpaceBetween = styled.div`
 export const ButtonsWrapper = styled.div`
     width: 100%;
     display: flex;
+`;
+
+export const DetailInput = styled.input<inputProps>`
+    height: 3rem;
+    font-size: medium;
+    color: #143642;
+    font-weight: 600;
+    border: none;
+    border-radius: 1em;
+    background-color: ${props => (props.edit ? '#F2F2F2' : '#FFFFFF')};
+    width: 100%;
+    padding: 2em;
+    ::placeholder {
+        color: #143642;
+    }
+`;
+export const DetailTextArea = styled.textarea<inputProps>`
+    resize: none;
+    height: 8rem;
+    font-size: medium;
+    color: #143642;
+    font-weight: 600;
+    border: none;
+    border-radius: 1em;
+    background-color: ${props => (props.edit ? '#F2F2F2' : '#FFFFFF')};
+    width: 100%;
+    padding: 2em;
+    ::placeholder {
+        color: #143642;
+    }
+`;
+
+export const TitleInput = styled.input<inputProps>`
+    height: 3rem;
+    font-size: x-large;
+    color: #143642;
+    font-weight: 700;
+    border: none;
+    border-radius: 1rem;
+    background-color: ${props => (props.edit ? '#F2F2F2' : '#FFFFFF')};
+    width: 100%;
+    ::placeholder {
+        color: #143642;
+    }
 `;
