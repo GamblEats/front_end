@@ -85,5 +85,9 @@
   "contact": "Contact",
   "address": "Address",
   "deleteConfirm": "Are you sure you want to delete your account ?",
-  "modified": "Account successfully modified"
+  "modified": "Account successfully modified",
+  "postalCode": "Postal code",
+  "additional": "Additional",
+  "city": "City",
+  "referralInput": "Referral (optional)"
 }
