@@ -239,7 +239,9 @@ const RestaurantDetails = () => {
                     </Order>
                 </Details>
             )}
-            {deleteAsk && <ConfirmModal confirmLabel={t('yes')} cancelLabel={t('no')} label={t('cancelOrder')} />}
+            {deleteAsk && (
+                <ConfirmModal confirmLabel={t('yes')} cancelLabel={t('no')} label={t('cancelOrderQuestion')} />
+            )}
         </BlurBg>
     );
 };

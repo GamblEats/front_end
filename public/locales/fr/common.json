@@ -55,7 +55,6 @@
   "statistics": "Statistiques",
   "noCurrent": "Tu n'as pas de commande en cours, tente ta chance !",
   "order": "Commander",
-  "orderDelivred": "Commande livrée",
   "orderInProgress": "Commande en cours",
   "orderCanceled": "Commande annulée",
   "searchByRestaurant": "Rechercher par restaurant",
@@ -78,11 +77,17 @@
   "orderDeleted": "Commande supprimé",
   "yes": "Oui",
   "no": "Non",
-  "cancelOrder": "Vous avez deja une commande en cours, voulez-vous la supprimer ?",
+  "cancelOrderQuestion": "Vous avez deja une commande en cours, voulez-vous la supprimer ?",
   "yourCommand": "Votre commande",
   "name": "Nom",
   "contact": "Contact",
   "address": "Adresse",
   "deleteConfirm": "Êtes-vous sûr de vouloir supprimer votre compte ?",
-  "modified": "Compte modifié avec succès"
+  "modified": "Compte modifié avec succès",
+  "deliveries": "Livraisons",
+  "cancelOrder": "Annuler la commande",
+  "orderProblem": "Un problème avec la commande ?",
+  "pickedUp": "I'v picked up the order",
+  "atTheDoor": "Je suis à la porte",
+  "orderDelivred": "Commande livrée"
 }
