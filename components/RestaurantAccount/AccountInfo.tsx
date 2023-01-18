@@ -1,36 +1,62 @@
 import React from 'react';
 import {
-    ButtonsWrapper,
+    DetailInput,
+    DetailTextArea,
     InfoContainer,
     InfoDetails,
-    InfoTitle,
     InfoWrapper,
     RestaurantImg,
     SpaceBetween,
+    TitleInput,
 } from './styles';
 import { useTranslation } from 'next-i18next';
-import { useSession } from 'next-auth/react';
+import { signOut, useSession } from 'next-auth/react';
 import { useEffect, useRef, useState } from 'react';
 import axios from 'axios';
-import { restaurantApi } from '../../public/const';
-import { faLocationDot, faBicycle, faClock } from '@fortawesome/free-solid-svg-icons';
+import { restaurantApi, userApi } from '../../public/const';
+import {
+    faLocationDot,
+    faClock,
+    faBellConcierge,
+    faCircleInfo,
+    faCheck,
+    faTimes,
+    faTrash,
+} from '@fortawesome/free-solid-svg-icons';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import Button from '../globals/Button';
 import { faPen } from '@fortawesome/free-solid-svg-icons';
+import {
+    Buttons,
+    EditButton,
+    ButtonForm,
+    DeleteButton,
+    Modal,
+    Label,
+    ButtonsModal,
+    BlurBg,
+} from '../AccountCard/styles';
+import * as Yup from 'yup';
+import { useFormik } from 'formik';
+import { toast } from 'react-toastify';
+import { SignInButton, SignUpButton } from '../AuthForm/styles';
+
+export interface inputProps {
+    edit: boolean;
+}
 
 const AccountInfo = () => {
     const { t } = useTranslation('common');
     const { data: session }: any = useSession();
     const [restaurantInfo, setRestaurantInfo] = useState<any>(null);
     const [loading, setLoading] = useState<boolean>(true);
+    const [edit, setEdit] = useState<boolean>(false);
+    const [deleteRestaurant, setDeleteRestaurant] = useState<boolean>(false);
     const isInitialMount = useRef(true);
 
     async function getRestaurant() {
         if (isInitialMount.current) {
             isInitialMount.current = false;
         } else {
-            console.log(session);
-
             await axios.get(`${restaurantApi}/restaurants/${session.user.restaurantId}`).then(resp => {
                 setRestaurantInfo(resp.data);
                 setLoading(false);
@@ -40,51 +66,225 @@ const AccountInfo = () => {
     useEffect(() => {
         getRestaurant();
     }, []);
+    const validationSchema = Yup.object({
+        name: Yup.string(),
+        address: Yup.string(),
+        hours: Yup.string(),
+        deliveryPrice: Yup.string(),
+        description: Yup.string(),
+    });
+
+    const formik = useFormik({
+        initialValues: {
+            name: '',
+            address: '',
+            hours: '',
+            deliveryPrice: '',
+            description: '',
+        },
+        validationSchema,
+        onSubmit: (values: any) => {
+            delete values.hours;
+            const cleanedValues = Object.entries(values)
+                .filter(([key, value]) => value !== '')
+                .reduce((obj, [key, value]) => {
+                    // @ts-ignore
+                    obj[key] = value;
+                    return obj;
+                }, {});
+            axios
+                .patch(`${restaurantApi}/restaurants/${session.user.restaurantId}`, cleanedValues, {
+                    headers: {
+                        'Content-Type': 'application/json',
+                    },
+                })
+                .then(() => {
+                    setEdit(false);
+                    toast.success(t('restaurantModified'));
+                });
+        },
+    });
 
     return (
         <InfoContainer>
-            {' '}
             {!loading && (
                 <React.Fragment>
-                    {' '}
                     <SpaceBetween>
                         <RestaurantImg src={restaurantInfo.pic} />
-                        <InfoWrapper>
-                            <InfoTitle>{restaurantInfo.name}</InfoTitle>
+                        <InfoWrapper onSubmit={formik.handleSubmit}>
+                            <InfoDetails>
+                                <TitleInput
+                                    name={'name'}
+                                    edit={edit}
+                                    disabled={!edit}
+                                    placeholder={restaurantInfo.name}
+                                    value={formik.values.name}
+                                    onChange={formik.handleChange}
+                                />
+                            </InfoDetails>
                             <InfoDetails>
                                 <FontAwesomeIcon
                                     icon={faLocationDot}
-                                    style={{ width: '1rem', color: '#143642', marginRight: '0.8rem' }}
+                                    style={{
+                                        width: '1rem',
+                                        color: '#143642',
+                                        marginRight: '0.8rem',
+                                        position: 'absolute',
+                                        top: '50%',
+                                        left: 0,
+                                        transform: 'translate(0, -50%)',
+                                    }}
                                 />
-                                {restaurantInfo.address}
+                                <DetailInput
+                                    name={'address'}
+                                    edit={edit}
+                                    disabled={!edit}
+                                    placeholder={restaurantInfo.address}
+                                    value={formik.values.address}
+                                    onChange={formik.handleChange}
+                                />
                             </InfoDetails>
                             <InfoDetails>
                                 <FontAwesomeIcon
                                     icon={faClock}
-                                    style={{ width: '1rem', color: '#143642', marginRight: '0.8rem' }}
+                                    style={{
+                                        width: '1rem',
+                                        color: '#143642',
+                                        marginRight: '0.8rem',
+                                        position: 'absolute',
+                                        top: '50%',
+                                        left: 0,
+                                        transform: 'translate(0, -50%)',
+                                    }}
                                 />
-                                10h00 - 14h00 / 18h00 - 22h00
+                                <DetailInput
+                                    name={'hours'}
+                                    edit={edit}
+                                    disabled={!edit}
+                                    placeholder={'10h00 - 14h00 / 18h00 - 22h00'}
+                                    value={formik.values.hours}
+                                    onChange={formik.handleChange}
+                                />
                             </InfoDetails>
-
                             <InfoDetails>
                                 <FontAwesomeIcon
-                                    icon={faBicycle}
-                                    style={{ width: '1rem', color: '#143642', marginRight: '0.8rem' }}
+                                    icon={faBellConcierge}
+                                    style={{
+                                        width: '1rem',
+                                        color: '#143642',
+                                        marginRight: '0.8rem',
+                                        position: 'absolute',
+                                        top: '50%',
+                                        left: 0,
+                                        transform: 'translate(0, -50%)',
+                                    }}
                                 />
-                                {restaurantInfo.deliveryPrice} €
+                                <DetailInput
+                                    name={'deliveryPrice'}
+                                    edit={edit}
+                                    disabled={!edit}
+                                    placeholder={restaurantInfo.deliveryPrice + ' €'}
+                                    value={formik.values.deliveryPrice}
+                                    onChange={formik.handleChange}
+                                />
                             </InfoDetails>
-                            <InfoDetails style={{ fontWeight: 500, height: '14rem' }}>
-                                {restaurantInfo.description}
+                            <InfoDetails>
+                                <FontAwesomeIcon
+                                    icon={faCircleInfo}
+                                    style={{
+                                        width: '1rem',
+                                        color: '#143642',
+                                        marginRight: '0.8rem',
+                                        position: 'absolute',
+                                        top: '2.2em',
+                                        left: 0,
+                                        transform: 'translate(0, -50%)',
+                                    }}
+                                />
+                                <DetailTextArea
+                                    name={'description'}
+                                    edit={edit}
+                                    disabled={!edit}
+                                    placeholder={restaurantInfo.description}
+                                    value={formik.values.description}
+                                    onChange={formik.handleChange}
+                                />
+
+                                {}
                             </InfoDetails>
+                            {!edit && (
+                                <>
+                                    <EditButton
+                                        type={'button'}
+                                        style={{ backgroundColor: '#e5bf00' }}
+                                        onClick={() => {
+                                            setEdit(true);
+                                        }}>
+                                        <FontAwesomeIcon icon={faPen} />
+                                    </EditButton>
+                                    <DeleteButton
+                                        type={'button'}
+                                        style={{ backgroundColor: '#C0392B' }}
+                                        onClick={() => {
+                                            setDeleteRestaurant(true);
+                                        }}>
+                                        <FontAwesomeIcon icon={faTrash} />
+                                    </DeleteButton>
+                                </>
+                            )}
+                            {edit && (
+                                <Buttons>
+                                    <ButtonForm
+                                        type={'submit'}
+                                        disabled={!(formik.isValid && formik.dirty)}
+                                        style={{ backgroundColor: '#27AE60' }}>
+                                        <FontAwesomeIcon icon={faCheck} />
+                                    </ButtonForm>
+                                    <ButtonForm
+                                        type={'button'}
+                                        style={{ backgroundColor: '#C0392B' }}
+                                        onClick={() => {
+                                            setEdit(false);
+                                        }}>
+                                        <FontAwesomeIcon icon={faTimes} />
+                                    </ButtonForm>
+                                </Buttons>
+                            )}
                         </InfoWrapper>
-                        <ButtonsWrapper>
-                            <Button
-                                backgroundColor="#e5bf00"
-                                text={window.innerWidth < 1000 ? 'Edit' : ''}
-                                small={false}
-                                icon={faPen}
-                                onClick={() => {}}></Button>
-                        </ButtonsWrapper>
+                        {deleteRestaurant && (
+                            <BlurBg
+                                onClick={e => {
+                                    e.stopPropagation();
+                                }}>
+                                <Modal onClick={e => e.stopPropagation()}>
+                                    <Label> {t('deleteConfirmRestaurant')}</Label>
+                                    <ButtonsModal>
+                                        <SignInButton
+                                            type="button"
+                                            onClick={() => {
+                                                setDeleteRestaurant(false);
+                                            }}>
+                                            {t('no')}
+                                        </SignInButton>
+                                        <SignUpButton
+                                            type="button"
+                                            color={'#e5bf00'}
+                                            onClick={() => {
+                                                axios.delete(
+                                                    `${restaurantApi}/restaurants/${session.user.restaurantId}`,
+                                                    {
+                                                        headers: {
+                                                            'Content-Type': 'application/json',
+                                                        },
+                                                    }
+                                                );
+                                            }}>
+                                            {t('yes')}
+                                        </SignUpButton>
+                                    </ButtonsModal>
+                                </Modal>
+                            </BlurBg>
+                        )}
                     </SpaceBetween>
                 </React.Fragment>
             )}

@@ -11,7 +11,7 @@ import { faCheck, faPen, faTimes, faTrash } from '@fortawesome/free-solid-svg-ic
 import { toast } from 'react-toastify';
 import {
     BlurBg,
-    Button,
+    ButtonForm,
     Buttons,
     ButtonsModal,
     DeleteButton,
@@ -102,7 +102,7 @@ const AccountForm = () => {
                 })
                 .then(() => {
                     setEdit(false);
-                    toast.success('Compte modifié');
+                    toast.success(t('accountModified'));
                 });
         },
     });
@@ -214,20 +214,20 @@ const AccountForm = () => {
                     )}
                     {edit && (
                         <Buttons>
-                            <Button
+                            <ButtonForm
                                 type={'submit'}
                                 disabled={!(myFormik.isValid && myFormik.dirty)}
                                 style={{ backgroundColor: '#27AE60' }}>
                                 <FontAwesomeIcon icon={faCheck} />
-                            </Button>
-                            <Button
+                            </ButtonForm>
+                            <ButtonForm
                                 type={'button'}
                                 style={{ backgroundColor: '#C0392B' }}
                                 onClick={() => {
                                     setEdit(false);
                                 }}>
                                 <FontAwesomeIcon icon={faTimes} />
-                            </Button>
+                            </ButtonForm>
                         </Buttons>
                     )}
                     {deleteAccount && (

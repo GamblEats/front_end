@@ -26,10 +26,14 @@ const MyRestaurant = () => {
     return (
         <PageContainer>
             <PageHeader title={t('myRestaurant')}></PageHeader>
-            <AccountWrapper>
-                <MenusAndArticles />
-                <AccountInfo />
-            </AccountWrapper>
+            {session.user.restaurantId ? (
+                <AccountWrapper>
+                    <MenusAndArticles />
+                    <AccountInfo />
+                </AccountWrapper>
+            ) : (
+                <h1>{t('noRestaurant')}</h1>
+            )}
         </PageContainer>
     );
 };
