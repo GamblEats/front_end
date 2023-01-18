@@ -71,7 +71,7 @@ const Index = () => {
     return (
         <IndexContainer>
             <div className={router.query.form ? 'hideMenu' : ''}>
-                <Menu></Menu>
+                <Menu isOnFormPage={router.query.form ? true : false}></Menu>
             </div>
             <IndexContent
                 style={{
@@ -91,14 +91,14 @@ const Index = () => {
                             text={t('startEating')}
                             onClick={() => {
                                 router.replace({
-                                    query: { ...router.query, form: 'signUp' },
+                                    query: { ...router.query, form: 'signUp', as: 'client' },
                                 });
                             }}></Button>
                         <Button
                             text={t('signIn')}
                             onClick={() => {
                                 router.replace({
-                                    query: { ...router.query, form: 'signIn' },
+                                    query: { ...router.query, form: 'signIn', as: 'client' },
                                 });
                             }}></Button>
                     </ButtonContainer>
@@ -108,7 +108,11 @@ const Index = () => {
                 {router.query.form === 'signIn' && router.query.as === 'restaurant' && (
                     <SignInForm role={'restaurant'} />
                 )}
-                {router.query.form === 'signUp' && <SignUpForm />}
+                {router.query.form === 'signUp' && router.query.as === 'client' && <SignUpForm role={'client'} />}
+                {router.query.form === 'signUp' && router.query.as === 'deliverer' && <SignUpForm role={'deliverer'} />}
+                {router.query.form === 'signUp' && router.query.as === 'restaurant' && (
+                    <SignUpForm role={'restaurant'} />
+                )}
             </IndexContent>
             <BackgroundImg
                 style={{

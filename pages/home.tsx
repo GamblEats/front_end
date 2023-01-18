@@ -10,6 +10,8 @@ import { useRouter } from 'next/router';
 import RestaurantCard from '../components/RestaurantCard/RestaurantCard';
 import PageHeader from '../components/globals/PageHeader';
 import useStore from '../store/useStore';
+import { useEffect } from 'react';
+import axios from 'axios';
 
 const ScrollContainer = styled.div<ScrollContainerProps>`
     display: flex;
@@ -66,6 +68,7 @@ const Home = () => {
         signOut();
     };
     const { data: session }: any = useSession();
+
     const { t } = useTranslation('common');
     const router = useRouter();
     function getGreeting() {
@@ -81,9 +84,12 @@ const Home = () => {
         }
     }
     const { restaurants, getRestaurants } = useStore();
-    if (restaurants.length === 0) {
-        getRestaurants();
-    }
+    useEffect(() => {
+        if (restaurants.length === 0) {
+            getRestaurants();
+        }
+    }, []);
+
     return (
         <PageContainer>
             <PageHeader title={getGreeting() + session.user.firstName}></PageHeader>

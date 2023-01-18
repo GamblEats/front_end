@@ -5,12 +5,17 @@ import { Counter, CountValue, CountX, ItemContainer, ItemCount, ItemListContaine
 
 interface Props {
     itemList: (ItemModel | MenuModel)[];
+    isBasket?: boolean;
 }
 
-const ItemList = ({ itemList }: Props) => {
+export interface ItemContainerProps {
+    isBasket: boolean;
+}
+
+const ItemList = ({ itemList, isBasket = false }: Props) => {
     const { t } = useTranslation('common');
     return (
-        <ItemListContainer>
+        <ItemListContainer isBasket={isBasket}>
             {itemList.map((item, i) => (
                 <ItemContainer>
                     <ItemCount>

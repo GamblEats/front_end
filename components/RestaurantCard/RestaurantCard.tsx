@@ -12,6 +12,7 @@ import {
 import { useEffect, useState } from 'react';
 import RestaurantDetails from '../RestaurantDetails/RestaurantDetails';
 import useStore from '../../store/useStore';
+import ConfirmModal from '../RestaurantDetails/ConfirmModal';
 
 interface Props {
     name: string;
@@ -27,7 +28,7 @@ interface Props {
 const RestaurantCard = ({ id, name, pic, description, deliveryPrice, deliveryTime, rating, minWidth }: Props) => {
     const router = useRouter();
     const [detailsIsOpen, setDetailsIsOpen] = useState<boolean>(false);
-    const { setOpenedRestaurant, openedRestaurant } = useStore(state => state);
+    const { setOpenedRestaurant, openedRestaurant, deleteAsk } = useStore(state => state);
 
     useEffect(() => {
         if (router.query.id === id) {

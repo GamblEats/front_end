@@ -66,6 +66,14 @@ export const Input = styled.input`
     }
 `;
 
+export const FlexContainer = styled.div`
+    display: flex;
+
+    @media screen and (max-width: 1000px) {
+        flex-direction: column;
+    }
+`;
+
 // --- ImgUploader --- //
 
 export const UploaderContainer = styled.div`

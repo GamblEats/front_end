@@ -75,5 +75,14 @@
   "pastOrders": "Commande passées",
   "readyToPickup": "Prêt à collecter",
   "orderAccepted": "Commande accepté !",
-  "orderDeleted": "Commande supprimé"
+  "orderDeleted": "Commande supprimé",
+  "yes": "Oui",
+  "no": "Non",
+  "cancelOrder": "Vous avez deja une commande en cours, voulez-vous la supprimer ?",
+  "yourCommand": "Votre commande",
+  "name": "Nom",
+  "contact": "Contact",
+  "address": "Adresse",
+  "deleteConfirm": "Êtes-vous sûr de vouloir supprimer votre compte ?",
+  "modified": "Compte modifié avec succès"
 }

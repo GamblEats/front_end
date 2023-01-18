@@ -27,7 +27,7 @@ const CurrentOrder = ({ currentOrder }: Props) => {
                 <CurrOrderContainer>
                     <CurrOrderHeader>
                         <OrderTimer>Today in 20 minutes</OrderTimer>
-                        <OrderStatus status={DeliveryStep.ON_THE_WAY}></OrderStatus>
+                        <OrderStatus status="ON_THE_WAY"></OrderStatus>
                     </CurrOrderHeader>
                 </CurrOrderContainer>
             ) : (
