@@ -1,4 +1,5 @@
 import styled from 'styled-components';
+import { OrderPriceProps } from '../Orders/Order';
 
 export const OrderContainer = styled.div`
     display: flex;
@@ -7,6 +8,7 @@ export const OrderContainer = styled.div`
     background-color: white;
     padding: 0.6em;
     border-radius: 1.4em;
+    height: 9.3rem;
 `;
 
 export const InfoContainer = styled.div`
@@ -30,10 +32,14 @@ export const InfoValue = styled.div`
     color: #143642;
 `;
 
-export const OrderPrice = styled.div`
+export const OrderPrice = styled.div<OrderPriceProps>`
+    min-width: 6rem;
     font-size: 1.8em;
     font-weight: 600;
     color: #143642;
+    @media (max-width: 600px) {
+        display: ${props => (props.hide ? 'none' : 'block')};
+    }
 `;
 export const OrderReference = styled.div`
     font-size: 0.7em;
@@ -91,7 +97,7 @@ export const ButtonContainer = styled.div`
 `;
 export const Button = styled.button`
     transition: opacity 0.3s;
-    height: 4.5em;
+    min-height: 4.5em;
     width: 4.5em;
     border: 2em;
     border-radius: 1.2em;

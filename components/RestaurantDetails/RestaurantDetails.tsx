@@ -45,7 +45,6 @@ const RestaurantDetails = () => {
         });
     }
     useEffect(() => {
-        console.log(openedRestaurant);
         setRestaurantCategories();
     }, []);
     return (

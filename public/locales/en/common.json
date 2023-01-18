@@ -7,8 +7,8 @@
   "remove": "Remove",
   "modify": "Edit",
   "home": "Home",
-  "restaurants":  "Restaurants",
-  "orders":  "Orders",
+  "restaurants": "Restaurants",
+  "orders": "Orders",
   "referral": "Referral",
   "findRestaurant": "Find a restaurant",
   "slogan": "Stop gambling, keep eating.",
@@ -72,5 +72,9 @@
   "september": "September",
   "october": "October",
   "november": "November",
-  "december": "December"
+  "december": "December",
+  "pastOrders": "Past orders",
+  "readyToPickup": "Ready to pickup",
+  "orderAccepted": "Order accepted !",
+  "orderDeleted": "Order deleted"
 }

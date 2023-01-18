@@ -1,5 +1,7 @@
 import { faCheck, faClock, faCoins, faRoad, faXmark } from '@fortawesome/free-solid-svg-icons';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import { OrderModel } from '../../models/OrderModel';
+import ItemList from '../Orders/ItemList';
 import DeliveryInfo from './DeliveryInfo';
 import {
     Address,
@@ -21,20 +23,24 @@ import {
 
 interface Props {
     isRestaurant: boolean;
+    order: OrderModel;
+    onValidation: () => void;
+    onReject: () => void;
 }
 
-const PendingOrder = ({ isRestaurant }: Props) => {
+const PendingOrder = ({ isRestaurant, order, onValidation, onReject }: Props) => {
     return (
         <OrderContainer>
             {isRestaurant ? (
                 <InfoContainer>
                     <DeliveryInfos>
-                        <>
-                            <OrderPrice>37.98€</OrderPrice>
-                            <OrderReference>N°1964</OrderReference>
-                        </>
-                        <UserAddress>161 rue Pierre Mauroy, Lille</UserAddress>
+                        <div>
+                            <OrderPrice>{order.price}€</OrderPrice>
+                            <OrderReference>N°{Math.floor(Math.random() * (9999 - 1000 + 1) + 1000)}</OrderReference>
+                        </div>
+                        <UserAddress>{order.address}</UserAddress>
                     </DeliveryInfos>
+                    <ItemList itemList={order.items.concat(order.menus)}></ItemList>
                 </InfoContainer>
             ) : (
                 <InfoContainer>
@@ -59,10 +65,18 @@ const PendingOrder = ({ isRestaurant }: Props) => {
             )}
             <ButtonContainer>
                 <Button color="#27ae60">
-                    <FontAwesomeIcon fontSize={'large'} color="#fefefe" icon={faCheck}></FontAwesomeIcon>
+                    <FontAwesomeIcon
+                        fontSize={'1.4rem'}
+                        color="#fefefe"
+                        icon={faCheck}
+                        onClick={onValidation}></FontAwesomeIcon>
                 </Button>
                 <Button color="#C0392B">
-                    <FontAwesomeIcon fontSize={'large'} color="#fefefe" icon={faXmark}></FontAwesomeIcon>
+                    <FontAwesomeIcon
+                        fontSize={'1.4rem'}
+                        color="#fefefe"
+                        icon={faXmark}
+                        onClick={onReject}></FontAwesomeIcon>
                 </Button>
             </ButtonContainer>
         </OrderContainer>

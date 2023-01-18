@@ -1,5 +1,6 @@
 import styled from 'styled-components';
 import { DeleteButtonProps } from './Order';
+import { OrderStatusContainerProps } from './OrderStatus';
 
 // --- ItemList --- //
 
@@ -57,6 +58,8 @@ export const OrderContainer = styled.div`
     border-radius: 1.2rem;
     padding: 1.5rem 1.7rem;
     align-items: center;
+    overflow: hidden;
+    min-height: 6rem;
 `;
 
 export const OrderContent = styled.div`
@@ -69,11 +72,14 @@ export const OrderPrice = styled.div`
     flex-direction: column;
 `;
 
-export const OrderStatusContainer = styled.div`
+export const OrderStatusContainer = styled.div<OrderStatusContainerProps>`
     display: flex;
     align-items: center;
     gap: 1rem;
     color: ${props => props.color};
+    @media (max-width: 600px) {
+        display: ${props => (props.hide ? 'none' : 'block')};
+    }
 `;
 
 export const Status = styled.div`
@@ -89,6 +95,10 @@ export const DeleteOrderButton = styled.div<DeleteButtonProps>`
     gap: 2rem;
     margin-right: ${props => (props.isShow ? '0' : '-3.5rem')};
     transition: margin-right 0.3s ease-in-out;
+`;
+
+export const StepperContainer = styled.div`
+    display: flex;
 `;
 
 // --- CurrentOrder --- //

@@ -7,8 +7,8 @@
   "remove": "Supprimer",
   "modify": "Modifier",
   "home": "Accueil",
-  "restaurants":  "Restaurants",
-  "orders":  "Commandes",
+  "restaurants": "Restaurants",
+  "orders": "Commandes",
   "referral": "Parrainage",
   "findRestaurant": "Rechercher un restaurant",
   "slogan": "Arrêtez de parier, venez manger.",
@@ -71,5 +71,9 @@
   "september": "Septembre",
   "october": "Octobre",
   "november": "Novembre",
-  "december": "Decembre"
+  "december": "Decembre",
+  "pastOrders": "Commande passées",
+  "readyToPickup": "Prêt à collecter",
+  "orderAccepted": "Commande accepté !",
+  "orderDeleted": "Commande supprimé"
 }

@@ -7,13 +7,13 @@ export const delivererApi = 'https://gambleatsdelivererservice.azurewebsites.net
 // --- ENUMS --- //
 
 export enum DeliveryStep {
-    VALIDATION_PENDING,
-    IN_PREPARATION,
-    READY_FOR_PICKUP,
-    ON_THE_WAY,
-    AT_YOUR_DOOR,
-    DELIVRED,
-    CANCELED,
+    VALIDATION_PENDING = 'VALIDATION_PENDING',
+    IN_PREPARATION = 'IN_PREPARATION',
+    READY_TO_PICKUP = 'READY_TO_PICKUP',
+    ON_THE_WAY = 'ON_THE_WAY',
+    AT_YOUR_DOOR = 'AT_YOUR_DOOR',
+    DELIVERED = 'DELIVERED',
+    CANCELED = 'CANCELED',
 }
 
 export enum LineStep {
