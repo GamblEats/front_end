@@ -92,5 +92,8 @@
   "postalCode": "Postal code",
   "additional": "Additional",
   "city": "City",
-  "referralInput": "Referral (optional)"
+  "referralInput": "Referral (optional)",
+  "pictureUrl": "Picture's URL",
+  "price": "Price",
+  "category": "Category"
 }

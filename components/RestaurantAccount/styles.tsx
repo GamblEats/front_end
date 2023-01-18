@@ -4,6 +4,8 @@ import { inputProps } from '../AccountCard/AccountForm';
 export const AccountWrapper = styled.div`
     display: flex;
     gap: 2rem;
+    overflow: hidden;
+    height: 80%;
 
     @media screen and (max-width: 1000px) {
         flex-direction: column;
@@ -78,6 +80,7 @@ export const DetailInput = styled.input<inputProps>`
     }
 `;
 export const DetailTextArea = styled.textarea<inputProps>`
+    font-family: Montserrat, sans-serif;
     resize: none;
     height: 8rem;
     font-size: medium;
@@ -105,4 +108,9 @@ export const TitleInput = styled.input<inputProps>`
     ::placeholder {
         color: #143642;
     }
+`;
+
+export const EditItems = styled.div`
+    display: flex;
+    flex-direction: column;
 `;

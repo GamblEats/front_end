@@ -2,6 +2,7 @@ import styled from 'styled-components';
 import { ItemTextProps } from './ItemCard';
 
 export const ItemCardContainer = styled.div`
+    position: relative;
     display: flex;
     background-color: white;
     border-radius: 1.2rem;
@@ -47,4 +48,14 @@ export const ItemText = styled.div<ItemTextProps>`
 export const ItemCardButton = styled.div`
     display: flex;
     justify-content: end;
+`;
+
+export const SelectForm = styled.select`
+    border: none;
+    border-radius: 1em;
+    background-color: white;
+    width: 100%;
+    padding: 2em;
+    font-family: Montserrat, sans-serif;
+    color: #143642;
 `;

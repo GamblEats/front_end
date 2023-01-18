@@ -127,11 +127,11 @@ export const Categorie = styled.div`
 `;
 
 export const DetailsContent = styled.div`
+    overflow: scroll;
+    height: 90rem;
     display: flex;
     flex-direction: column;
     padding: 0 2rem;
-    overflow: hidden;
-    overflow-y: auto;
     width: 100%;
 `;
 

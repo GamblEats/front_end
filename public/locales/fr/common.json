@@ -88,5 +88,8 @@
   "postalCode": "Code postal",
   "additional": "Complément d'adresse",
   "city": "Ville",
-  "referralInput": "Parrain (optionnel)"
+  "referralInput": "Parrain (optionnel)",
+  "pictureUrl": "URL de l'image",
+  "price": "Prix",
+  "category": "Categorie"
 }
