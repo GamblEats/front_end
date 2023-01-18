@@ -48,7 +48,7 @@ const SignUpForm = ({ role }: Props) => {
 
             try {
                 axios
-                    .post(userApi + '/user/sign-up', values, {
+                    .post(userApi + '/users/register', values, {
                         headers: {
                             'Content-Type': 'application/json',
                         },
