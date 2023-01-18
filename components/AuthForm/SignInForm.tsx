@@ -10,7 +10,6 @@ import axios from 'axios';
 import { toast } from 'react-toastify';
 import { signIn } from 'next-auth/react';
 import { IconProp } from '@fortawesome/fontawesome-svg-core';
-import { mockProviders } from 'next-auth/client/__tests__/helpers/mocks';
 
 interface Props {
     role: string;
@@ -41,10 +40,19 @@ const SignInForm = ({ role }: Props) => {
             email: values.email,
             password: values.password,
             role: role,
-            callbackUrl: '/home',
         });
         if (status.ok) {
-            router.push(status.url);
+            switch (role) {
+                case 'deliverer':
+                    await router.push('/deliveries');
+                    break;
+                case 'restaurant':
+                    await router.push('/orders');
+                    break;
+                default:
+                    await router.push('/home');
+                    break;
+            }
         } else {
             toast.error(t('errorLog'));
         }

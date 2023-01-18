@@ -9,8 +9,11 @@ import { useTranslation } from 'next-i18next';
 import axios from 'axios';
 import { toast } from 'react-toastify';
 import { userApi } from '../../public/const';
+interface Props {
+    role: string;
+}
 
-const SignUpForm = () => {
+const SignUpForm = ({ role }: Props) => {
     const router = useRouter();
     const { t } = useTranslation('common');
     const validationSchema = Yup.object({
@@ -41,9 +44,11 @@ const SignUpForm = () => {
         validationSchema,
         onSubmit: (values: any) => {
             delete values.confirmPassword;
+            values.role = role;
+
             try {
                 axios
-                    .post(userApi + '/user/sign-up', values, {
+                    .post(userApi + '/users/register', values, {
                         headers: {
                             'Content-Type': 'application/json',
                         },
@@ -66,7 +71,17 @@ const SignUpForm = () => {
     return (
         <>
             <Form onSubmit={formik.handleSubmit}>
-                <FormTitle> {t('signUp')}</FormTitle>
+                <FormTitle>
+                    <div>
+                        <p>{t('signUp')}</p>
+                        {role !== 'client' && (
+                            <p>
+                                {t('as')}
+                                {t(role)}
+                            </p>
+                        )}
+                    </div>
+                </FormTitle>{' '}
                 <InputForm name="firstName" formik={formik} placeholder={t('firstName')} icon={faPenNib} />
                 <InputForm name="lastName" formik={formik} placeholder={t('lastName')} icon={faPenNib} />
                 <InputForm name="phone" formik={formik} placeholder={t('phone')} icon={faPhone} />
