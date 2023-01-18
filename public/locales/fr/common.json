@@ -84,5 +84,9 @@
   "contact": "Contact",
   "address": "Adresse",
   "deleteConfirm": "Êtes-vous sûr de vouloir supprimer votre compte ?",
-  "modified": "Compte modifié avec succès"
+  "modified": "Compte modifié avec succès",
+  "postalCode": "Code postal",
+  "additional": "Complément d'adresse",
+  "city": "Ville",
+  "referralInput": "Parrain (optionnel)"
 }
