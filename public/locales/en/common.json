@@ -17,7 +17,7 @@
   "phone": "Phone number",
   "email": "Email address",
   "password": "Password",
-  "confirmPassword": "Confirm Password",
+  "confirmPassword": "Confirm password",
   "required": "Field is required",
   "phoneMatch": "Phone number must be in the format '0xxxxxxxxx'",
   "invalidEmail": "Invalid email address",
