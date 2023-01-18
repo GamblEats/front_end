@@ -6,8 +6,6 @@ import IOrder from './types/IOrder';
 import IRestaurant from './types/IRestaurant';
 import IValidationPendingOrder from './types/IValidationPendingOrder';
 import statsSlice from './slices/statsSlice';
-import IOrder from './types/IOrder';
-import IRestaurant from './types/IRestaurant';
 import IStats from './types/IStats';
 import basketSlice from './slices/basketSlice';
 import IBasket from './types/IBasket';
