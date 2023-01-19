@@ -30,8 +30,6 @@ const Referral = () => {
     const { t } = useTranslation('common');
     const [buttonColor, setButtonColor] = useState('#e5bf00');
     const [buttonText, setButtonText] = useState('copie');
-    console.log(session.user);
-
     async function copieCode() {
         await navigator.clipboard.writeText(session.user.codeRef);
         setButtonColor('#27ae60');
