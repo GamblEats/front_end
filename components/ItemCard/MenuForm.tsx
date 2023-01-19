@@ -122,7 +122,6 @@ const MenuForm = ({ menu, setIsEditing, validationSchema, getRestaurant, restaur
             } catch (error) {}
         },
     });
-
     return (
         <>
             <BlurBg

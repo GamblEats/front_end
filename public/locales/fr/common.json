@@ -108,7 +108,7 @@
   "referralActivated": "Confirmé",
   "noDelivery": "Aucune livraison en cours, mais vous pouvez en accepter ci dessous !",
   "addAnItem": "Ajoutez un item",
-  "deleteConfirmMenu": "Êtes-vous sûr de vouloir supprimer ce menu ?"
+  "deleteConfirmMenu": "Êtes-vous sûr de vouloir supprimer ce menu ?",
   "createARestaurant": "Créer un restaurant",
   "noRestaurant": "Vous n'avez pas encore de restaurant",
   "pic": "URL de l'image",

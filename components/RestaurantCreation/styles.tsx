@@ -1,6 +1,7 @@
 import styled from 'styled-components';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { inputProps } from '../AuthForm/inputForm';
+import Select from 'react-select';
 
 export const Container = styled.div`
     position: relative;
@@ -100,7 +101,7 @@ export const Buttons = styled.div`
     width: 100%;
 `;
 
-export const DetailTextArea = styled.textarea<inputProps>`
+export const DetailTextArea = styled.textarea`
     font-family: Montserrat, sans-serif;
     resize: none;
     height: 8rem;

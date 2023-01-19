@@ -110,6 +110,8 @@
   "referralWaiting": "Pending",
   "referralActivated": "Confirmed",
   "noDelivery": "No delivery in progress, but you can accept some below!",
+  "addAnItem": "Add an item",
+  "deleteConfirmMenu": "Are you sure you want to delete this menu ?",
   "createARestaurant": "Create a restaurant",
   "noRestaurant": "You don't have a restaurant yet",
   "pic": "Picture URL",
@@ -123,6 +125,7 @@
   "prepared": "Prepared",
   "onTheWay": "On the way",
   "atYourDoor": "At your door",
+  "noReferral": "Refer a friend to see the list of your referrals here!",
   "addAnItem": "Add an item"
   "addAnItem": "Add an item",
   "deleteConfirmMenu": "Are you sure you want to delete this menu ?"
