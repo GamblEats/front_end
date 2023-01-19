@@ -1,4 +1,5 @@
 import styled from 'styled-components';
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 
 export const BlurBg = styled.div`
     position: fixed;
@@ -192,7 +193,7 @@ export const Order = styled.div`
     padding-block: 3rem;
     right: 0;
     overflow: hidden;
-    transition: width 0.3s ease-in-out;
+    transition: width 0.3s ease-in-out, padding 0.3s ease-in-out;
     position: absolute;
     justify-content: space-between;
     display: flex;
@@ -206,6 +207,7 @@ export const Order = styled.div`
 `;
 
 export const OrderTitle = styled.div`
+    position: relative;
     font-weight: 800;
     font-size: x-large;
 `;
@@ -243,4 +245,51 @@ export const Bottom = styled.div`
     justify-content: space-between;
     align-items: center;
     gap: 2rem;
+`;
+
+export const CloseModal = styled(FontAwesomeIcon)`
+    @media (min-width: 1201px) {
+        right: 1.5rem;
+        top: 1.5rem;
+        cursor: pointer;
+        font-size: 2rem;
+        color: #e5bf00;
+        z-index: 100;
+    }
+    @media screen and (max-width: 1200px) {
+        color: white;
+        width: 0.7rem;
+        cursor: pointer;
+    }
+`;
+
+export const DivClose = styled.div`
+    @media (min-width: 1201px) {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        background: rgba(242, 242, 242, 0.24);
+        backdrop-filter: blur(3px);
+        width: 2rem;
+        position: absolute;
+        right: 1.5rem;
+        top: 1.5rem;
+        border-radius: 50%;
+        z-index: 100;
+    }
+    @media (max-width: 1200px) {
+        position: absolute;
+        display: flex;
+        background: rgba(20, 54, 66, 0.69);
+        backdrop-filter: blur(3px);
+        border-radius: 50%;
+        align-items: center;
+        justify-content: center;
+        height: 2rem;
+        width: 2rem;
+        top: 95%;
+        left: 5%;
+        transform: translate(-50%, -50%);
+        z-index: 100;
+    }
 `;
