@@ -198,8 +198,6 @@ const AccountInfo = ({ restaurantInfo, loading }: Props) => {
                                     value={formik.values.description}
                                     onChange={formik.handleChange}
                                 />
-
-                                {}
                             </InfoDetails>
                             {!edit && (
                                 <>

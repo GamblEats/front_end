@@ -7,9 +7,9 @@ export const AccountWrapper = styled.div`
     overflow: hidden;
     height: 80%;
 
-    @media screen and (max-width: 1000px) {
-        flex-direction: column;
-    }
+    //@media screen and (max-width: 1000px) {
+    //    flex-direction: column;
+    //}
 `;
 
 export const InfoContainer = styled.div`
