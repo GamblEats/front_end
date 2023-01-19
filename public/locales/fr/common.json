@@ -89,5 +89,9 @@
   "orderProblem": "Un problème avec la commande ?",
   "pickedUp": "I'v picked up the order",
   "atTheDoor": "Je suis à la porte",
-  "orderDelivred": "Commande livrée"
+  "orderDelivred": "Commande livrée",
+  "postalCode": "Code postal",
+  "additional": "Complément d'adresse",
+  "city": "Ville",
+  "referralInput": "Parrain (optionnel)"
 }

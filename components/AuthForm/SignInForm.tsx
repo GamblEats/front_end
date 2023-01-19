@@ -10,6 +10,7 @@ import axios from 'axios';
 import { toast } from 'react-toastify';
 import { signIn } from 'next-auth/react';
 import { IconProp } from '@fortawesome/fontawesome-svg-core';
+import BackButton from '../globals/BackButton';
 
 interface Props {
     role: string;
@@ -60,6 +61,7 @@ const SignInForm = ({ role }: Props) => {
 
     return (
         <>
+            <BackButton />
             <Form onSubmit={formik.handleSubmit}>
                 <FormTitle>
                     <div>
