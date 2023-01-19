@@ -1,10 +1,10 @@
-import { StatsModel } from '../../models/StatsModel';
+import { CommStatsModel } from '../../models/CommStatsModel';
 
-interface IStats {
-    stats: any;
+interface ICommStats {
+    commStats: any;
     error: boolean;
     loading: boolean;
     getCommStats: () => void;
 }
 
-export default IStats;
+export default ICommStats;
