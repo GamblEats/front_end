@@ -123,6 +123,7 @@ export const Text = styled.div<TextProps>`
     font-style: ${props => (props.italic ? 'italic' : 'normal')};
     text-align: ${props => (props.align ? props.align : 'normal')};
     color: ${props => props.color || '#143642'};
+    opacity: ${props => props.opacity || 1};
 `;
 
 export const ListContainer = styled.div`

@@ -24,7 +24,7 @@ const DeliveryStepper = ({ step, isInWidget = false, isInOrder = false, setReady
     const { t } = useTranslation('common');
     const stepValue = Object.values(DeliveryStep);
     return (
-        <StepperContainer isInColumn={isInWidget} style={{ transform: isInOrder ? 'scale(0.8)' : '' }}>
+        <StepperContainer isInColumn={isInWidget} style={{ transform: isInOrder || isInWidget ? 'scale(0.8)' : '' }}>
             <StepCircle color={stepValue.indexOf(step) > 0 ? '#27ae60' : '#f2f2f2'}>
                 <FontAwesomeIcon fontSize={'x-large'} color="#fefefe" icon={faCircleCheck} />
             </StepCircle>
@@ -42,7 +42,7 @@ const DeliveryStepper = ({ step, isInWidget = false, isInOrder = false, setReady
             </StepCircle>
             <StepLine
                 isInColumn={isInWidget}
-                style={{ width: isInOrder && stepValue.indexOf(step) === 1 ? '50%' : '100%' }}
+                style={{ width: isInOrder && stepValue.indexOf(step) === 1 ? '50%' : isInWidget ? '' : '100%' }}
                 lineStep={
                     stepValue.indexOf(step) < 3
                         ? LineStep.EMPTY

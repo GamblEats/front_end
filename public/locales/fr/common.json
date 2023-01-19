@@ -115,5 +115,9 @@
   "categories": "Catégories", 
   "validate": "Valider",
   "waitPreparation": "En preparation, patience...",
-  "noReferral": "Parrainnez un ami pour voir la liste de vos parrain ici !"
+  "noReferral": "Parrainnez un ami pour voir la liste de vos parrain ici !",
+  "validated": "Validée",
+  "prepared": "Préparée",
+  "onTheWay": "En chemin",
+  "atYourDoor": "A votre porte"
 }
