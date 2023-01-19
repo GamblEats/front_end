@@ -50,6 +50,9 @@ const SignInForm = ({ role }: Props) => {
                 case 'restaurant':
                     await router.push('/orders');
                     break;
+                case 'commercial':
+                    await router.push('/statistics');
+                    break;
                 default:
                     await router.push('/home');
                     break;
