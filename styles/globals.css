@@ -30,6 +30,24 @@ input:focus {
   outline: 1px solid #e6bf00;
 }
 
+/* -- Loader -- */
+
+@keyframes loading {
+  0% {
+      transform: scale(1) rotate(0deg);
+  }
+  50% {
+      transform: scale(1.4) rotate(180deg);
+  }
+  100% {
+    transform: scale(1) rotate(360deg);
+}
+}
+
+.loader {
+  animation: loading 1.5s ease-in-out infinite;
+}
+
 /* -- Menu -- */
 
 .hideMenu {

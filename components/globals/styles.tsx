@@ -20,6 +20,7 @@ export const ButtonContainer = styled.button<SmallProps>`
 export const ButtonLabel = styled.div<SmallProps>`
     font-size: ${props => (props.small ? '0.8rem' : '1.1rem')};
     color: ${props => props.color};
+    font-weight: ${props => (props.textColor ? '600' : '500')};
 `;
 export const ButtonIcon = styled.div<SmallProps>`
     font-size: ${props => (props.small ? '0.8rem' : '1.1rem')};
