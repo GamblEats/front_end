@@ -8,16 +8,19 @@ import IRestaurant from './types/IRestaurant';
 import IValidationPendingOrder from './types/IValidationPendingOrder';
 import statsSlice from './slices/statsSlice';
 import IStats from './types/IStats';
+import ICommStats from './types/ICommStats';
 import basketSlice from './slices/basketSlice';
 import IBasket from './types/IBasket';
 import IReadyToPickupOrder from './types/IReadyToPickupOrder';
+import commStatsSlice from './slices/commStatsSlice';
 
-const useStore = create<IRestaurant & IOrder & IValidationPendingOrder & IBasket & IStats & IReadyToPickupOrder>()((...a) => ({
+const useStore = create<IRestaurant & IOrder & IValidationPendingOrder & IBasket & IStats & IReadyToPickupOrder & ICommStats>()((...a) => ({
     ...restaurantSlice(...a),
     ...orderSlice(...a),
     ...basketSlice(...a),
     ...statsSlice(...a),
     ...validationPendingOrdersSlice(...a),
-    ...readyToPickupOrderSlice(...a)
+    ...readyToPickupOrderSlice(...a),
+    ...commStatsSlice(...a)
 }));
 export default useStore;

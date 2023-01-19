@@ -10,6 +10,7 @@ import {
     faPersonBiking,
     faBox,
     faChartSimple,
+    faHandHoldingDollar,
 } from '@fortawesome/free-solid-svg-icons';
 
 import {
@@ -41,6 +42,9 @@ const NavBar = () => {
                 break;
             case 'deliverer':
                 setIcon(faPersonBiking);
+                break;
+            case 'commercial':
+                setIcon(faHandHoldingDollar);
                 break;
             default:
                 setIcon(faUser);
@@ -79,6 +83,11 @@ const NavBar = () => {
                     <>
                         <NavPageItem name={'orders'} icon={faBox}></NavPageItem>
                         <NavPageItem name={'myRestaurant'} icon={faUtensils}></NavPageItem>
+                        <NavPageItem name={'statistics'} icon={faChartSimple}></NavPageItem>
+                    </>
+                )}
+                {session && session.user.role === 'commercial' && (
+                    <>
                         <NavPageItem name={'statistics'} icon={faChartSimple}></NavPageItem>
                     </>
                 )}

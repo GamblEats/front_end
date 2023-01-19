@@ -63,6 +63,13 @@ const Menu = ({ isOnFormPage }: Props) => {
                                     query: { ...router.query, form: 'signIn', as: 'deliverer' },
                                 });
                             }}></Button>
+                        <Button
+                            text={t('commercialSignIn')}
+                            onClick={() => {
+                                router.replace({
+                                    query: { ...router.query, form: 'signIn', as: 'commercial' },
+                                });
+                            }}></Button>
                     </PartnersList>
                 </div>
                 {!isMobileMenu && (

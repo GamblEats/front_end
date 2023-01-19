@@ -9,23 +9,26 @@ import { useTranslation } from 'next-i18next';
 import Stats from '../components/Stats/Stats';
 import useStore from '../store/useStore';
 import Loader from '../components/globals/Loader';
+import CommStats from '../components/CommercialStats/CommStats';
 
 const Statistics = () => {
     const { t } = useTranslation('common');
     const { data: session }: any = useSession();
-    const { stats, getStats, loading, error } = useStore();
+    const { stats, getStats, getCommStats, commStats, loading, commLoading, commError } = useStore();
     const router = useRouter();
 
     useEffect(() => {
-        if (session.user.role !== 'restaurant') {
+        if (session.user.role !== 'restaurant' && session.user.role !== 'commercial') {
             router.push('/home');
         }
     }, []);
     return (
         <PageContainer>
             <PageHeader title={t('statistics')}></PageHeader>
-            {!stats && <Loader onAllPage={true} size="5rem" />}
-            <Stats />
+            {session.user.role === 'restaurant' && !stats && <Loader onAllPage={true} size="5rem" />}
+            {session.user.role === 'restaurant' && <Stats />}
+            {session.user.role === 'commercial' && !commStats && <Loader onAllPage={true} size="5rem" />}
+            {session.user.role === 'commercial' && <CommStats />}
         </PageContainer>
     );
 };

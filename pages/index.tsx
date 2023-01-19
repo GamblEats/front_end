@@ -105,11 +105,18 @@ const Index = () => {
                 </SloganContainer>
                 {router.query.form === 'signIn' && router.query.as === 'client' && <SignInForm role={'client'} />}
                 {router.query.form === 'signIn' && router.query.as === 'deliverer' && <SignInForm role={'deliverer'} />}
+                {router.query.form === 'signIn' && router.query.as === 'commercial' && (
+                    <SignInForm role={'commercial'} />
+                )}
+
                 {router.query.form === 'signIn' && router.query.as === 'restaurant' && (
                     <SignInForm role={'restaurant'} />
                 )}
                 {router.query.form === 'signUp' && router.query.as === 'client' && <SignUpForm role={'client'} />}
                 {router.query.form === 'signUp' && router.query.as === 'deliverer' && <SignUpForm role={'deliverer'} />}
+                {router.query.form === 'signUp' && router.query.as === 'commercial' && (
+                    <SignUpForm role={'commercial'} />
+                )}
                 {router.query.form === 'signUp' && router.query.as === 'restaurant' && (
                     <SignUpForm role={'restaurant'} />
                 )}
