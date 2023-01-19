@@ -126,5 +126,8 @@ export const Text = styled.div<TextProps>`
 
 export const ListContainer = styled.div`
     background-color: white;
+    height: 19rem;
     border-radius: 1.2rem;
+    overflow: hidden;
+    overflow-y: auto;
 `;

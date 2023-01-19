@@ -4,6 +4,7 @@ import { IconProp } from '@fortawesome/fontawesome-svg-core';
 
 interface Props {
     text: string;
+    textColor?: string;
     small?: boolean;
     backgroundColor?: string;
     icon?: IconProp;
@@ -12,12 +13,16 @@ interface Props {
 
 export interface SmallProps {
     small?: boolean;
+    textColor?: string;
 }
 
-const Button = ({ backgroundColor, text, small, icon, onClick }: Props) => {
+const Button = ({ backgroundColor, text, textColor, small, icon, onClick }: Props) => {
     return (
         <ButtonContainer color={backgroundColor} small={small} onClick={onClick}>
-            <ButtonLabel color={backgroundColor ? '#f2f2f2' : '#143642'} small={small}>
+            <ButtonLabel
+                color={textColor ? textColor : backgroundColor ? '#f2f2f2' : '#143642'}
+                small={small}
+                textColor={textColor}>
                 {text}
             </ButtonLabel>
             {icon && (

@@ -56,10 +56,10 @@ const PendingOrder = ({ isRestaurant, order, onValidation, onReject }: Props) =>
                     </AddressesPipeline>
                     <Addresses>
                         <RestaurantAddress>
-                            <Address>100 rue Colbert, Lomme</Address>
-                            <RestaurantName>Nigburger</RestaurantName>
+                            <Address>{order.restaurant.address}</Address>
+                            <RestaurantName>{order.restaurant.name}</RestaurantName>
                         </RestaurantAddress>
-                        <Address>161 rue Pierre Mauroy, Lille</Address>
+                        <Address>{order.address}</Address>
                     </Addresses>
                 </InfoContainer>
             )}
