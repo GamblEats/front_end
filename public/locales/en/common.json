@@ -95,5 +95,13 @@
   "referralInput": "Referral (optional)",
   "pictureUrl": "Picture's URL",
   "price": "Price",
-  "category": "Category"
+  "category": "Category",
+  "item": "Item",
+  "items": "Items",
+  "menu": "Menu",
+  "menus": "Menus",
+  "deleteConfirmItem": "Are you sure you want to delete this item ?",
+  "confirm": "Confirm",
+  "cancel": "Cancel"
+
 }

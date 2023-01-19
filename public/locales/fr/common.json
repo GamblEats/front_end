@@ -91,5 +91,14 @@
   "referralInput": "Parrain (optionnel)",
   "pictureUrl": "URL de l'image",
   "price": "Prix",
-  "category": "Categorie"
+  "category": "Categorie",
+  "item": "Article",
+  "items": "Articles",
+  "menu": "Menu",
+  "menus": "Menus",
+  "deleteConfirmItem": "Êtes-vous sûr de vouloir supprimer cet article ?",
+  "confirm": "Valider",
+  "cancel": "Annuler"
+
+
 }

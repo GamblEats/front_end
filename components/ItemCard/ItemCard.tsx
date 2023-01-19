@@ -8,12 +8,14 @@ import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import React, { useState } from 'react';
 import { SignInButton, SignUpButton } from '../AuthForm/styles';
 import axios from 'axios';
-import { userApi } from '../../public/const';
-import { signOut } from 'next-auth/react';
+import { restaurantApi, userApi } from '../../public/const';
+import { signOut, useSession } from 'next-auth/react';
 import { useTranslation } from 'next-i18next';
 import { use } from 'i18next';
 import { Details } from '../RestaurantDetails/styles';
 import ItemForm from './ItemForm';
+import * as Yup from 'yup';
+import { toast } from 'react-toastify';
 
 interface Props {
     item?: ItemModel;
@@ -21,6 +23,7 @@ interface Props {
     onClick: () => void;
     shop?: boolean;
     edit?: boolean;
+    getRestaurant?: () => void;
 }
 
 export interface ItemTextProps {
@@ -28,10 +31,19 @@ export interface ItemTextProps {
     weight?: string;
 }
 
-const DeliveryStepper = ({ item, menu, onClick, shop = true, edit = false }: Props) => {
+const DeliveryStepper = ({ item, menu, onClick, shop = true, edit = false, getRestaurant = () => {} }: Props) => {
+    const { data: session } = useSession();
+    const validationSchema = Yup.object({
+        description: Yup.string(),
+        pic: Yup.string(),
+        price: Yup.number(),
+        name: Yup.string(),
+        category: Yup.string(),
+    });
     const { t } = useTranslation('common');
     const [deleteItem, setDeleteItem] = useState<boolean>(false);
     const [isEditing, setIsEditing] = useState<boolean>(false);
+    console.log(session);
     return (
         <ItemCardContainer>
             <ItemImg src={item ? item.pic : menu ? menu.pic : ''}></ItemImg>
@@ -84,7 +96,7 @@ const DeliveryStepper = ({ item, menu, onClick, shop = true, edit = false }: Pro
                         e.stopPropagation();
                     }}>
                     <Modal onClick={e => e.stopPropagation()}>
-                        <Label> {t('deleteConfirm')}</Label>
+                        <Label> {t('deleteConfirmItem')}</Label>
                         <ButtonsModal>
                             <SignInButton
                                 type="button"
@@ -97,17 +109,18 @@ const DeliveryStepper = ({ item, menu, onClick, shop = true, edit = false }: Pro
                                 type="button"
                                 color={'#e5bf00'}
                                 onClick={() => {
-                                    setDeleteItem(false);
-                                    console.log('deleted');
-                                    // axios
-                                    //     .delete(`${userApi}/users/${session.user.id}`, {
-                                    //         headers: {
-                                    //             'Content-Type': 'application/json',
-                                    //         },
-                                    //     })
-                                    //     .then(() => {
-                                    //         setDeleteItem(false);
-                                    //     });
+                                    item &&
+                                        axios
+                                            .delete(`${restaurantApi}/items/${item.id}`, {
+                                                headers: {
+                                                    'Content-Type': 'application/json',
+                                                },
+                                            })
+                                            .then(() => {
+                                                toast.success('Item supprimé');
+                                                setDeleteItem(false);
+                                                getRestaurant();
+                                            });
                                 }}>
                                 {t('yes')}
                             </SignUpButton>
@@ -115,7 +128,14 @@ const DeliveryStepper = ({ item, menu, onClick, shop = true, edit = false }: Pro
                     </Modal>
                 </BlurBg>
             )}
-            {isEditing && item && <ItemForm item={item} setIsEditing={setIsEditing} />}
+            {isEditing && item && (
+                <ItemForm
+                    item={item}
+                    setIsEditing={setIsEditing}
+                    validationSchema={validationSchema}
+                    getRestaurant={getRestaurant}
+                />
+            )}
         </ItemCardContainer>
     );
 };

@@ -46,7 +46,7 @@ const MyRestaurant = () => {
             <PageHeader title={t('myRestaurant')}></PageHeader>
             {session.user.restaurantId ? (
                 <AccountWrapper>
-                    <MenusAndArticles restaurantInfo={restaurantInfo} loading={loading} />
+                    <MenusAndArticles restaurantInfo={restaurantInfo} getRestaurant={getRestaurant} loading={loading} />
                     <AccountInfo restaurantInfo={restaurantInfo} loading={loading} />
                 </AccountWrapper>
             ) : (

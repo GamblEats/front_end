@@ -2,7 +2,7 @@ import { useTranslation } from 'next-i18next';
 import { signOut, useSession } from 'next-auth/react';
 import React, { useEffect, useRef, useState } from 'react';
 import axios from 'axios';
-import { months, userApi } from '../../public/const';
+import { months, restaurantApi, userApi } from '../../public/const';
 import styled from 'styled-components';
 import { useFormik } from 'formik';
 import * as Yup from 'yup';
@@ -16,6 +16,8 @@ import { ItemModel } from '../../models/ItemModel';
 import { categories } from '../../config/categories';
 import { SelectForm } from './styles';
 import { Details } from '../RestaurantDetails/styles';
+import { session } from 'next-auth/core/routes';
+import useStore from '../../store/useStore';
 
 export interface inputProps {
     edit: boolean;
@@ -24,27 +26,25 @@ export interface inputProps {
 interface Props {
     item?: ItemModel;
     setIsEditing: (value: boolean) => void;
+    validationSchema: any;
+    getRestaurant: () => void;
 }
 
-const ItemForm = ({ item, setIsEditing }: Props) => {
+const ItemForm = ({ item, setIsEditing, validationSchema, getRestaurant }: Props) => {
     const { t } = useTranslation('common');
-
-    const validationSchema = Yup.object({
-        picture: Yup.string(),
-        price: Yup.string(),
-        name: Yup.string(),
-        category: Yup.string(),
-    });
+    const { data: session }: any = useSession();
 
     const formik = useFormik({
         initialValues: {
-            picture: '',
+            pic: '',
             price: '',
+            description: '',
             name: '',
             category: '',
         },
         validationSchema,
         onSubmit: (values: any) => {
+            values.restaurant = session.user.restaurantId;
             const cleanedValues = Object.entries(values)
                 .filter(([key, value]) => value !== '')
                 .reduce((obj, [key, value]) => {
@@ -52,17 +52,29 @@ const ItemForm = ({ item, setIsEditing }: Props) => {
                     obj[key] = value;
                     return obj;
                 }, {});
-            // axios
-            //     .patch(`${userApi}/users/${session.user.id}`, cleanedValues, {
-            //         headers: {
-            //             'Content-Type': 'application/json',
-            //         },
-            //     })
-            //     .then(() => {
-            //         setEdit(false);
-            //         toast.success(t('accountModified'));
-            //     });
-            console.log(cleanedValues);
+            item
+                ? axios
+                      .patch(`${restaurantApi}/items/${item.id}`, cleanedValues, {
+                          headers: {
+                              'Content-Type': 'application/json',
+                          },
+                      })
+                      .then(() => {
+                          getRestaurant();
+                          setIsEditing(false);
+                          toast.success(t('accountModified'));
+                      })
+                : axios
+                      .post(`${restaurantApi}/items`, cleanedValues, {
+                          headers: {
+                              'Content-Type': 'application/json',
+                          },
+                      })
+                      .then(() => {
+                          getRestaurant();
+                          setIsEditing(false);
+                          toast.success(t('accountModified'));
+                      });
         },
     });
 
@@ -74,7 +86,7 @@ const ItemForm = ({ item, setIsEditing }: Props) => {
                     setIsEditing(false);
                 }}>
                 <Details
-                    style={{ width: '40%', height: '70%' }}
+                    style={{ width: '40%', height: '80%' }}
                     onClick={e => {
                         e.stopPropagation();
                     }}>
@@ -97,10 +109,10 @@ const ItemForm = ({ item, setIsEditing }: Props) => {
                         <InputRow>
                             <Title>{t('pictureUrl')}</Title>
                             <Input
-                                name={'picture'}
+                                name={'pic'}
                                 edit={false}
                                 placeholder={item ? item.pic : `${t('pictureUrl')}`}
-                                value={formik.values.picture}
+                                value={formik.values.pic}
                                 onChange={formik.handleChange}
                             />
                             <Title>{t('name')}</Title>
@@ -116,9 +128,18 @@ const ItemForm = ({ item, setIsEditing }: Props) => {
                                 name={'price'}
                                 edit={false}
                                 placeholder={item ? item.price + ' €' : `${t('price')}`}
-                                value={formik.values.name}
+                                value={formik.values.price}
                                 onChange={formik.handleChange}
                             />
+                            <Title>{'Description'}</Title>
+                            <Input
+                                name={'description'}
+                                edit={false}
+                                placeholder={item ? item.description : `Description`}
+                                value={formik.values.description}
+                                onChange={formik.handleChange}
+                            />
+
                             <Title>{t('category')}</Title>
                             <SelectForm
                                 required
@@ -138,10 +159,10 @@ const ItemForm = ({ item, setIsEditing }: Props) => {
                                 onClick={() => {
                                     setIsEditing(false);
                                 }}>
-                                Annuler
+                                {t('cancel')}
                             </SignInButton>
                             <SignUpButton type="submit" disabled={!(formik.isValid && formik.dirty)} color={'#e5bf00'}>
-                                Valider
+                                {t('confirm')}
                             </SignUpButton>
                         </Buttons>
                     </Form>
