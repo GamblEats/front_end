@@ -103,8 +103,15 @@
   "menus": "Menus",
   "deleteConfirmItem": "Êtes-vous sûr de vouloir supprimer cet article ?",
   "confirm": "Valider",
-  "cancel": "Annuler"
+  "cancel": "Annuler",
   "referralWaiting": "En attente",
   "referralActivated": "Confirmé",
-  "noDelivery": "Aucune livraison en cours, mais vous pouvez en accepter ci dessous !"
+  "noDelivery": "Aucune livraison en cours, mais vous pouvez en accepter ci dessous !",
+  "createARestaurant": "Créer un restaurant",
+  "noRestaurant": "Vous n'avez pas encore de restaurant",
+  "pic": "URL de l'image",
+  "description": "Description",
+  "deliveryPrice": "Prix de la livraison",
+  "categories": "Catégories", 
+  "validate": "Valider"
 }

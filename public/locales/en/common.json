@@ -93,7 +93,6 @@
   "orderDelivered": "Order delivered",
   "restaurantModified": "Restaurant successfully modified",
   "deleteConfirmRestaurant": "Are you sure you want to delete your restaurant ?",
-  "noRestaurant": "You have no restaurant",
   "postalCode": "Postal code",
   "additional": "Additional",
   "city": "City",
@@ -107,8 +106,15 @@
   "menus": "Menus",
   "deleteConfirmItem": "Are you sure you want to delete this item ?",
   "confirm": "Confirm",
-  "cancel": "Cancel"
+  "cancel": "Cancel",
   "referralWaiting": "Pending",
   "referralActivated": "Confirmed",
-  "noDelivery": "No delivery in progress, but you can accept some below!"
+  "noDelivery": "No delivery in progress, but you can accept some below!",
+  "createARestaurant": "Create a restaurant",
+  "noRestaurant": "You don't have a restaurant yet",
+  "pic": "Picture URL",
+  "description": "Description",
+  "deliveryPrice": "Delivery price",
+  "categories": "Categories", 
+  "validate": "Validate"
 }
