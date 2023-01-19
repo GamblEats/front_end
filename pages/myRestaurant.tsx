@@ -40,12 +40,14 @@ const MyRestaurant = () => {
         }
     }
     useEffect(() => {
-        getRestaurant();
+        if (session.user.restaurantId) {
+            getRestaurant();
+        }
     }, []);
     return (
         <PageContainer>
             <PageHeader title={t('myRestaurant')}></PageHeader>
-            {!restaurantInfo && <Loader onAllPage={true} size="5rem" />}
+            {!session.user.restaurantId || (!restaurantInfo && <Loader onAllPage={true} size="5rem" />)}
             {session.user.restaurantId ? (
                 <AccountWrapper>
                     <MenusAndArticles restaurantInfo={restaurantInfo} getRestaurant={getRestaurant} loading={loading} />

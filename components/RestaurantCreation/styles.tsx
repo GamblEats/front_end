@@ -17,7 +17,6 @@ export const Input = styled.input<inputProps>`
     width: 100%;
     height: 3em;
     padding: 2em;
-
     ::placeholder {
         color: ${props => props.color};
     }
@@ -30,7 +29,6 @@ export const InputWraper = styled.div`
     display: flex;
     gap: 1rem;
     width: 100%;
-
     @media (max-width: 500px) {
         flex-direction: column;
     }
