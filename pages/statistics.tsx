@@ -14,7 +14,7 @@ import CommStats from '../components/CommercialStats/CommStats';
 const Statistics = () => {
     const { t } = useTranslation('common');
     const { data: session }: any = useSession();
-    const { stats, getStats, getCommStats, commStats, loading, error } = useStore();
+    const { stats, getStats, getCommStats, commStats, loading, commLoading, commError } = useStore();
     const router = useRouter();
 
     useEffect(() => {
@@ -25,8 +25,10 @@ const Statistics = () => {
     return (
         <PageContainer>
             <PageHeader title={t('statistics')}></PageHeader>
-            {!stats && !commStats && <Loader onAllPage={true} size="5rem" />}
-            {session.user.role === 'restaurant' ? <Stats /> : <CommStats />}
+            {session.user.role === 'restaurant' && !stats && <Loader onAllPage={true} size="5rem" />}
+            {session.user.role === 'restaurant' && <Stats />}
+            {session.user.role === 'commercial' && !commStats && <Loader onAllPage={true} size="5rem" />}
+            {session.user.role === 'commercial' && <CommStats />}
         </PageContainer>
     );
 };

@@ -2,8 +2,8 @@ import { CommStatsModel } from '../../models/CommStatsModel';
 
 interface ICommStats {
     commStats: any;
-    error: boolean;
-    loading: boolean;
+    commError: boolean;
+    commLoading: boolean;
     getCommStats: () => void;
 }
 

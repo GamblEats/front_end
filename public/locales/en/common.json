@@ -121,5 +121,13 @@
   "validate": "Validate",
   "waitPreparation": "In preparation, be patient...",
   "noReferral": "Refer a friend to see the list of your referrals here!",
-  "commercial": "Commercial"
+  "commercial": "commercial",
+  "commercialSignIn": "Commercial",
+  "topItemsSold": "Top items sold",
+  "traffic": "Traffic",
+  "restaurantsAnd": "restaurants and",
+  "xrestorers": "restorers",
+  "usersRate": "users (+19% in the last 30 days)",
+  "deliverersRate": "deliverers (+31% in the last 30 days)",
+  "deliverers": "Deliverers"
 }

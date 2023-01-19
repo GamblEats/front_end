@@ -4,9 +4,9 @@ import { userApi } from '../../public/const';
 import ICommStats from '../types/ICommStats';
 
 const commStatsSlice: StateCreator<ICommStats> = (set, get) => ({
-    stats: null,
-    loading: true,
-    error: false,
+    commStats: null,
+    commLoading: true,
+    commError: false,
     getCommStats: async () => {
         try {
             const { data } = await axios.get(userApi + `/stats`, {
@@ -14,7 +14,7 @@ const commStatsSlice: StateCreator<ICommStats> = (set, get) => ({
                     'Content-Type': 'application/json',
                 },
             });
-            set(state => ({ ...state, stats: data, loading: false }));
+            set(state => ({ ...state, commStats: data, loading: false }));
         } catch (error) {
             throw error;
         }

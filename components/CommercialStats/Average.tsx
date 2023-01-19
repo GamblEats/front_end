@@ -1,26 +1,37 @@
 import React from 'react';
 import { AverageContainer, AverageHeading, AverageText, AverageWrapper, ContainerTitle, TableWrapper } from './styles';
-import { faStopwatch, faMoneyBill } from '@fortawesome/free-solid-svg-icons';
+import { faUtensils, faPerson } from '@fortawesome/free-solid-svg-icons';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import { useTranslation } from 'next-i18next';
 
 interface Props {
-    average: number;
-    averageTime: number;
+    nbUser: number;
+    nbDeliverer: number;
+    nbRestaurateur: number;
+    nbRestaurant: number;
 }
 
-const Average = ({ average, averageTime }: Props) => {
+const Average = ({ nbUser, nbDeliverer, nbRestaurant, nbRestaurateur }: Props) => {
+    const { t } = useTranslation('common');
+
     return (
         <AverageWrapper>
-            <ContainerTitle>Average</ContainerTitle>
+            <ContainerTitle>{t('traffic')}</ContainerTitle>
             <AverageContainer>
-                <AverageHeading>Average delivery time in the last 30 days</AverageHeading>
+                <AverageHeading>Restaurants</AverageHeading>
                 <AverageText>
-                    <FontAwesomeIcon style={{ fontSize: '2.5rem', color: '#E5BF00' }} icon={faStopwatch} />{' '}
-                    {averageTime} min
+                    <FontAwesomeIcon style={{ fontSize: '1rem', color: '#E5BF00' }} icon={faUtensils} /> {nbRestaurant}{' '}
+                    {t('restaurantsAnd')} {nbRestaurateur} {t('xrestorers')}
                 </AverageText>
-                <AverageHeading>Average order price in the last 30 days</AverageHeading>
+                <AverageHeading>Clients</AverageHeading>
                 <AverageText>
-                    <FontAwesomeIcon style={{ fontSize: '2.5rem', color: '#E5BF00' }} icon={faMoneyBill} /> {average}€
+                    <FontAwesomeIcon style={{ fontSize: '1rem', color: '#E5BF00' }} icon={faPerson} /> {nbUser}{' '}
+                    {t('usersRate')}
+                </AverageText>
+                <AverageHeading>{t('deliverers')}</AverageHeading>
+                <AverageText>
+                    <FontAwesomeIcon style={{ fontSize: '1rem', color: '#E5BF00' }} icon={faPerson} /> {nbDeliverer}{' '}
+                    {t('deliverersRate')}
                 </AverageText>
             </AverageContainer>
         </AverageWrapper>

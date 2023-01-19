@@ -64,7 +64,7 @@ const Menu = ({ isOnFormPage }: Props) => {
                                 });
                             }}></Button>
                         <Button
-                            text={t('commercial')}
+                            text={t('commercialSignIn')}
                             onClick={() => {
                                 router.replace({
                                     query: { ...router.query, form: 'signIn', as: 'commercial' },

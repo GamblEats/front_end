@@ -8,7 +8,7 @@ export const StatsWrapper = styled.div`
     display: flex;
     gap: 2rem;
 
-    @media screen and (max-width: 800px) {
+    @media screen and (max-width: 1100px) {
         flex-direction: column;
     }
 `;
@@ -44,7 +44,7 @@ export const TableWrapper = styled.div`
     flex-direction: column;
     width: 50%;
 
-    @media screen and (max-width: 800px) {
+    @media screen and (max-width: 1100px) {
         width: 100%;
     }
 `;
@@ -54,7 +54,7 @@ export const AverageWrapper = styled.div`
     flex-direction: column;
     width: 50%;
 
-    @media screen and (max-width: 800px) {
+    @media screen and (max-width: 1100px) {
         width: 100%;
     }
 `;
@@ -70,7 +70,7 @@ export const AverageHeading = styled.h4`
 `;
 
 export const AverageText = styled.p`
-    font-size: 2.5rem;
+    font-size: 1rem;
     color: #143642;
-    margin-top: 1.5rem;
+    margin-top: 1rem;
 `;

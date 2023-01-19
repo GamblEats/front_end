@@ -10,21 +10,26 @@ import TopItems from './TopItems';
 
 const CommStats = () => {
     const { t } = useTranslation('common');
-    const { stats, getStats, loading, error } = useStore();
+    const { commStats, getCommStats, commLoading, commError } = useStore();
     const { data: session }: any = useSession();
     useEffect(() => {
-        if (!stats) {
-            getStats(session.user.id);
+        if (!commStats) {
+            getCommStats();
         }
     }, []);
     return (
         <StatsContainer>
-            {!loading && !error && (
+            {commStats && (
                 <React.Fragment>
-                    <OrdersCount ordersCount={stats.ordersCount} />
+                    <OrdersCount ordersCount={commStats.ordersCount} />
                     <StatsWrapper>
-                        <TopItems itemCount={stats.itemCount} />
-                        <Average average={stats.average} averageTime={stats.averageTime} />
+                        <TopItems itemCount={commStats.itemCount} />
+                        <Average
+                            nbUser={commStats.nbUser}
+                            nbRestaurant={commStats.nbRestaurant}
+                            nbRestaurateur={commStats.nbRestaurateurs}
+                            nbDeliverer={commStats.nbDeliverer}
+                        />
                     </StatsWrapper>
                 </React.Fragment>
             )}

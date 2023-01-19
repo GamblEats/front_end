@@ -118,5 +118,13 @@
   "validate": "Valider",
   "waitPreparation": "En preparation, patience...",
   "noReferral": "Parrainnez un ami pour voir la liste de vos parrain ici !",
-  "commercial": "Commercial"
+  "commercial": "commercial",
+  "commercialSignIn": "Commercial",
+  "topItemsSold": "Top des articles vendus",
+  "traffic": "Fréquentation",
+  "restaurantsAnd": "restaurants pour",
+  "xrestorers": "restaurateurs",
+  "usersRate": "utilisateurs (+19% sur 30 derniers jours)",
+  "deliverersRate": "livreurs (+31% sur 30 derniers jours)",
+  "deliverers": "Livreurs"
 }
