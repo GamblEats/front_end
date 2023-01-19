@@ -17,7 +17,7 @@ const ItemList = ({ itemList, isBasket = false }: Props) => {
     return (
         <ItemListContainer isBasket={isBasket}>
             {itemList.map((item, i) => (
-                <ItemContainer>
+                <ItemContainer key={item.id}>
                     <ItemCount>
                         <Counter>
                             <CountX>x</CountX>

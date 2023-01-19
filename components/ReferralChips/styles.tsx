@@ -15,7 +15,7 @@ export const ChipsName = styled.div`
     color: #143642;
 `;
 
-export const ChipsDate = styled.div`
+export const ChipsStatus = styled.div`
     font-size: 0.7rem;
-    color: #143642;
+    color: ${props => props.color};
 `;

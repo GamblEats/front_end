@@ -1,15 +1,19 @@
-import { ChipsContainer, ChipsDate, ChipsName } from './styles';
+import { useTranslation } from 'next-i18next';
+import { ChipsContainer, ChipsName, ChipsStatus } from './styles';
 
 interface Props {
     name: string;
-    date: string;
+    isActivated: boolean;
 }
 
-const ReferralChips = ({ name, date }: Props) => {
+const ReferralChips = ({ name, isActivated }: Props) => {
+    const { t } = useTranslation('common');
     return (
         <ChipsContainer>
             <ChipsName>{name}</ChipsName>
-            <ChipsDate>{date}</ChipsDate>
+            <ChipsStatus color={isActivated ? '#27AE60' : '#E67E22'}>
+                {isActivated ? t('referralActivated') : t('referralWaiting')}
+            </ChipsStatus>
         </ChipsContainer>
     );
 };

@@ -20,6 +20,7 @@ export const ButtonContainer = styled.button<SmallProps>`
 export const ButtonLabel = styled.div<SmallProps>`
     font-size: ${props => (props.small ? '0.8rem' : '1.1rem')};
     color: ${props => props.color};
+    font-weight: ${props => (props.textColor ? '600' : '500')};
 `;
 export const ButtonIcon = styled.div<SmallProps>`
     font-size: ${props => (props.small ? '0.8rem' : '1.1rem')};
@@ -31,6 +32,7 @@ export const HeaderContainer = styled.div`
     display: flex;
     justify-content: space-between;
     align-items: center;
+    position: relative;
     width: 100%;
     margin: 1rem 0 3rem 0;
 `;
@@ -43,6 +45,8 @@ export const HeaderTitle = styled.div`
 
 export const HeaderWidgets = styled.div`
     display: flex;
+    position: absolute;
+    right: 0;
     gap: 1rem;
 `;
 

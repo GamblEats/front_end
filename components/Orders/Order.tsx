@@ -17,6 +17,7 @@ import { toast } from 'react-toastify';
 interface Props {
     order: OrderModel;
     isPendingForRestaurant?: boolean;
+    onReady?: () => void;
 }
 export interface OrderPriceProps {
     hide?: boolean;
@@ -26,7 +27,7 @@ export interface DeleteButtonProps {
     isShow: boolean;
 }
 
-const Order = ({ order, isPendingForRestaurant = false }: Props) => {
+const Order = ({ order, isPendingForRestaurant = false, onReady }: Props) => {
     const { t } = useTranslation('common');
     const [showDelete, setShowDelete] = useState(false);
     async function deleteOrder() {
@@ -39,28 +40,6 @@ const Order = ({ order, isPendingForRestaurant = false }: Props) => {
                 })
                 .then(() => {
                     toast.success(t('orderDeleted'));
-                })
-                .catch(error => {
-                    toast.error(t('errorAccount'));
-                });
-        } catch (error) {
-            toast.error(t('errorAccount'));
-        }
-    }
-    async function setReadyToPickup() {
-        try {
-            const res = await axios
-                .patch(
-                    userApi + '/orders/' + order.id,
-                    { status: 'READY_TO_PICKUP' },
-                    {
-                        headers: {
-                            'Content-Type': 'application/json',
-                        },
-                    }
-                )
-                .then(() => {
-                    toast.success(t('orderAccepted'));
                 })
                 .catch(error => {
                     toast.error(t('errorAccount'));
@@ -95,9 +74,7 @@ const Order = ({ order, isPendingForRestaurant = false }: Props) => {
                 <DeliveryStepper
                     step={Object.values(DeliveryStep).find(value => value === order.status)!}
                     isInOrder={true}
-                    setReadyToPickup={() => {
-                        setReadyToPickup();
-                    }}></DeliveryStepper>
+                    setReadyToPickup={onReady}></DeliveryStepper>
             )}
             <DeleteOrderButton isShow={showDelete}>
                 <OrderStatus hide={isPendingForRestaurant} status={order.status}></OrderStatus>

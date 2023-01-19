@@ -40,32 +40,21 @@ import { useFormik } from 'formik';
 import { toast } from 'react-toastify';
 import { SignInButton, SignUpButton } from '../AuthForm/styles';
 
+interface Props {
+    restaurantInfo: any;
+    loading: boolean;
+}
 export interface inputProps {
     edit: boolean;
 }
 
-const AccountInfo = () => {
+const AccountInfo = ({ restaurantInfo, loading }: Props) => {
     const { t } = useTranslation('common');
     const { data: session }: any = useSession();
-    const [restaurantInfo, setRestaurantInfo] = useState<any>(null);
-    const [loading, setLoading] = useState<boolean>(true);
+
     const [edit, setEdit] = useState<boolean>(false);
     const [deleteRestaurant, setDeleteRestaurant] = useState<boolean>(false);
-    const isInitialMount = useRef(true);
 
-    async function getRestaurant() {
-        if (isInitialMount.current) {
-            isInitialMount.current = false;
-        } else {
-            await axios.get(`${restaurantApi}/restaurants/${session.user.restaurantId}`).then(resp => {
-                setRestaurantInfo(resp.data);
-                setLoading(false);
-            });
-        }
-    }
-    useEffect(() => {
-        getRestaurant();
-    }, []);
     const validationSchema = Yup.object({
         name: Yup.string(),
         address: Yup.string(),

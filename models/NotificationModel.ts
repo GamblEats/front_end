@@ -1,5 +1,5 @@
 export interface NotificationModel {
-    _id?: string;
+    id?: string;
     user: string;
     title: string;
     message?: string;

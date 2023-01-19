@@ -1,22 +1,19 @@
-import { useEffect, useState } from 'react';
+import { useState } from 'react';
 import { RestaurantsContainer, FiltersContainer, Category, FilterWrapper, CategoryImg, CategoryName } from './styles';
 import RestaurantCard from '../RestaurantCard/RestaurantCard';
 import { useTranslation } from 'next-i18next';
-import useStore from '../../store/useStore';
 import SearchInput from '../globals/SearchInput';
 import { categories } from '../../config/categories';
-
-export interface CategoryProps {
-    selected: boolean;
-}
-
-export interface CategoryNameProps {
-    selected: boolean;
-}
-import { OrderModel } from '../../models/OrderModel';
+import Loader from '../globals/Loader';
 
 interface Props {
     restaurants: any;
+}
+export interface CategoryProps {
+    selected: boolean;
+}
+export interface CategoryNameProps {
+    selected: boolean;
 }
 
 const Catalog = ({ restaurants }: Props) => {
@@ -31,7 +28,6 @@ const Catalog = ({ restaurants }: Props) => {
             setSelectedCategories([...selectedCategories, category.name.toLowerCase()]);
         }
     };
-
     return (
         <>
             <FiltersContainer>
@@ -51,6 +47,7 @@ const Catalog = ({ restaurants }: Props) => {
                     ))}
                 </FilterWrapper>
             </FiltersContainer>
+            {restaurants.length == 0 && <Loader onAllPage={true} size="5rem" />}
             <RestaurantsContainer>
                 {restaurants
                     .filter(

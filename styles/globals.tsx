@@ -121,10 +121,14 @@ export const Text = styled.div<TextProps>`
     font-size: ${props => props.size};
     font-weight: ${props => props.weight || '500'};
     font-style: ${props => (props.italic ? 'italic' : 'normal')};
-    color: #143642;
+    text-align: ${props => (props.align ? props.align : 'normal')};
+    color: ${props => props.color || '#143642'};
 `;
 
 export const ListContainer = styled.div`
     background-color: white;
+    height: 19rem;
     border-radius: 1.2rem;
+    overflow: hidden;
+    overflow-y: auto;
 `;
