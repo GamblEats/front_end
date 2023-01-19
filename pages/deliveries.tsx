@@ -14,6 +14,7 @@ import useStore from '../store/useStore';
 import PendingOrder from '../components/PendingOrder/PendingOrder';
 import { OrderModel } from '../models/OrderModel';
 import axios from 'axios';
+import Loader from '../components/globals/Loader';
 
 const DeliveriesContainer = styled.div`
     display: flex;
@@ -35,11 +36,22 @@ const DeliveryContainer = styled.div`
 const ButtonContainer = styled.div`
     display: grid;
     grid-template-columns: repeat(3, 1fr);
+    align-items: baseline;
 `;
 
 const PendingDeliveriesContainer = styled.div`
     display: grid;
     grid-template-columns: repeat(auto-fill, minmax(400px, 1fr));
+`;
+
+const OrderButton = styled.div`
+    display: flex;
+    font-weight: 600;
+    cursor: pointer;
+    transition: opacity 0.3s ease-in-out;
+    &:hover  {
+        opacity: 0.7;
+    }
 `;
 
 const Deliveries = () => {
@@ -93,7 +105,11 @@ const Deliveries = () => {
         <PageContainer>
             <PageHeader title={t('deliveries')}></PageHeader>
             <DeliveriesContainer>
-                {isLoading && <DeliveryContainer>Loading</DeliveryContainer>}
+                {isLoading && (
+                    <DeliveryContainer>
+                        <Loader size="3rem" />
+                    </DeliveryContainer>
+                )}
                 {!isLoading && delivery === null && <DeliveryContainer>lala</DeliveryContainer>}
                 {!isLoading && delivery !== null && (
                     <DeliveryContainer>
@@ -102,9 +118,13 @@ const Deliveries = () => {
                                 Object.values(DeliveryStep).find(value => value === delivery?.status)!
                             }></DeliveryStepper>
                         <ButtonContainer>
-                            <div style={{ display: 'flex', justifyContent: 'left' }}>
-                                <Button text={t('cancelOrder')} textColor={'#C0392B'} onClick={() => {}}></Button>
-                            </div>
+                            <OrderButton
+                                style={{ justifyContent: 'left', color: '#C0392B' }}
+                                onClick={() => {
+                                    updateDelivery('CANCELED');
+                                }}>
+                                {t('cancelOrder')}
+                            </OrderButton>
                             <div style={{ display: 'flex', justifyContent: 'center' }}>
                                 {delivery?.status == 'IN_PREPARATION' && (
                                     <Button
@@ -125,9 +145,9 @@ const Deliveries = () => {
                                         onClick={() => updateDelivery('DELIVERED')}></Button>
                                 )}
                             </div>
-                            <div style={{ display: 'flex', justifyContent: 'right' }}>
-                                <Button text={t('orderProblem')} textColor={'#E67E22'} onClick={() => {}}></Button>
-                            </div>
+                            <OrderButton style={{ justifyContent: 'right', color: '#E67E22' }}>
+                                {t('orderProblem')}
+                            </OrderButton>
                         </ButtonContainer>
                     </DeliveryContainer>
                 )}

@@ -1,4 +1,5 @@
 import { GetStaticProps } from 'next';
+import { useSession } from 'next-auth/react';
 import { useTranslation } from 'next-i18next';
 import { serverSideTranslations } from 'next-i18next/serverSideTranslations';
 import { useState } from 'react';
@@ -25,13 +26,14 @@ export interface TextProps {
 }
 
 const Referral = () => {
+    const { data: session }: any = useSession();
     const { t } = useTranslation('common');
-    const referralCode = 'gambleats-yq7m9u';
     const [buttonColor, setButtonColor] = useState('#e5bf00');
     const [buttonText, setButtonText] = useState('copie');
+    console.log(session.user);
 
     async function copieCode() {
-        await navigator.clipboard.writeText(referralCode);
+        await navigator.clipboard.writeText(session.user.codeRef);
         setButtonColor('#27ae60');
         setButtonText('copied');
         setTimeout(() => {
@@ -44,7 +46,7 @@ const Referral = () => {
             <PageHeader title={t('referral')}></PageHeader>
             <ReferralContainer>
                 <MultiplierContainer>
-                    <Multiplier>x1.3</Multiplier>
+                    <Multiplier>x{1 + 0.1 * session.user.referralList.length}</Multiplier>
                     <MultiplierText>{t('multiplierText')}</MultiplierText>
                 </MultiplierContainer>
                 <CodeContainer>
@@ -54,7 +56,7 @@ const Referral = () => {
                     <Text size="1rem">{t('codeText')}</Text>
                     <CodeInputContainer>
                         <CodeInput>
-                            <Text size="1rem">{referralCode}</Text>
+                            <Text size="1rem">{session.user.codeRef}</Text>
                             <Button text={t(buttonText)} backgroundColor={buttonColor} onClick={copieCode}></Button>
                         </CodeInput>
                         <Text size="0.7rem" italic={true}>
@@ -63,8 +65,9 @@ const Referral = () => {
                     </CodeInputContainer>
                 </CodeContainer>
                 <ListContainer>
-                    <ReferralChips name="Nathou" date="12/02/23"></ReferralChips>
-                    <ReferralChips name="Stivou" date="03/02/23"></ReferralChips>
+                    {session.user.referralList.map((referral: string) => (
+                        <ReferralChips name={referral} date="12/02/23"></ReferralChips>
+                    ))}
                 </ListContainer>
             </ReferralContainer>
         </PageContainer>
