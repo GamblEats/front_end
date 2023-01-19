@@ -127,7 +127,6 @@ export const Categorie = styled.div`
 `;
 
 export const DetailsContent = styled.div`
-    overflow: scroll;
     height: 90rem;
     display: flex;
     flex-direction: column;

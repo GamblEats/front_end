@@ -13,6 +13,7 @@ import { useTranslation } from 'next-i18next';
 import ItemForm from './ItemForm';
 import * as Yup from 'yup';
 import { toast } from 'react-toastify';
+import MenuForm from './MenuForm';
 
 interface Props {
     item?: ItemModel;
@@ -21,6 +22,7 @@ interface Props {
     shop?: boolean;
     edit?: boolean;
     getRestaurant?: () => void;
+    restaurantItems?: any;
 }
 
 export interface ItemTextProps {
@@ -28,13 +30,28 @@ export interface ItemTextProps {
     weight?: string;
 }
 
-const DeliveryStepper = ({ item, menu, onClick, shop = true, edit = false, getRestaurant = () => {} }: Props) => {
+const DeliveryStepper = ({
+    item,
+    menu,
+    onClick,
+    shop = true,
+    edit = false,
+    getRestaurant = () => {},
+    restaurantItems,
+}: Props) => {
     const validationSchema = Yup.object({
         description: Yup.string(),
         pic: Yup.string(),
         price: Yup.number(),
         name: Yup.string(),
         category: Yup.string(),
+    });
+
+    const validationSchemaMenu = Yup.object({
+        description: Yup.string(),
+        pic: Yup.string(),
+        price: Yup.number(),
+        name: Yup.string(),
     });
     const { t } = useTranslation('common');
     const [deleteItem, setDeleteItem] = useState<boolean>(false);
@@ -91,7 +108,7 @@ const DeliveryStepper = ({ item, menu, onClick, shop = true, edit = false, getRe
                         e.stopPropagation();
                     }}>
                     <Modal onClick={e => e.stopPropagation()}>
-                        <Label> {t('deleteConfirmItem')}</Label>
+                        <Label> {menu ? t('deleteConfirmMenu') : t('deleteConfirmItem')}</Label>
                         <ButtonsModal>
                             <SignInButton
                                 type="button"
@@ -116,6 +133,18 @@ const DeliveryStepper = ({ item, menu, onClick, shop = true, edit = false, getRe
                                                 setDeleteItem(false);
                                                 getRestaurant();
                                             });
+                                    menu &&
+                                        axios
+                                            .delete(`${restaurantApi}/menus/${menu.id}`, {
+                                                headers: {
+                                                    'Content-Type': 'application/json',
+                                                },
+                                            })
+                                            .then(() => {
+                                                toast.success('Menu supprimé');
+                                                setDeleteItem(false);
+                                                getRestaurant();
+                                            });
                                 }}>
                                 {t('yes')}
                             </SignUpButton>
@@ -129,6 +158,15 @@ const DeliveryStepper = ({ item, menu, onClick, shop = true, edit = false, getRe
                     setIsEditing={setIsEditing}
                     validationSchema={validationSchema}
                     getRestaurant={getRestaurant}
+                />
+            )}
+            {isEditing && menu && (
+                <MenuForm
+                    menu={menu}
+                    setIsEditing={setIsEditing}
+                    validationSchema={validationSchemaMenu}
+                    getRestaurant={getRestaurant}
+                    restaurantItems={restaurantItems}
                 />
             )}
         </ItemCardContainer>
