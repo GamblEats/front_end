@@ -1,14 +1,11 @@
 import { Buttons, DetailTextArea, Form, FormTitle, InputWraper, SignInButton, SignUpButton } from './styles';
 import {
-    faEnvelope,
-    faLock,
     faPenNib,
-    faPhone,
     faLocationDot,
-    faCircleInfo,
-    faUserGroup,
+    faImage,
     faCity,
     faPlus,
+    faHandHoldingDollar,
 } from '@fortawesome/free-solid-svg-icons';
 import React, { useState } from 'react';
 import * as Yup from 'yup';
@@ -20,6 +17,7 @@ import { toast } from 'react-toastify';
 import { restaurantApi } from '../../public/const';
 import InputForm from '../AuthForm/inputForm';
 import Button from '../globals/Button';
+import { categories } from '../../config/categories';
 
 interface Props {
     sessionUser: any;
@@ -33,8 +31,8 @@ const CreationForm = ({ sessionUser }: Props) => {
         name: Yup.string().required(`${t('required')}`),
         pic: Yup.string().required(`${t('required')}`),
         description: Yup.string().required(`${t('required')}`),
-        address: Yup.string().required(`${t('required')}`),
         deliveryPrice: Yup.number().required(`${t('required')}`),
+        address: Yup.string().required(`${t('required')}`),
         postalCode: Yup.string().required(`${t('required')}`),
         city: Yup.string().required(`${t('required')}`),
     });
@@ -43,14 +41,15 @@ const CreationForm = ({ sessionUser }: Props) => {
             name: '',
             pic: '',
             description: '',
-            email: '',
-            address: '',
             deliveryPrice: null,
+            address: '',
             postalCode: '',
             city: '',
         },
         validationSchema,
         onSubmit: (values: any) => {
+            values.owner = sessionUser.id;
+            values.categories = { pasta: true, pizzas: true, chicken: true };
             try {
                 axios
                     .post(restaurantApi + '/restaurants', values, {
@@ -60,9 +59,7 @@ const CreationForm = ({ sessionUser }: Props) => {
                     })
                     .then(() => {
                         toast.success(t('successRestaurants'));
-                        router.replace({
-                            query: { ...router.query, form: 'signIn' },
-                        });
+                        router.replace('/');
                     })
                     .catch(error => {
                         toast.error(t('errorRestaurant'));
@@ -95,18 +92,22 @@ const CreationForm = ({ sessionUser }: Props) => {
                         </div>
                     </FormTitle>{' '}
                     <InputForm name="name" formik={formik} placeholder={t('name')} icon={faPenNib} />
-                    <InputForm name="pic" formik={formik} placeholder={t('pic')} icon={faPenNib} />
-                    <DetailTextArea name="description" formik={formik} placeholder={t('description')} icon={faPenNib} />
+                    <InputForm name="pic" formik={formik} placeholder={t('pic')} icon={faImage} />
+                    <DetailTextArea
+                        name="description"
+                        value={formik.values.description}
+                        onChange={formik.handleChange}
+                        placeholder={`${t('description')}`}
+                    />
                     <InputWraper>
                         <InputForm
                             name="deliveryPrice"
                             formik={formik}
                             placeholder={t('deliveryPrice')}
-                            icon={faPhone}
+                            icon={faHandHoldingDollar}
                         />
-                        <InputForm name="categories" formik={formik} placeholder={t('categories')} icon={faUserGroup} />
+                        <InputForm name="address" formik={formik} placeholder={t('address')} icon={faLocationDot} />
                     </InputWraper>
-                    <InputForm name="address" formik={formik} placeholder={t('address')} icon={faLocationDot} />
                     <InputWraper>
                         <InputForm name="postalCode" formik={formik} placeholder={t('postalCode')} icon={faCity} />
                         <InputForm name="city" formik={formik} placeholder={t('city')} icon={faCity} />

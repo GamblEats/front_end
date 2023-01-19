@@ -40,34 +40,38 @@ const MenusAndArticles = ({ restaurantInfo, loading, getRestaurant }: Props) => 
         <DetailsContent>
             {!loading && (
                 <div style={{ overflow: 'scroll' }}>
-                    <SectionTitle
-                        style={{
-                            display: 'flex',
-                            flexDirection: 'row',
-                            alignItems: 'center',
-                            gap: '2rem',
-                        }}>
-                        {t('menus')}
-                        <ButtonForm
-                            type={'button'}
-                            style={{ backgroundColor: '#e5bf00' }}
-                            onClick={() => {
-                                setNewMenu(true);
-                            }}>
-                            <FontAwesomeIcon icon={faPlus} />
-                        </ButtonForm>
-                    </SectionTitle>
-                    <Items>
-                        {restaurantInfo.menus.map((menu: MenuModel, i: number) => (
-                            <ItemCard
-                                key={i}
-                                menu={menu}
-                                onClick={() => {}}
-                                shop={false}
-                                edit={true}
-                                restaurantItems={restaurantInfo.items}></ItemCard>
-                        ))}
-                    </Items>
+                    {restaurantInfo.items.length > 0 && restaurantInfo.menus && (
+                        <>
+                            <SectionTitle
+                                style={{
+                                    display: 'flex',
+                                    flexDirection: 'row',
+                                    alignItems: 'center',
+                                    gap: '2rem',
+                                }}>
+                                {t('menus')}
+                                <ButtonForm
+                                    type={'button'}
+                                    style={{ backgroundColor: '#e5bf00' }}
+                                    onClick={() => {
+                                        setNewMenu(true);
+                                    }}>
+                                    <FontAwesomeIcon icon={faPlus} />
+                                </ButtonForm>
+                            </SectionTitle>
+                            <Items>
+                                {restaurantInfo.menus.map((menu: MenuModel, i: number) => (
+                                    <ItemCard
+                                        key={i}
+                                        menu={menu}
+                                        onClick={() => {}}
+                                        shop={false}
+                                        edit={true}
+                                        restaurantItems={restaurantInfo.items}></ItemCard>
+                                ))}
+                            </Items>
+                        </>
+                    )}
                     <SectionTitle
                         style={{
                             display: 'flex',
