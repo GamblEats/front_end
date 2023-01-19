@@ -17,7 +17,7 @@ const Statistics = () => {
     const router = useRouter();
 
     useEffect(() => {
-        if (session.user.role !== 'restaurant') {
+        if (session.user.role !== 'restaurant' && session.user.role !== 'commercial') {
             router.push('/home');
         }
     }, []);
@@ -25,7 +25,7 @@ const Statistics = () => {
         <PageContainer>
             <PageHeader title={t('statistics')}></PageHeader>
             {!stats && <Loader onAllPage={true} size="5rem" />}
-            <Stats />
+            {session.user.role === 'restaurant' ? <Stats /> : <CommStats />}
         </PageContainer>
     );
 };
