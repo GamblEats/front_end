@@ -79,4 +79,17 @@ export const NotificationCounter = styled.div`
 
 export const DeliveryContainer = styled.div`
     display: flex;
+    gap: 0.6rem;
+    height: 100%;
+    padding-inline: 1rem;
+    margin-top: -1rem;
+    height: 111%;
+`;
+
+export const StatusContainer = styled.div`
+    display: flex;
+    flex-direction: column;
+    height: 73%;
+    justify-content: space-between;
+    margin: 2.8rem 0;
 `;

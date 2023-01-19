@@ -126,5 +126,10 @@
   "xrestorers": "restaurateurs",
   "usersRate": "utilisateurs (+19% sur 30 derniers jours)",
   "deliverersRate": "livreurs (+31% sur 30 derniers jours)",
-  "deliverers": "Livreurs"
+  "deliverers": "Livreurs",
+  "validated": "Validée",
+  "prepared": "Préparée",
+  "onTheWay": "En chemin",
+  "atYourDoor": "A votre porte",
+  "addAnItem": "Ajoutez un item"
 }

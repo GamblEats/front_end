@@ -129,5 +129,13 @@
   "xrestorers": "restorers",
   "usersRate": "users (+19% in the last 30 days)",
   "deliverersRate": "deliverers (+31% in the last 30 days)",
-  "deliverers": "Deliverers"
+  "deliverers": "Deliverers",
+  "validated": "Validated",
+  "prepared": "Prepared",
+  "onTheWay": "On the way",
+  "atYourDoor": "At your door",
+  "noReferral": "Refer a friend to see the list of your referrals here!",
+  "addAnItem": "Add an item"
+  "addAnItem": "Add an item",
+  "deleteConfirmMenu": "Are you sure you want to delete this menu ?"
 }
