@@ -23,6 +23,7 @@ export interface TextProps {
     size: string;
     weight?: string;
     italic?: boolean;
+    align?: string;
 }
 
 const Referral = () => {
@@ -45,11 +46,7 @@ const Referral = () => {
             <ReferralContainer>
                 <MultiplierContainer>
                     <Multiplier>
-                        x
-                        {1 +
-                            0.1 *
-                                session.user.referralList.filter((referral: any) => referral.isActivated == true)
-                                    .length}
+                        x{1 + 0.1 * session.user.referralList.filter((referral: any) => referral.isActivated).length}
                     </Multiplier>
                     <MultiplierText>{t('multiplierText')}</MultiplierText>
                 </MultiplierContainer>

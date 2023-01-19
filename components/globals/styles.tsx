@@ -32,6 +32,7 @@ export const HeaderContainer = styled.div`
     display: flex;
     justify-content: space-between;
     align-items: center;
+    position: relative;
     width: 100%;
     margin: 1rem 0 3rem 0;
 `;
@@ -44,6 +45,8 @@ export const HeaderTitle = styled.div`
 
 export const HeaderWidgets = styled.div`
     display: flex;
+    position: absolute;
+    right: 0;
     gap: 1rem;
 `;
 
