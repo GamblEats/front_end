@@ -40,19 +40,24 @@ const MyRestaurant = () => {
         }
     }
     useEffect(() => {
-        if (session.user.restaurantId) {
-            getRestaurant();
-        }
+        getRestaurant();
     }, []);
     return (
         <PageContainer>
             <PageHeader title={t('myRestaurant')}></PageHeader>
-            {!session.user.restaurantId || (!restaurantInfo && <Loader onAllPage={true} size="5rem" />)}
             {session.user.restaurantId ? (
-                <AccountWrapper>
-                    <MenusAndArticles restaurantInfo={restaurantInfo} getRestaurant={getRestaurant} loading={loading} />
-                    <AccountInfo restaurantInfo={restaurantInfo} loading={loading} />
-                </AccountWrapper>
+                !restaurantInfo ? (
+                    <Loader size={'5rem'} />
+                ) : (
+                    <AccountWrapper>
+                        <MenusAndArticles
+                            restaurantInfo={restaurantInfo}
+                            getRestaurant={getRestaurant}
+                            loading={loading}
+                        />
+                        <AccountInfo restaurantInfo={restaurantInfo} loading={loading} />
+                    </AccountWrapper>
+                )
             ) : (
                 <React.Fragment>
                     <CreationForm sessionUser={session.user} />

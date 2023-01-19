@@ -72,6 +72,8 @@ const ItemForm = ({ item, setIsEditing, validationSchema, getRestaurant }: Props
         },
     });
 
+    console.log(formik.isValid);
+
     return (
         <>
             <BlurBg
