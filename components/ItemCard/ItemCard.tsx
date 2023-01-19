@@ -108,7 +108,7 @@ const DeliveryStepper = ({
                         e.stopPropagation();
                     }}>
                     <Modal onClick={e => e.stopPropagation()}>
-                        <Label> {t('deleteConfirmItem')}</Label>
+                        <Label> {menu ? t('deleteConfirmMenu') : t('deleteConfirmItem')}</Label>
                         <ButtonsModal>
                             <SignInButton
                                 type="button"
