@@ -12,6 +12,7 @@ import { AccountWrapper } from '../components/RestaurantAccount/styles';
 import axios from 'axios';
 import { restaurantApi } from '../public/const';
 import CreationForm from '../components/RestaurantCreation/CreationForm';
+import Loader from '../components/globals/Loader';
 
 const MyRestaurant = () => {
     const { data: session }: any = useSession();
@@ -44,6 +45,7 @@ const MyRestaurant = () => {
     return (
         <PageContainer>
             <PageHeader title={t('myRestaurant')}></PageHeader>
+            {!restaurantInfo && <Loader onAllPage={true} size="5rem" />}
             {session.user.restaurantId ? (
                 <AccountWrapper>
                     <MenusAndArticles restaurantInfo={restaurantInfo} getRestaurant={getRestaurant} loading={loading} />

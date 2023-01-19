@@ -1,6 +1,8 @@
+import { useSession } from 'next-auth/react';
 import { useTranslation } from 'next-i18next';
 import React, { useEffect } from 'react';
 import useStore from '../../store/useStore';
+import Loader from '../globals/Loader';
 import Average from './Average';
 import OrdersCount from './OrdersCount';
 import { StatsContainer, StatsWrapper } from './styles';
@@ -9,13 +11,12 @@ import TopItems from './TopItems';
 const Stats = () => {
     const { t } = useTranslation('common');
     const { stats, getStats, loading, error } = useStore();
-
+    const { data: session }: any = useSession();
     useEffect(() => {
         if (!stats) {
-            getStats('63b69cdf39f6b932d44f31c6');
+            getStats(session.user.id);
         }
     }, []);
-
     return (
         <StatsContainer>
             {!loading && !error && (

@@ -66,6 +66,20 @@ const Referral = () => {
                     </CodeInputContainer>
                 </CodeContainer>
                 <ListContainer>
+                    {session.user.referralList.length == 0 && (
+                        <Text
+                            style={{
+                                display: 'flex',
+                                height: '100%',
+                                alignItems: 'center',
+                                justifyContent: 'center',
+                                textAlign: 'center',
+                                padding: '3rem',
+                            }}
+                            size="1rem">
+                            {t('noReferral')}
+                        </Text>
+                    )}
                     {session.user.referralList.map((referral: { name: string; isActivated: boolean }, i: number) => (
                         <ReferralChips key={i} name={referral.name} isActivated={referral.isActivated}></ReferralChips>
                     ))}

@@ -89,7 +89,7 @@
   "orderProblem": "Un problème avec la commande ?",
   "pickedUp": "J'ai récupéré la commande",
   "atTheDoor": "Je suis à la porte",
-  "orderDelivred": "Commande livrée",
+  "orderDelivered": "Commande livrée",
   "postalCode": "Code postal",
   "additional": "Complément d'adresse",
   "city": "Ville",
@@ -114,5 +114,6 @@
   "deliveryPrice": "Prix de la livraison",
   "categories": "Catégories", 
   "validate": "Valider",
-  "waitPreparation": "En preparation, patience..."
+  "waitPreparation": "En preparation, patience...",
+  "noReferral": "Parrainnez un ami pour voir la liste de vos parrain ici !"
 }

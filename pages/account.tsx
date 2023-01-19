@@ -10,6 +10,9 @@ const Container = styled.div`
     display: flex;
     gap: 3em;
     width: 100%;
+    @media (max-width: 1000px) {
+        flex-direction: column;
+    }
 `;
 
 const Account = () => {

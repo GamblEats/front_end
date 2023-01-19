@@ -11,11 +11,17 @@ export const Card = styled.div`
 export const CardAccount = styled(Card)`
     position: relative;
     width: 70%;
+    @media (max-width: 1000px) {
+        width: 100%;
+    }
 `;
 export const CardSettings = styled(Card)`
     flex-direction: column;
     gap: 2em;
     width: 30%;
+    @media (max-width: 1000px) {
+        width: 100%;
+    }
 `;
 
 // --- Account Card --- //
@@ -159,8 +165,8 @@ export const ButtonForm = styled.button`
     }
 `;
 export const Buttons = styled.div`
-    bottom: 2rem;
-    right: 2rem;
+    top: 1rem;
+    right: 1rem;
     position: absolute;
     display: flex;
     flex-direction: row;

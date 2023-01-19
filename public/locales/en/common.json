@@ -117,5 +117,6 @@
   "deliveryPrice": "Delivery price",
   "categories": "Categories", 
   "validate": "Validate",
-  "waitPreparation": "In preparation, be patient..."
+  "waitPreparation": "In preparation, be patient...",
+  "noReferral": "Refer a friend to see the list of your referrals here!"
 }
