@@ -43,7 +43,6 @@ const DeliveryStepper = ({ item, menu, onClick, shop = true, edit = false, getRe
     const { t } = useTranslation('common');
     const [deleteItem, setDeleteItem] = useState<boolean>(false);
     const [isEditing, setIsEditing] = useState<boolean>(false);
-    console.log(session);
     return (
         <ItemCardContainer>
             <ItemImg src={item ? item.pic : menu ? menu.pic : ''}></ItemImg>
