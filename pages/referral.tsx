@@ -24,6 +24,7 @@ export interface TextProps {
     weight?: string;
     italic?: boolean;
     align?: string;
+    opacity?: string;
 }
 
 const Referral = () => {

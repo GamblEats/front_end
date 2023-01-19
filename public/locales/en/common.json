@@ -120,4 +120,10 @@
   "categories": "Categories", 
   "validate": "Validate",
   "waitPreparation": "In preparation, be patient...",
+  "noReferral": "Refer a friend to see the list of your referrals here!",
+  "validated": "Validated",
+  "prepared": "Prepared",
+  "onTheWay": "On the way",
+  "atYourDoor": "At your door",
   "noReferral": "Refer a friend to see the list of your referrals here!"
+}
