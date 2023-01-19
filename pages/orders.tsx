@@ -192,7 +192,7 @@ const Orders = () => {
                                             .indexOf(searchByMonth.toLowerCase()) > -1
                                 )
                                 .map((order, i) => (
-                                    <Order key={i} order={order}></Order>
+                                    <Order key={order.id} order={order}></Order>
                                 ))}
                         </OrderContainer>
                     </PastOrdersContainer>
@@ -235,6 +235,7 @@ const Orders = () => {
                             .filter(order => order.status === 'VALIDATION_PENDING')
                             .map((order: OrderModel, i: number) => (
                                 <PendingOrder
+                                    key={order.id}
                                     isRestaurant={true}
                                     order={order}
                                     onValidation={() => validOrder(order.id!)}
