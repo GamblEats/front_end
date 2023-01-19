@@ -8,6 +8,9 @@ import * as Yup from 'yup';
 import { ButtonForm } from '../AccountCard/styles';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { useTranslation } from 'next-i18next';
+import { MenuModel } from '../../models/MenuModel';
+import MenuForm from '../ItemCard/MenuForm';
+import { log } from 'util';
 
 interface Props {
     restaurantInfo: any;
@@ -24,11 +27,19 @@ const MenusAndArticles = ({ restaurantInfo, loading, getRestaurant }: Props) => 
         name: Yup.string().required(),
         category: Yup.string().required(),
     });
+    const validationSchemaMenu = Yup.object({
+        description: Yup.string(),
+        pic: Yup.string(),
+        price: Yup.number(),
+        name: Yup.string(),
+    });
     const [newItem, setNewItem] = useState<boolean>(false);
+    const [newMenu, setNewMenu] = useState<boolean>(false);
+
     return (
         <DetailsContent>
             {!loading && (
-                <>
+                <div style={{ overflow: 'scroll' }}>
                     <SectionTitle
                         style={{
                             display: 'flex',
@@ -41,17 +52,22 @@ const MenusAndArticles = ({ restaurantInfo, loading, getRestaurant }: Props) => 
                             type={'button'}
                             style={{ backgroundColor: '#e5bf00' }}
                             onClick={() => {
-                                setNewItem(true);
+                                setNewMenu(true);
                             }}>
                             <FontAwesomeIcon icon={faPlus} />
                         </ButtonForm>
                     </SectionTitle>
-
-                    {/*<Items>*/}
-                    {/*    {restaurantInfo.menus.map((menu: MenuModel) => (*/}
-                    {/*        <ItemCard key={menu._id} menu={menu} onClick={() => {}} shop={false} edit={true}></ItemCard>*/}
-                    {/*    ))}*/}
-                    {/*</Items>*/}
+                    <Items>
+                        {restaurantInfo.menus.map((menu: MenuModel, i: number) => (
+                            <ItemCard
+                                key={i}
+                                menu={menu}
+                                onClick={() => {}}
+                                shop={false}
+                                edit={true}
+                                restaurantItems={restaurantInfo.items}></ItemCard>
+                        ))}
+                    </Items>
                     <SectionTitle
                         style={{
                             display: 'flex',
@@ -70,9 +86,9 @@ const MenusAndArticles = ({ restaurantInfo, loading, getRestaurant }: Props) => 
                         </ButtonForm>
                     </SectionTitle>
                     <Items>
-                        {restaurantInfo.items.map((item: ItemModel) => (
+                        {restaurantInfo.items.map((item: ItemModel, i: number) => (
                             <ItemCard
-                                key={item.id}
+                                key={i}
                                 item={item}
                                 onClick={() => {}}
                                 shop={false}
@@ -80,10 +96,18 @@ const MenusAndArticles = ({ restaurantInfo, loading, getRestaurant }: Props) => 
                                 getRestaurant={getRestaurant}></ItemCard>
                         ))}
                     </Items>
-                </>
+                </div>
             )}
             {newItem && (
                 <ItemForm setIsEditing={setNewItem} validationSchema={validationSchema} getRestaurant={getRestaurant} />
+            )}
+            {newMenu && (
+                <MenuForm
+                    setIsEditing={setNewMenu}
+                    validationSchema={validationSchemaMenu}
+                    getRestaurant={getRestaurant}
+                    restaurantItems={restaurantInfo.items}
+                />
             )}
         </DetailsContent>
     );
