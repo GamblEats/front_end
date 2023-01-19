@@ -88,15 +88,17 @@
   "deliveries": "Deliveries",
   "cancelOrder": "Cancel order",
   "orderProblem": "Problem with order ?",
-  "pickedUp": "I'v picked up the order",
+  "pickedUp": "I've picked up the order",
   "atTheDoor": "I'm at the door",
   "orderDelivered": "Order delivered",
   "restaurantModified": "Restaurant successfully modified",
   "deleteConfirmRestaurant": "Are you sure you want to delete your restaurant ?",
   "noRestaurant": "You have no restaurant",
-  "modified": "Account successfully modified",
   "postalCode": "Postal code",
   "additional": "Additional",
   "city": "City",
-  "referralInput": "Referral (optional)"
+  "referralInput": "Referral (optional)",
+  "referralWaiting": "Pending",
+  "referralActivated": "Confirmed",
+  "noDelivery": "No delivery in progress, but you can accept some below!"
 }

@@ -54,6 +54,16 @@ const OrderButton = styled.div`
     }
 `;
 
+const NoDelivery = styled.div`
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 100%;
+    height: 100%;
+    color: #143642;
+    font-size: 1.4rem;
+`;
+
 const Deliveries = () => {
     const { t } = useTranslation('common');
     const { data: session }: any = useSession();
@@ -89,6 +99,7 @@ const Deliveries = () => {
             .then(resp => {
                 setDelivery(resp.data);
                 setIsLoading(false);
+                getDelivery();
             });
     }
     useEffect(() => {
@@ -100,7 +111,6 @@ const Deliveries = () => {
             getReadyToPickupOrders(session.user);
         }
     }, []);
-    console.log(delivery);
     return (
         <PageContainer>
             <PageHeader title={t('deliveries')}></PageHeader>
@@ -110,7 +120,11 @@ const Deliveries = () => {
                         <Loader size="3rem" />
                     </DeliveryContainer>
                 )}
-                {!isLoading && delivery === null && <DeliveryContainer>lala</DeliveryContainer>}
+                {!isLoading && delivery === null && (
+                    <DeliveryContainer>
+                        <NoDelivery>{t('noDelivery')}</NoDelivery>
+                    </DeliveryContainer>
+                )}
                 {!isLoading && delivery !== null && (
                     <DeliveryContainer>
                         <DeliveryStepper

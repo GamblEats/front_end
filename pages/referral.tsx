@@ -46,7 +46,13 @@ const Referral = () => {
             <PageHeader title={t('referral')}></PageHeader>
             <ReferralContainer>
                 <MultiplierContainer>
-                    <Multiplier>x{1 + 0.1 * session.user.referralList.length}</Multiplier>
+                    <Multiplier>
+                        x
+                        {1 +
+                            0.1 *
+                                session.user.referralList.filter((referral: any) => referral.isActivated == true)
+                                    .length}
+                    </Multiplier>
                     <MultiplierText>{t('multiplierText')}</MultiplierText>
                 </MultiplierContainer>
                 <CodeContainer>
@@ -65,8 +71,8 @@ const Referral = () => {
                     </CodeInputContainer>
                 </CodeContainer>
                 <ListContainer>
-                    {session.user.referralList.map((referral: string) => (
-                        <ReferralChips name={referral} date="12/02/23"></ReferralChips>
+                    {session.user.referralList.map((referral: { name: string; isActivated: boolean }, i: number) => (
+                        <ReferralChips key={i} name={referral.name} isActivated={referral.isActivated}></ReferralChips>
                     ))}
                 </ListContainer>
             </ReferralContainer>
