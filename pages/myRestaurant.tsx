@@ -2,7 +2,6 @@ import { GetStaticProps } from 'next';
 import { serverSideTranslations } from 'next-i18next/serverSideTranslations';
 import { useEffect, useRef, useState } from 'react';
 import { useSession } from 'next-auth/react';
-import { use } from 'i18next';
 import { useRouter } from 'next/router';
 import { PageContainer } from '../styles/globals';
 import PageHeader from '../components/globals/PageHeader';

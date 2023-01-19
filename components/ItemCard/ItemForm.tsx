@@ -1,23 +1,17 @@
 import { useTranslation } from 'next-i18next';
-import { signOut, useSession } from 'next-auth/react';
-import React, { useEffect, useRef, useState } from 'react';
+import { useSession } from 'next-auth/react';
 import axios from 'axios';
-import { months, restaurantApi, userApi } from '../../public/const';
-import styled from 'styled-components';
+import { restaurantApi } from '../../public/const';
 import { useFormik } from 'formik';
-import * as Yup from 'yup';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import { faCheck, faPen, faTimes, faTrash } from '@fortawesome/free-solid-svg-icons';
+import { faTimes } from '@fortawesome/free-solid-svg-icons';
 import { toast } from 'react-toastify';
-import ConfirmModal from '../RestaurantDetails/ConfirmModal';
 import { Buttons, SignInButton, SignUpButton } from '../AuthForm/styles';
-import { BlurBg, Form, Input, InputList, InputRow, Title } from '../AccountCard/styles';
+import { BlurBg, Form, Input, InputRow, Title } from '../AccountCard/styles';
 import { ItemModel } from '../../models/ItemModel';
 import { categories } from '../../config/categories';
 import { SelectForm } from './styles';
 import { Details } from '../RestaurantDetails/styles';
-import { session } from 'next-auth/core/routes';
-import useStore from '../../store/useStore';
 
 export interface inputProps {
     edit: boolean;

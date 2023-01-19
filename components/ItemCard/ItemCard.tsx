@@ -8,11 +8,8 @@ import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import React, { useState } from 'react';
 import { SignInButton, SignUpButton } from '../AuthForm/styles';
 import axios from 'axios';
-import { restaurantApi, userApi } from '../../public/const';
-import { signOut, useSession } from 'next-auth/react';
+import { restaurantApi } from '../../public/const';
 import { useTranslation } from 'next-i18next';
-import { use } from 'i18next';
-import { Details } from '../RestaurantDetails/styles';
 import ItemForm from './ItemForm';
 import * as Yup from 'yup';
 import { toast } from 'react-toastify';
@@ -32,7 +29,6 @@ export interface ItemTextProps {
 }
 
 const DeliveryStepper = ({ item, menu, onClick, shop = true, edit = false, getRestaurant = () => {} }: Props) => {
-    const { data: session } = useSession();
     const validationSchema = Yup.object({
         description: Yup.string(),
         pic: Yup.string(),

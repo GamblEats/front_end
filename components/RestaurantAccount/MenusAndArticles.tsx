@@ -1,11 +1,8 @@
 import React, { useState } from 'react';
-import { DetailsContent, Items, ItemSection, SectionTitle } from '../RestaurantDetails/styles';
-import { MenuModel } from '../../models/MenuModel';
+import { DetailsContent, Items, SectionTitle } from '../RestaurantDetails/styles';
 import ItemCard from '../ItemCard/ItemCard';
 import { ItemModel } from '../../models/ItemModel';
-import { EditItems } from './styles';
-import Button from '../globals/Button';
-import { faPlus, faTimes } from '@fortawesome/free-solid-svg-icons';
+import { faPlus } from '@fortawesome/free-solid-svg-icons';
 import ItemForm from '../ItemCard/ItemForm';
 import * as Yup from 'yup';
 import { ButtonForm } from '../AccountCard/styles';
