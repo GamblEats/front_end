@@ -107,6 +107,6 @@
   "referralWaiting": "En attente",
   "referralActivated": "Confirmé",
   "noDelivery": "Aucune livraison en cours, mais vous pouvez en accepter ci dessous !",
-  "addAnItem": "Ajoutez un item"
-
+  "addAnItem": "Ajoutez un item",
+  "deleteConfirmMenu": "Êtes-vous sûr de vouloir supprimer ce menu ?"
 }

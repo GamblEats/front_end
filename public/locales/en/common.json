@@ -111,5 +111,6 @@
   "referralWaiting": "Pending",
   "referralActivated": "Confirmed",
   "noDelivery": "No delivery in progress, but you can accept some below!",
-  "addAnItem": "Add an item"
+  "addAnItem": "Add an item",
+  "deleteConfirmMenu": "Are you sure you want to delete this menu ?"
 }
