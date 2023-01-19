@@ -116,5 +116,6 @@
   "description": "Description",
   "deliveryPrice": "Delivery price",
   "categories": "Categories", 
-  "validate": "Validate"
+  "validate": "Validate",
+  "waitPreparation": "In preparation, be patient..."
 }

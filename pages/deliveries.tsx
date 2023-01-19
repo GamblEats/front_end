@@ -15,6 +15,7 @@ import PendingOrder from '../components/PendingOrder/PendingOrder';
 import { OrderModel } from '../models/OrderModel';
 import axios from 'axios';
 import Loader from '../components/globals/Loader';
+import { Text } from '../styles/globals';
 
 const DeliveriesContainer = styled.div`
     display: flex;
@@ -41,6 +42,7 @@ const ButtonContainer = styled.div`
 
 const PendingDeliveriesContainer = styled.div`
     display: grid;
+    gap: 2rem;
     grid-template-columns: repeat(auto-fill, minmax(400px, 1fr));
 `;
 
@@ -85,6 +87,23 @@ const Deliveries = () => {
                 });
         } catch (error) {}
     }
+    async function accepteDelivery(orderId: string) {
+        await axios
+            .patch(
+                userApi + '/orders/' + orderId,
+                { deliverer: session.user.id },
+                {
+                    headers: {
+                        'Content-Type': 'application/json',
+                    },
+                }
+            )
+            .then(() => {
+                setIsLoading(false);
+                getReadyToPickupOrders(session.user);
+                getDelivery();
+            });
+    }
     async function updateDelivery(status: string) {
         await axios
             .patch(
@@ -96,8 +115,7 @@ const Deliveries = () => {
                     },
                 }
             )
-            .then(resp => {
-                setDelivery(resp.data);
+            .then(() => {
                 setIsLoading(false);
                 getDelivery();
             });
@@ -141,6 +159,9 @@ const Deliveries = () => {
                             </OrderButton>
                             <div style={{ display: 'flex', justifyContent: 'center' }}>
                                 {delivery?.status == 'IN_PREPARATION' && (
+                                    <Text size="1.2rem">{t('waitPreparation')}</Text>
+                                )}
+                                {delivery?.status == 'READY_TO_PICKUP' && (
                                     <Button
                                         text={t('pickedUp')}
                                         backgroundColor="#27AE60"
@@ -171,7 +192,9 @@ const Deliveries = () => {
                             key={order.id}
                             order={order}
                             isRestaurant={false}
-                            onValidation={() => {}}
+                            onValidation={() => {
+                                accepteDelivery(order.id!);
+                            }}
                             onReject={() => {}}></PendingOrder>
                     ))}
                 </PendingDeliveriesContainer>

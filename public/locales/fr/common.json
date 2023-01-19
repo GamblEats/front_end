@@ -113,5 +113,6 @@
   "description": "Description",
   "deliveryPrice": "Prix de la livraison",
   "categories": "Catégories", 
-  "validate": "Valider"
+  "validate": "Valider",
+  "waitPreparation": "En preparation, patience..."
 }
