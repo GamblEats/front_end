@@ -1,5 +1,5 @@
 export interface MenuModel {
-    _id?: string;
+    id?: string;
     restaurant: string;
     name: string;
     description: string;

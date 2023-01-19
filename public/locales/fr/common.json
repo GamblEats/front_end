@@ -103,8 +103,10 @@
   "menus": "Menus",
   "deleteConfirmItem": "Êtes-vous sûr de vouloir supprimer cet article ?",
   "confirm": "Valider",
-  "cancel": "Annuler"
+  "cancel": "Annuler",
   "referralWaiting": "En attente",
   "referralActivated": "Confirmé",
-  "noDelivery": "Aucune livraison en cours, mais vous pouvez en accepter ci dessous !"
+  "noDelivery": "Aucune livraison en cours, mais vous pouvez en accepter ci dessous !",
+  "addAnItem": "Ajoutez un item"
+
 }
