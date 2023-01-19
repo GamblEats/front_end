@@ -89,7 +89,7 @@
   "orderProblem": "Un problème avec la commande ?",
   "pickedUp": "J'ai récupéré la commande",
   "atTheDoor": "Je suis à la porte",
-  "orderDelivred": "Commande livrée",
+  "orderDelivered": "Commande livrée",
   "postalCode": "Code postal",
   "additional": "Complément d'adresse",
   "city": "Ville",
@@ -108,5 +108,14 @@
   "referralActivated": "Confirmé",
   "noDelivery": "Aucune livraison en cours, mais vous pouvez en accepter ci dessous !",
   "addAnItem": "Ajoutez un item",
-  "deleteConfirmMenu": "Êtes-vous sûr de vouloir supprimer ce menu ?"
+  "deleteConfirmMenu": "Êtes-vous sûr de vouloir supprimer ce menu ?",
+  "createARestaurant": "Créer un restaurant",
+  "noRestaurant": "Vous n'avez pas encore de restaurant",
+  "pic": "URL de l'image",
+  "description": "Description",
+  "deliveryPrice": "Prix de la livraison",
+  "categories": "Catégories", 
+  "validate": "Valider",
+  "waitPreparation": "En preparation, patience...",
+  "noReferral": "Parrainnez un ami pour voir la liste de vos parrain ici !"
 }

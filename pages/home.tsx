@@ -2,7 +2,7 @@ import { useTranslation } from 'next-i18next';
 import { GetStaticProps } from 'next';
 import { serverSideTranslations } from 'next-i18next/serverSideTranslations';
 import { PageContainer, SectionContainer, SectionLine, SectionTitle } from '../styles/globals';
-import { signOut, useSession } from 'next-auth/react';
+import { useSession } from 'next-auth/react';
 import styled from 'styled-components';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faFutbol, faTicketSimple } from '@fortawesome/free-solid-svg-icons';
@@ -11,7 +11,6 @@ import RestaurantCard from '../components/RestaurantCard/RestaurantCard';
 import PageHeader from '../components/globals/PageHeader';
 import useStore from '../store/useStore';
 import { useEffect } from 'react';
-import axios from 'axios';
 
 const ScrollContainer = styled.div<ScrollContainerProps>`
     display: flex;
@@ -64,17 +63,12 @@ interface NewsTextProps {
 }
 
 const Home = () => {
-    const handleSignOut = () => {
-        signOut();
-    };
     const { data: session }: any = useSession();
-
     const { t } = useTranslation('common');
     const router = useRouter();
     function getGreeting() {
         const date = new Date();
         const hours = date.getHours();
-
         if (hours >= 0 && hours < 12) {
             return t('goodMorning');
         } else if (hours >= 12 && hours < 18) {
@@ -89,7 +83,6 @@ const Home = () => {
             getRestaurants();
         }
     }, []);
-
     return (
         <PageContainer>
             <PageHeader title={getGreeting() + session.user.firstName}></PageHeader>

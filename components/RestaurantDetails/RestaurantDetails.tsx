@@ -158,7 +158,7 @@ const RestaurantDetails = () => {
                                     {category === 'menus' &&
                                         openedRestaurant.menus.map((menu: MenuModel) => (
                                             <ItemCard
-                                                key={menu._id}
+                                                key={menu.id}
                                                 menu={menu}
                                                 onClick={() => {
                                                     addMenu(menu);
@@ -169,7 +169,7 @@ const RestaurantDetails = () => {
                                             .filter((item: ItemModel) => item.category == category)
                                             .map((item: ItemModel) => (
                                                 <ItemCard
-                                                    key={item._id}
+                                                    key={item.id}
                                                     item={item}
                                                     onClick={() => {
                                                         addItem(item, openedRestaurant.name);

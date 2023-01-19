@@ -1,5 +1,5 @@
 export interface RatingModel {
-    _id?: string;
+    id?: string;
     client: string;
     restaurant: string;
     notation: number;

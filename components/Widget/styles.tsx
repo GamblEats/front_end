@@ -37,6 +37,7 @@ export const WidgetContainer = styled.div`
 
 export const WidgetOpenedContainer = styled.div<WidgetContainerProps>`
     overflow: hidden;
+    overflow-y: auto;
     position: absolute;
     right: 0;
     z-index: 1;
@@ -51,6 +52,29 @@ export const WidgetOpenedContainer = styled.div<WidgetContainerProps>`
     width: ${props => (props.isOpen ? '20rem' : '3.5rem')};
     height: ${props => (props.isOpen ? '22rem' : '3.5rem')};
     transition: width 0.5s ease-in-out, height 0.5s ease-in-out;
+    box-shadow: 0 20px 60px -15px rgba(0, 0, 0, 0.2);
+    -ms-overflow-style: none; /* IE and Edge */
+    scrollbar-width: none; /* Firefox */
+    &:-webkit-scrollbar {
+        display: none;
+    }
+`;
+
+export const NotificationIconContainer = styled.div`
+    position: relative;
+`;
+
+export const NotificationCounter = styled.div`
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    height: 1rem;
+    width: 1rem;
+    border-radius: 50%;
+    background-color: #e5bf00;
+    position: absolute;
+    right: -0.2rem;
+    top: 0.2rem;
 `;
 
 export const DeliveryContainer = styled.div`

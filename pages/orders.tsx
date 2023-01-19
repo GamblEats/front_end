@@ -18,6 +18,7 @@ import PendingOrder from '../components/PendingOrder/PendingOrder';
 import { Text } from '../styles/globals';
 import axios from 'axios';
 import { toast } from 'react-toastify';
+import Loader from '../components/globals/Loader';
 
 const OrdersContainers = styled.div`
     display: flex;
@@ -136,12 +137,36 @@ const Orders = () => {
                 )
                 .then(() => {
                     toast.success(t('orderAccepted'));
+                    getOrders(session.user);
                 })
                 .catch(error => {
                     toast.error(t('errorAccount'));
                 });
         } catch (error) {
             throw error;
+        }
+    }
+    async function setReadyToPickup(orderId: string) {
+        try {
+            const res = await axios
+                .patch(
+                    userApi + '/orders/' + orderId,
+                    { status: 'READY_TO_PICKUP' },
+                    {
+                        headers: {
+                            'Content-Type': 'application/json',
+                        },
+                    }
+                )
+                .then(() => {
+                    toast.success(t('orderAccepted'));
+                    getOrders(session.user);
+                })
+                .catch(error => {
+                    toast.error(t('errorAccount'));
+                });
+        } catch (error) {
+            toast.error(t('errorAccount'));
         }
     }
     useEffect(() => {
@@ -157,6 +182,7 @@ const Orders = () => {
     return (
         <PageContainer>
             <PageHeader title={t('orders')}></PageHeader>
+            {orders.length == 0 && <Loader onAllPage={true} size="5rem" />}
             {session.user.role == 'client' ? (
                 <OrdersContainers>
                     <PastOrdersContainer>
@@ -192,7 +218,7 @@ const Orders = () => {
                                             .indexOf(searchByMonth.toLowerCase()) > -1
                                 )
                                 .map((order, i) => (
-                                    <Order key={i} order={order}></Order>
+                                    <Order key={order.id} order={order}></Order>
                                 ))}
                         </OrderContainer>
                     </PastOrdersContainer>
@@ -214,7 +240,11 @@ const Orders = () => {
                                     order.status !== 'VALIDATION_PENDING'
                             )
                             .map((order: OrderModel) => (
-                                <Order key={order.id} order={order} isPendingForRestaurant={true}></Order>
+                                <Order
+                                    key={order.id}
+                                    order={order}
+                                    isPendingForRestaurant={true}
+                                    onReady={() => setReadyToPickup(order.id!)}></Order>
                             ))}
                         <Text size="1.8rem" weight="600">
                             {t('pastOrders')}
@@ -235,6 +265,7 @@ const Orders = () => {
                             .filter(order => order.status === 'VALIDATION_PENDING')
                             .map((order: OrderModel, i: number) => (
                                 <PendingOrder
+                                    key={order.id}
                                     isRestaurant={true}
                                     order={order}
                                     onValidation={() => validOrder(order.id!)}

@@ -3,7 +3,6 @@ import { signOut, useSession } from 'next-auth/react';
 import React, { useEffect, useRef, useState } from 'react';
 import axios from 'axios';
 import { userApi } from '../../public/const';
-import styled from 'styled-components';
 import { useFormik } from 'formik';
 import * as Yup from 'yup';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
@@ -24,8 +23,8 @@ import {
     Modal,
     Title,
 } from './styles';
-import ConfirmModal from '../RestaurantDetails/ConfirmModal';
 import { SignInButton, SignUpButton } from '../AuthForm/styles';
+import Loader from '../globals/Loader';
 export interface inputProps {
     edit: boolean;
 }
@@ -109,6 +108,7 @@ const AccountForm = () => {
 
     return (
         <>
+            {load && <Loader size="3rem" />}
             {!load && (
                 <Form onSubmit={myFormik.handleSubmit}>
                     <InputRow>

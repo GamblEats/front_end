@@ -12,11 +12,12 @@ const LoaderContainer = styled.div`
 
 interface Props {
     size: string;
+    onAllPage?: boolean;
 }
 
-const Loader = ({ size }: Props) => {
+const Loader = ({ size, onAllPage }: Props) => {
     return (
-        <LoaderContainer>
+        <LoaderContainer style={{ transform: 'translateY(-10rem)' }}>
             <FontAwesomeIcon className="loader" color="#E5BF00" fontSize={size} icon={faTicket}></FontAwesomeIcon>
         </LoaderContainer>
     );

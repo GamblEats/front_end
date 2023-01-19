@@ -3,7 +3,7 @@ import { DeliveryStep } from '../../public/const';
 import DeliveryStepper from '../DeliveryStepper/DeliveryStepper';
 import { DeliveryContainer } from './styles';
 
-const NavPageItems = () => {
+const DeliveryContent = () => {
     const { t } = useTranslation('common');
     return (
         <DeliveryContainer>
@@ -12,4 +12,4 @@ const NavPageItems = () => {
     );
 };
 
-export default NavPageItems;
+export default DeliveryContent;
