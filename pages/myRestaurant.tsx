@@ -1,6 +1,6 @@
 import { GetStaticProps } from 'next';
 import { serverSideTranslations } from 'next-i18next/serverSideTranslations';
-import { useEffect, useRef, useState } from 'react';
+import React, { useEffect, useRef, useState } from 'react';
 import { useSession } from 'next-auth/react';
 import { useRouter } from 'next/router';
 import { PageContainer } from '../styles/globals';
@@ -11,6 +11,7 @@ import AccountInfo from '../components/RestaurantAccount/AccountInfo';
 import { AccountWrapper } from '../components/RestaurantAccount/styles';
 import axios from 'axios';
 import { restaurantApi } from '../public/const';
+import CreationForm from '../components/RestaurantCreation/CreationForm';
 
 const MyRestaurant = () => {
     const { data: session }: any = useSession();
@@ -49,7 +50,9 @@ const MyRestaurant = () => {
                     <AccountInfo restaurantInfo={restaurantInfo} loading={loading} />
                 </AccountWrapper>
             ) : (
-                <h1>{t('noRestaurant')}</h1>
+                <React.Fragment>
+                    <CreationForm sessionUser={session.user} />
+                </React.Fragment>
             )}
         </PageContainer>
     );
