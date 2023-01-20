@@ -1,5 +1,5 @@
 import { useEffect, useState } from 'react';
-import { faBox, faClock, faTimes, faTrash, faCreditCard } from '@fortawesome/free-solid-svg-icons';
+import { faBox, faClock, faTimes, faTrash, faCreditCard, faArrowRight } from '@fortawesome/free-solid-svg-icons';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import useStore from '../../store/useStore';
 import { shallow } from 'zustand/shallow';
@@ -14,8 +14,10 @@ import {
     Button,
     Buttons,
     Categorie,
+    CloseModal,
     Details,
     DetailsContent,
+    DivClose,
     Info,
     Infos,
     Items,
@@ -135,21 +137,12 @@ const RestaurantDetails = () => {
                             ))}
                         </RestaurantMenu>
                     </SideBar>
-                    <FontAwesomeIcon
-                        color={'#E5BF00'}
-                        icon={faTimes}
-                        fontSize={'2rem'}
-                        cursor={'pointer'}
-                        style={{
-                            position: 'absolute',
-                            right: '1.5rem',
-                            top: '1.5rem',
-                            backdropFilter: 'blur(10px)',
-                        }}
+                    <DivClose
                         onClick={() => {
                             setOpenedRestaurant(null);
-                        }}
-                    />
+                        }}>
+                        <CloseModal icon={faTimes} />
+                    </DivClose>
                     <DetailsContent>
                         {categories.map((category: string, i: number) => (
                             <ItemSection>
@@ -190,8 +183,27 @@ const RestaurantDetails = () => {
                         </BasketModal>
                     )}
 
-                    <Order style={{ width: orderIsOpen ? '25%' : '0', visibility: orderIsOpen ? 'visible' : 'hidden' }}>
+                    <Order
+                        style={{
+                            width: orderIsOpen ? '25%' : '0',
+                            padding: orderIsOpen ? '3rem 1rem 1rem 1rem' : '3rem 0rem 1rem 0rem',
+                        }}>
                         <OrderTitle>{t('yourCommand')}</OrderTitle>
+                        <FontAwesomeIcon
+                            color={'#E5BF00'}
+                            icon={faArrowRight}
+                            fontSize={'1.2rem'}
+                            cursor={'pointer'}
+                            style={{
+                                position: 'absolute',
+                                left: '0.5rem',
+                                top: '0.5rem',
+                                backdropFilter: 'blur(10px)',
+                            }}
+                            onClick={() => {
+                                setOrderIsOpen(false);
+                            }}
+                        />
                         {menus.length > 0 || items.length > 0 ? (
                             <ItemList itemList={[...menus, ...items]} isBasket={true}></ItemList>
                         ) : (
@@ -222,6 +234,7 @@ const RestaurantDetails = () => {
                                                 .then(resp => {
                                                     toast.success('Commande créée');
                                                     setOpenedRestaurant(null);
+                                                    deleteCard();
                                                 });
                                         }
                                     }}>
