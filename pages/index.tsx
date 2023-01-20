@@ -44,7 +44,6 @@ const BackgroundImg = styled.img`
 
 const SloganContainer = styled.div`
     display: flex;
-    z-index: 1;
     flex-direction: column;
     gap: 2rem;
 `;
