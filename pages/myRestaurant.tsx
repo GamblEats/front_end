@@ -46,18 +46,10 @@ const MyRestaurant = () => {
         <PageContainer>
             <PageHeader title={t('myRestaurant')}></PageHeader>
             {session.user.restaurantId ? (
-                !restaurantInfo ? (
-                    <Loader size={'5rem'} />
-                ) : (
-                    <AccountWrapper>
-                        <MenusAndArticles
-                            restaurantInfo={restaurantInfo}
-                            getRestaurant={getRestaurant}
-                            loading={loading}
-                        />
-                        <AccountInfo restaurantInfo={restaurantInfo} loading={loading} />
-                    </AccountWrapper>
-                )
+                <AccountWrapper>
+                    <MenusAndArticles restaurantInfo={restaurantInfo} getRestaurant={getRestaurant} loading={loading} />
+                    <AccountInfo restaurantInfo={restaurantInfo} loading={loading} />
+                </AccountWrapper>
             ) : (
                 <React.Fragment>
                     <CreationForm sessionUser={session.user} />
