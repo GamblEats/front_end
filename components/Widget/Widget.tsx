@@ -18,6 +18,7 @@ import axios from 'axios';
 import { userApi } from '../../public/const';
 import { useSession } from 'next-auth/react';
 import { Text } from '../../styles/globals';
+import { OrderModel } from '../../models/OrderModel';
 
 interface Props {
     icon: IconProp;
@@ -32,6 +33,23 @@ const Widget = ({ icon }: Props) => {
     const [isHover, setIsHover] = useState(false);
     const [isOpen, setIsOpen] = useState(false);
     const { data: session }: any = useSession();
+    const [currentOrder, setCurrentOrder] = useState<OrderModel>();
+    const [isLoading, setIsLoading] = useState(true);
+    async function getcurrentOrder() {
+        setIsLoading(true);
+        try {
+            await axios
+                .get(`${userApi}/users/${session.user.id}/orders/pending`, {
+                    headers: {
+                        'Content-Type': 'application/json',
+                    },
+                })
+                .then(resp => {
+                    setCurrentOrder(resp.data[0]);
+                    setIsLoading(false);
+                });
+        } catch (error) {}
+    }
     const [notificationsCount, setNotificationsCount] = useState([]);
     async function getNotificationsCount() {
         try {
@@ -47,6 +65,7 @@ const Widget = ({ icon }: Props) => {
         } catch (error) {}
     }
     useEffect(() => {
+        getcurrentOrder();
         getNotificationsCount();
     }, []);
     return (
@@ -56,6 +75,7 @@ const Widget = ({ icon }: Props) => {
                 onMouseLeave={() => setIsHover(false)}
                 onClick={() => {
                     setIsOpen(!isOpen);
+                    !isOpen ? getcurrentOrder() : null;
                     getNotificationsCount();
                 }}
                 isHoverOrOpen={isHover || isOpen}
@@ -94,7 +114,9 @@ const Widget = ({ icon }: Props) => {
                 }}
                 isOpen={isOpen}>
                 {icon === faBell && <NotificationsContent></NotificationsContent>}
-                {icon === faBox && <DeliveryContent></DeliveryContent>}
+                {icon === faBox && (
+                    <DeliveryContent currentOrder={currentOrder} isLoading={isLoading}></DeliveryContent>
+                )}
                 {icon === faBasketShopping && <BasketContent></BasketContent>}
             </WidgetOpenedContainer>
         </WidgetContainer>
