@@ -16,6 +16,8 @@ import { OrderModel } from '../models/OrderModel';
 import axios from 'axios';
 import Loader from '../components/globals/Loader';
 import { Text } from '../styles/globals';
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import { faTimes } from '@fortawesome/free-solid-svg-icons';
 
 const DeliveriesContainer = styled.div`
     display: flex;
@@ -54,6 +56,21 @@ const OrderButton = styled.div`
     &:hover  {
         opacity: 0.7;
     }
+    @media (max-width: 600px) {
+        display: none;
+    }
+`;
+const OrderMobileButton = styled.div`
+    display: none;
+    font-weight: 600;
+    cursor: pointer;
+    transition: opacity 0.3s ease-in-out;
+    &:hover {
+        opacity: 0.7;
+    }
+    @media (max-width: 600px) {
+        display: flex;
+    }
 `;
 
 const NoDelivery = styled.div`
@@ -70,9 +87,22 @@ const Deliveries = () => {
     const { t } = useTranslation('common');
     const { data: session }: any = useSession();
     const router = useRouter();
+    const [deliveries, setDeliveries] = useState<any>();
     const [delivery, setDelivery] = useState<any>();
     const [isLoading, setIsLoading] = useState(true);
-    const { readyToPickupOrders, getReadyToPickupOrders } = useStore();
+    async function getDeliveries() {
+        try {
+            await axios
+                .get(`${delivererApi}/deliverer/${session.user.city}`, {
+                    headers: {
+                        'Content-Type': 'application/json',
+                    },
+                })
+                .then(resp => setDeliveries(resp.data));
+        } catch (error) {
+            throw error;
+        }
+    }
     async function getDelivery() {
         try {
             await axios
@@ -100,7 +130,7 @@ const Deliveries = () => {
             )
             .then(() => {
                 setIsLoading(false);
-                getReadyToPickupOrders(session.user);
+                getDeliveries();
                 getDelivery();
             });
     }
@@ -122,11 +152,9 @@ const Deliveries = () => {
     }
     useEffect(() => {
         getDelivery();
+        getDeliveries();
         if (session.user.role !== 'deliverer') {
             router.push('/home');
-        }
-        if (readyToPickupOrders.length === 0) {
-            getReadyToPickupOrders(session.user);
         }
     }, []);
     return (
@@ -157,6 +185,9 @@ const Deliveries = () => {
                                 }}>
                                 {t('cancelOrder')}
                             </OrderButton>
+                            <OrderMobileButton>
+                                <FontAwesomeIcon fontSize={'1.3rem'} color="#C0392B" icon={faTimes} />
+                            </OrderMobileButton>
                             <div style={{ display: 'flex', justifyContent: 'center' }}>
                                 {delivery?.status == 'IN_PREPARATION' && (
                                     <Text size="1.2rem">{t('waitPreparation')}</Text>
@@ -183,11 +214,15 @@ const Deliveries = () => {
                             <OrderButton style={{ justifyContent: 'right', color: '#E67E22' }}>
                                 {t('orderProblem')}
                             </OrderButton>
+                            <OrderMobileButton
+                                style={{ justifyContent: 'right', color: '#E67E22', fontSize: '1.3rem' }}>
+                                ?
+                            </OrderMobileButton>
                         </ButtonContainer>
                     </DeliveryContainer>
                 )}
                 <PendingDeliveriesContainer>
-                    {readyToPickupOrders.map((order: OrderModel) => (
+                    {deliveries?.map((order: OrderModel) => (
                         <PendingOrder
                             key={order.id}
                             order={order}

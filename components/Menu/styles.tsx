@@ -2,6 +2,7 @@ import styled from 'styled-components';
 import { MenuItemProps } from './Menu';
 
 export const MenuContainer = styled.div`
+    z-index: 100;
     top: 2em;
     left: 7%;
     position: absolute;
@@ -45,7 +46,6 @@ export const PartnersList = styled.div`
         position: absolute;
         background-color: white;
         border-radius: 1rem;
-        z-index: 1;
         gap: 0.5rem;
         padding: 1rem 0.5rem;
     }
